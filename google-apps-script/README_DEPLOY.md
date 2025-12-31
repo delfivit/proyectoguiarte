@@ -23,6 +23,16 @@ Deploying the Google Apps Script web app
 
      const GAS_ENDPOINT = 'https://script.google.com/macros/s/XXXXXXXX/exec';
 
+5) Authorize the script to access your Google Sheet (important)
+   - Open the Apps Script project in the editor (https://script.google.com/). Make sure you're logged in with the same Google account that owns or can edit the spreadsheet.
+   - In the editor's function selector (top toolbar) choose `authTest` and press the Run ▶ button.
+   - A permissions dialog will appear. Follow the prompts and allow access to your Google Sheets when requested.
+   - If you see an "unverified app" warning, click "Advanced" → "Go to {project name} (unsafe)" and continue to grant permission.
+   - Once authorization succeeds the script will have the proper scopes (https://www.googleapis.com/auth/spreadsheets) and the web app can write rows.
+
+6) Redeploy the web app (if you changed code)
+   - After authorization, redeploy as Web App as in step 3 (Deploy → New deployment) and copy the URL again if it changed.
+
    - Save and redeploy your site (if using a static host).
 
 5) Test from the site

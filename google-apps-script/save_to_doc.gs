@@ -91,3 +91,16 @@ function doGet(e){
 // Note: Apps Script Web Apps typically work when deployed as "Anyone, even anonymous".
 // Browser CORS behavior can vary; if you still see CORS issues, use the GET/JSONP fallback
 // (example: create a script tag with src = WEB_APP_URL + '?product=X&email=Y&callback=cb').
+
+// Helper to force the script to request Spreadsheet scopes from the editor.
+// Run this in the Apps Script editor (select `authTest` and press ▶ Run) and
+// follow the authorization prompts. This will grant the script permission to
+// access the spreadsheet so the web app can write rows when executed as you.
+function authTest(){
+  // This simply opens the spreadsheet to prompt the OAuth consent for spreadsheets.
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  // touch the sheet to ensure a scope is requested
+  var sheet = SHEET_NAME ? ss.getSheetByName(SHEET_NAME) : ss.getSheets()[0];
+  sheet.getRange(1,1).getValue();
+  return 'ok';
+}
