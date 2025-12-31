@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proyecto Guiarte — Home</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TH8FKL9J');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Local font (Zamora) preload + fallback -->
+  <link rel="preload" href="Zamora-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Proyecto Guiarte — Productos y experiencias para guiarte hacia vos mismo.">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TH8FKL9J"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="Proyecto Guiarte — inicio">
+        <img src="img-logo-pg.jpg" alt="Proyecto Guiarte logo" class="logo-img">
+        <span class="logo-text zamora">Proyecto Guiarte</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="experiencias.html">Experiencias</a>
+        <a href="productos.html">Productos</a>
+        <a href="eventos.html">Eventos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: contenido centrado verticalmente (altura = 100vh - header) -->
+    <section id="hero" class="hero" role="region" aria-label="Hero — Proyecto Guiarte">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-inner container">
+        <!-- Línea 1: ESTAMOS LLEGANDO... -->
+        <p id="hero-pre" class="hero-pre">ESTAMOS LLEGANDO...</p>
+
+        <!-- Línea 2: Proyecto Guiarte - visible small at load, grows on scroll -->
+        <h1 id="hero-title" class="hero-title zamora">Proyecto Guiarte</h1>
+
+        <!-- Línea 3: subtítulo -->
+        <p class="hero-sub single-line">Productos y experiencias para guiarte hacia vos mismo</p>
+
+        <!-- Línea 4: redes -->
+        <div class="hero-follow" aria-label="Seguinos en nuestras redes">
+          <p class="hero-follow-text">Seguinos en nuestras redes</p>
+          <div class="hero-icons">
+            <a href="https://www.instagram.com/proyectoguiarte/" class="icon" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@proyectoguiarte" class="icon" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9 8v8a4 4 0 1 0 4-4V6h3" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </a>
+            <a href="https://open.spotify.com" class="icon" aria-label="Spotify" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#1DB954" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIENES SOMOS: now with image background and centered card -->
+    <section id="quienes" class="section-black">
+      <div class="container">
+        <div class="quienes-card">
+          <h2 class="section-title zamora">Quiénes somos</h2>
+          <p class="lead">
+            En Guiarte creemos que reconectar con uno mismo no es algo lejano, sino parte de lo cotidiano.
+            Acompañamos procesos de autoconocimiento a través de experiencias y de una curaduría consciente de productos, elegidos por su intención y por cómo acompañan la vida diaria.
+          </p>
+
+          <p class="lead">
+            Seleccionamos y ofrecemos propuestas que invitan a frenar, habitar el presente y volver a lo esencial, integrando el autoconocimiento en lo simple y real de cada día.
+          </p>
+
+          <p class="lead quote">
+            Guiarte no te dice quién ser.<br>Te acompaña a reconectar con vos, todos los días.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIAS PREVIEW: video background (video-experiencias.mp4) with poster img-experiencias.jpg -->
+    <section id="experiencias" class="section-media section-experiencias">
+      <video class="bg-video" autoplay muted loop playsinline poster="img-experiencias.jpg" aria-hidden="true">
+        <source src="video-experiencias.mp4" type="video/mp4">
+      </video>
+
+      <div class="media-content container">
+        <h2 class="media-title zamora">EXPERIENCIAS</h2>
+        <p class="media-sub"><a href="experiencias.html" class="link">Conocé más →</a></p>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS PREVIEW -->
+    <section id="productos" class="section-media section-productos">
+      <div class="media-content container">
+        <h2 class="media-title zamora">PRODUCTOS QUE CONECTAN</h2>
+        <p class="media-sub"><a href="productos.html" class="link">Shop →</a></p>
+      </div>
+    </section>
+
+    <!-- EVENTOS PREVIEW -->
+    <section id="eventos" class="section-media section-eventos">
+      <div class="media-content container">
+        <h2 class="media-title zamora">EVENTOS</h2>
+        <p class="media-sub"><a href="eventos.html" class="link">Conocé más →</a></p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="socials">
+          <a href="https://www.instagram.com/proyectoguiarte/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@proyectoguiarte" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a>
+        </div>
+        <div>© Proyecto Guiarte</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
