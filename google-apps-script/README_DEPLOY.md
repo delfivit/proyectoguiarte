@@ -12,10 +12,10 @@ Deploying the Google Apps Script web app
 3) Deploy as Web App
    - Click "Deploy" → "New deployment".
    - Select "Deployment type" → "Web app".
-   - For "Description" enter something like: Save emails to Google Doc
+   - For "Description" enter something like: Save emails to Google Sheet
    - For "Execute as" choose: Me
    - For "Who has access" choose: Anyone (even anonymous)  <-- important if you want the website to POST directly from browsers
-   - Click Deploy. You may be asked to authorize the script (allow access to Google Docs).
+   - Click Deploy. You may be asked to authorize the script (allow access to Google Sheets).
    - Copy the Web App URL shown after deployment. It looks like https://script.google.com/macros/s/XXXXXXXX/exec
 
 4) Paste the Web App URL into your `script.js`
