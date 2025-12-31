@@ -266,4 +266,23 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   .hero-sub{white-space:normal}
   /* pause heavy video autoplay on small screens if desired (script also handles) */
   .section-experiencias .bg-video{display:none}
+
+  /* Mobile: hide desktop nav and show hamburger */
+  .main-nav{display:none}
+
+  .hamburger{display:flex; position:absolute; right:18px; top:50%; transform:translateY(-50%); width:44px; height:36px; align-items:center; justify-content:center; background:transparent; border:0; cursor:pointer; z-index:140}
+  .hamburger .bar{display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition: transform 200ms ease, opacity 200ms ease}
+  .hamburger .bar-1{transform: translateY(-6px)}
+  .hamburger .bar-3{transform: translateY(6px)}
+
+  /* When menu is open transform bars into X */
+  .menu-open .hamburger .bar-1{transform: rotate(45deg)}
+  .menu-open .hamburger .bar-2{opacity:0}
+  .menu-open .hamburger .bar-3{transform: rotate(-45deg)}
+
+  /* Mobile menu panel (appears when .menu-open is present on body) */
+  .menu-panel{display:none}
+  .menu-open .menu-panel{display:block; position:fixed; inset:var(--header-h) 12px auto auto; right:12px; top:var(--header-h); background:rgba(0,0,0,0.9); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); z-index:130}
+  .menu-open .menu-panel .main-nav{display:flex; flex-direction:column; gap:10px}
+  .menu-open .menu-panel .main-nav a{display:block; padding:8px 12px}
 }

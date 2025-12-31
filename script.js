@@ -128,4 +128,46 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // HAMBURGER / mobile menu toggle
+  const hamburger = document.getElementById('hamburgerBtn');
+  const body = document.body;
+  const headerInner = document.querySelector('.header-inner');
+  // create a menu-panel wrapper around the existing nav for mobile positioning (CSS uses .menu-panel)
+  const mainNav = document.querySelector('.main-nav');
+  if (mainNav){
+    const menuPanel = document.createElement('div');
+    menuPanel.className = 'menu-panel';
+    // move mainNav into menuPanel for mobile display
+    mainNav.parentNode.insertBefore(menuPanel, mainNav.nextSibling);
+    menuPanel.appendChild(mainNav);
+  }
+
+  function closeMenu(){
+    body.classList.remove('menu-open');
+    if (hamburger) hamburger.setAttribute('aria-expanded','false');
+  }
+  function openMenu(){
+    body.classList.add('menu-open');
+    if (hamburger) hamburger.setAttribute('aria-expanded','true');
+  }
+
+  if (hamburger){
+    hamburger.addEventListener('click', (e)=>{
+      const isOpen = body.classList.contains('menu-open');
+      if (isOpen) closeMenu(); else openMenu();
+    });
+  }
+
+  // Close menu when clicking a link inside nav (useful on mobile)
+  document.addEventListener('click', (e)=>{
+    if (!body.classList.contains('menu-open')) return;
+    const target = e.target;
+    // if click is inside the menu-panel or hamburger, keep it open
+    if (target.closest && (target.closest('.menu-panel') || target.closest('.hamburger'))) return;
+    closeMenu();
+  });
+
+  // close on ESC
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
 });
