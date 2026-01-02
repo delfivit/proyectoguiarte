@@ -81,8 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (GAS_ENDPOINT){
         try{
           const payload = { email, product, ts: new Date().toISOString() };
-          const res = await fetch(GAS_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-          if (res.ok){
+          // Try POST first; if it fails (CORS/network), fallback to JSONP GET
+          const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
+          if (ok){
             buyMsg.textContent = '¡Listo! Te avisaremos cuando esté disponible.';
             buyMsg.style.color = '#b8ffd6';
             buyForm.reset();
@@ -170,4 +171,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // close on ESC
   document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
+
+  // --- Helper: resilient send with POST then JSONP fallback ---
+  function jsonpRequest(url, params = {}, timeout = 8000){
+    return new Promise((resolve) => {
+      const callbackName = 'pg_jsonp_cb_' + Math.random().toString(36).substr(2,9);
+      params.callback = callbackName;
+      const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+      const src = url + (url.indexOf('?') === -1 ? '?' : '&') + query;
+
+      let timer = setTimeout(()=>{
+        cleanup();
+        resolve(false);
+      }, timeout);
+
+      function cleanup(){
+        clearTimeout(timer);
+        try{ window[callbackName] = undefined; delete window[callbackName]; }catch(e){}
+        const el = document.getElementById(callbackName);
+        if (el) el.parentNode.removeChild(el);
+      }
+
+      window[callbackName] = function(resp){
+        cleanup();
+        if (resp && resp.status === 'ok') resolve(true);
+        else resolve(false);
+      };
+
+      const s = document.createElement('script');
+      s.src = src;
+      s.id = callbackName;
+      s.onerror = function(){ cleanup(); resolve(false); };
+      document.head.appendChild(s);
+    });
+  }
+
+  async function sendToEndpoint(url, payload){
+    // try POST first
+    try{
+      const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      if (res && res.ok) return true;
+      // server returned non-OK; still try fallback
+    }catch(err){
+      // likely CORS or network error
+      console.warn('POST to GAS failed, will try JSONP fallback', err);
+    }
+
+    // JSONP fallback: send as GET with callback
+    try{
+      const params = { email: payload.email, product: payload.product, ts: payload.ts };
+      const ok = await jsonpRequest(url, params, 9000);
+      return ok;
+    }catch(e){
+      return false;
+    }
+  }
 });
