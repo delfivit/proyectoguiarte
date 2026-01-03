@@ -4,7 +4,38 @@
 
 const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzP7JaFNr8NwlJqtiSknMIES7gKOtlW_QRbPveSEcyePdwhE8Cb6sJ_uB2YYvbGPqTr/exec';
 
-document.addEventListener('DOMContentLoaded', () => {
+// Load header and footer components
+async function loadComponents() {
+  const headerPlaceholder = document.getElementById('header-placeholder');
+  const footerPlaceholder = document.getElementById('footer-placeholder');
+  
+  if (headerPlaceholder) {
+    try {
+      const response = await fetch('header.html');
+      const html = await response.text();
+      headerPlaceholder.innerHTML = html;
+    } catch (e) {
+      console.error('Error loading header:', e);
+    }
+  }
+  
+  if (footerPlaceholder) {
+    try {
+      const response = await fetch('footer.html');
+      const html = await response.text();
+      footerPlaceholder.innerHTML = html;
+    } catch (e) {
+      console.error('Error loading footer:', e);
+    }
+  }
+}
+
+// Load components first, then initialize everything else
+loadComponents().then(() => {
+  initApp();
+});
+
+function initApp() {
   // HERO: add/remove .scrolled on small scroll
   const hero = document.getElementById('hero');
   const THRESHOLD = 6;
@@ -17,19 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
 
-  // Video: play/pause on small screens to save data
-  const experSection = document.querySelector('.section-experiencias');
-  if (experSection){
-    const vid = experSection.querySelector('.bg-video');
-    if (vid){
-      const mql = window.matchMedia('(max-width: 700px)');
-      if (mql.matches) vid.pause();
-      mql.addEventListener('change', (ev) => {
-        if (ev.matches) vid.pause();
-        else vid.play().catch(()=>{});
-      });
-    }
-  }
+  // Video ahora se reproduce en todas las pantallas (mobile incluido)
 
   // Buy modal logic (unchanged)
   const buyButtons = document.querySelectorAll('.btn-buy');
@@ -80,12 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
       buyMsg.textContent = 'Enviando...';
       if (GAS_ENDPOINT){
         try{
-          console.log('[form] Enviando a GAS_ENDPOINT:', GAS_ENDPOINT);
           const payload = { email, product, ts: new Date().toISOString() };
-          console.log('[form] Payload:', payload);
-          // Try POST first; if it fails (CORS/network), fallback to JSONP GET
           const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
-          console.log('[form] Resultado envío:', ok);
           if (ok){
             buyMsg.textContent = '¡Listo! Te avisaremos cuando esté disponible.';
             buyMsg.style.color = '#b8ffd6';
@@ -96,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
             saveLocal(email, product);
           }
         }catch(err){
-          console.error('[form] Error:', err);
           buyMsg.textContent = 'Error de conexión. Guardado localmente.';
           buyMsg.style.color = '#ffb0b0';
           saveLocal(email, product);
@@ -183,10 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
       const src = url + (url.indexOf('?') === -1 ? '?' : '&') + query;
 
-      console.log('[jsonpRequest] Creando script con src:', src);
-
-      let timer = setTimeout(()=>{
-        console.warn('[jsonpRequest] Timeout después de', timeout, 'ms');
+      let timer = setTimeout(() => {
         cleanup();
         resolve(false);
       }, timeout);
@@ -199,17 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       window[callbackName] = function(resp){
-        console.log('[jsonpRequest] Callback invocado con respuesta:', resp);
         cleanup();
-        if (resp && resp.status === 'ok') resolve(true);
-        else resolve(false);
+        resolve(resp && resp.status === 'ok');
       };
 
       const s = document.createElement('script');
       s.src = src;
       s.id = callbackName;
-      s.onerror = function(){ 
-        console.error('[jsonpRequest] Script load error');
+      s.onerror = () => { 
         cleanup(); 
         resolve(false); 
       };
@@ -218,34 +226,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function sendToEndpoint(url, payload){
-    // try POST first
+    // Try POST first
     try{
-      console.log('[sendToEndpoint] Intentando POST a:', url);
-      const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-      console.log('[sendToEndpoint] Respuesta POST:', res.status, res.ok);
-      if (res && res.ok) {
-        const respText = await res.text();
-        console.log('[sendToEndpoint] Cuerpo respuesta:', respText);
-        return true;
-      }
-      // server returned non-OK; still try fallback
-      const text = await res.text();
-      console.warn('[sendToEndpoint] POST no-OK. Status:', res.status, 'Body:', text);
+      const res = await fetch(url, { 
+        method:'POST', 
+        headers:{'Content-Type':'application/json'}, 
+        body: JSON.stringify(payload) 
+      });
+      if (res && res.ok) return true;
     }catch(err){
-      // likely CORS or network error
-      console.warn('[sendToEndpoint] POST falló (CORS/red):', err.message);
+      // CORS or network error, try JSONP fallback
     }
 
     // JSONP fallback: send as GET with callback
-    try{
-      console.log('[sendToEndpoint] Intentando fallback JSONP...');
-      const params = { email: payload.email, product: payload.product, ts: payload.ts };
-      const ok = await jsonpRequest(url, params, 9000);
-      console.log('[sendToEndpoint] JSONP resultado:', ok);
-      return ok;
-    }catch(e){
-      console.error('[sendToEndpoint] JSONP falló:', e);
-      return false;
-    }
+    const params = { email: payload.email, product: payload.product, ts: payload.ts };
+    return await jsonpRequest(url, params, 9000);
   }
-});
+} // end initApp
