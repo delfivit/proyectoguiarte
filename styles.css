@@ -32,8 +32,9 @@
 
 /* ---------- Base / Reset ---------- */
 *{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:#fff; background:var(--bg-dark); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+html,body{height:100%; margin:0; font-family:"Satoshi","Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:#fff; background:var(--bg-dark); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
 a{color:inherit}
+p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
 .container{max-width:var(--max-width); margin:0 auto; padding:0 20px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
@@ -122,7 +123,8 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   white-space:nowrap;
   font-size: clamp(34px, 6.5vw, 96px);
   line-height:1;
-  transition: font-size 120ms linear, transform 120ms linear;
+  transition: font-size 120ms linear, transform 120ms linear, opacity 300ms ease;
+  opacity: 1;
 }
 
 /* TITLE - Proyecto Guiarte (small at load, grows on scroll) */
@@ -154,7 +156,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   font-size: clamp(18px, 2.2vw, 22px);
   white-space:nowrap;
 }
-.hero-follow{margin-top:8px; display:flex; gap:12px; align-items:center; justify-content:center}
+.hero-follow{margin-top:24px; display:flex; gap:12px; align-items:center; justify-content:center; flex-direction:column}
 .hero-follow-text{margin:0; font-weight:600}
 .hero-icons{display:flex; gap:10px}
 .icon{width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; background:rgba(255,255,255,0.06)}
@@ -165,7 +167,9 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .hero.scrolled .hero-pre{
   font-size: clamp(18px, 2.4vw, 28px);
   transform: translateY(-6px);
-  transition: font-size 120ms linear;
+  opacity: 0;
+  pointer-events: none;
+  transition: font-size 120ms linear, opacity 300ms ease;
 }
 .hero.scrolled .hero-title{
   font-size: clamp(56px, 9.6vw, 140px);
@@ -221,10 +225,11 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .section-eventos{background-image: url('img-eventos.jpg');}
 
 /* media-content common */
-.media-content{position:relative; z-index:2; padding:42px 24px; color:#fff}
+.media-content{position:relative; z-index:2; padding:42px 24px; color:#fff; text-align:center}
 .media-title{font-size: clamp(36px, 7vw, 72px); margin:0; font-weight:800}
 .media-title.zamora{font-family:'Zamora'}
-.media-sub .link{display:inline-block; margin-top:10px; color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600}
+.media-sub{margin-top:16px}
+.media-sub .link{display:inline-block; margin-top:10px; color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; font-size: clamp(18px, 2vw, 22px)}
 
 /* ================ PRODUCTS / CARDS / MODAL ================ */
 .section-products{padding:36px 0 80px}
@@ -284,7 +289,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 @media (max-width:1000px){
   .exper-grid{grid-template-columns:repeat(2,1fr)}
   .events-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-pre{font-size: clamp(22px, 8vw, 44px); white-space:normal}
+  .hero-pre{font-size: clamp(32px, 9vw, 56px); white-space:normal}
   .hero-title{font-size: clamp(28px, 10vw, 72px)}
   .hero-sub{white-space:normal}
 }
@@ -293,7 +298,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   .events-grid{grid-template-columns:1fr}
   .main-nav{gap:16px}
   .hero-inner{padding:28px 16px}
-  .hero-pre{white-space:normal}
+  .hero-pre{font-size: clamp(42px, 11vw, 68px); white-space:normal}
   .hero-sub{white-space:normal}
   /* Video se muestra en todas las pantallas ahora */
 
