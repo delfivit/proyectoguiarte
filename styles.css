@@ -224,12 +224,29 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .section-productos{background-image: url('img-productos.jpg');}
 .section-eventos{background-image: url('img-eventos.jpg');}
 
+/* ================ EXPERIENCIAS SECTIONS (image backgrounds) ================ */
+.section-exp-creativos{background-image: url('img-exp-creativos.jpg');}
+.section-exp-autoconocimiento{background-image: url('img-exp-autoconocimiento.jpg');}
+.section-exp-yoga{background-image: url('img-exp-yoga.jpg');}
+.section-exp-meditacion{background-image: url('img-exp-meditacion.jpg');}
+.section-exp-orientacion{background-image: url('img-exp-orientacion.jpg');}
+.section-exp-retiros{background-image: url('img-exp-retiros.jpg');}
+
 /* media-content common */
 .media-content{position:relative; z-index:2; padding:42px 24px; color:#fff; text-align:center}
 .media-title{font-size: clamp(36px, 7vw, 72px); margin:0; font-weight:800}
 .media-title.zamora{font-family:'Zamora'}
 .media-sub{margin-top:16px}
 .media-sub .link{display:inline-block; margin-top:10px; color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; font-size: clamp(18px, 2vw, 22px)}
+.media-description{
+  font-family: "Satoshi", "Inter", system-ui;
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 20px auto 0;
+  color: rgba(255,255,255,0.95);
+  font-weight: 400;
+}
 
 /* ================ PRODUCTS / CARDS / MODAL ================ */
 .section-products{padding:36px 0 80px}
