@@ -114,27 +114,15 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   justify-content:center;
 }
 
-/* PRE - ESTAMOS LLEGANDO... */
-.hero-pre{
-  margin:0;
-  font-family:Montserrat, sans-serif;
-  font-weight:800;
-  color:#fff;
-  white-space:nowrap;
-  font-size: clamp(34px, 6.5vw, 96px);
-  line-height:1;
-  transition: font-size 120ms linear, transform 120ms linear, opacity 300ms ease;
-  opacity: 1;
-}
-
-/* TITLE - Proyecto Guiarte (small at load, grows on scroll) */
+/* TITLE - Proyecto Guiarte (large, fades out on scroll) */
 .hero-title{
-  margin:8px 0 0 0;
+  margin:0;
   font-family:'Zamora', 'Fredoka One', cursive;
-  font-size: clamp(28px, 4.6vw, 48px); /* small initially */
+  font-size: clamp(48px, 10vw, 120px);
   line-height:0.95;
   color: var(--accent-orange); /* fallback */
-  transition: font-size 160ms linear, transform 160ms linear, color 160ms linear;
+  transition: opacity 400ms ease, transform 400ms ease;
+  opacity: 1;
 }
 
 /* gradient-as-text only if supported (avoids rectangle fallback) */
@@ -165,17 +153,11 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: shrink PRE & enlarge TITLE */
-.hero.scrolled .hero-pre{
-  font-size: clamp(18px, 2.4vw, 28px);
-  transform: translateY(-6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: font-size 120ms linear, opacity 300ms ease;
-}
+/* SCROLLED state: fade out title */
 .hero.scrolled .hero-title{
-  font-size: clamp(56px, 9.6vw, 140px);
-  transform: translateY(0);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
 /* ================ QUIENES SOMOS (with background image) ================ */
@@ -350,8 +332,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 @media (max-width:1000px){
   .exper-grid{grid-template-columns:repeat(2,1fr)}
   .events-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-pre{font-size: clamp(32px, 9vw, 56px); white-space:normal}
-  .hero-title{font-size: clamp(28px, 10vw, 72px)}
+  .hero-title{font-size: clamp(48px, 10vw, 96px)}
   .hero-sub{white-space:normal}
 }
 @media (max-width:700px){
@@ -359,7 +340,6 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   .events-grid{grid-template-columns:1fr}
   .main-nav{gap:16px}
   .hero-inner{padding:28px 16px}
-  .hero-pre{font-size: clamp(42px, 11vw, 68px); white-space:normal}
   .hero-sub{white-space:normal}
   /* Video se muestra en todas las pantallas ahora */
 
