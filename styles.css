@@ -281,7 +281,25 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
 .badge{display:inline-block; background:rgba(0,0,0,0.6); color:#fff; padding:6px 10px; border-radius:8px; font-weight:700; margin-right:8px}
 .coming-cta{margin-top:10px; display:flex; gap:10px; align-items:center}
-.btn-buy{background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.08); padding:8px 12px; border-radius:8px; cursor:pointer}
+.btn-buy{
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  margin: 16px auto 0;
+  display: block;
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+}
+.btn-buy:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+.btn-buy:active{transform: translateY(0) scale(0.98)}
 .btn-primary{
   background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
   color: #fff;
