@@ -1,0 +1,30 @@
+# robots.txt for Proyecto Guiarte
+# Optimized for search engines and AI crawlers
+
+User-agent: *
+Allow: /
+
+# Allow AI search engines and chatbots
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap location
+Sitemap: https://proyectoguiarte.com/sitemap.xml
