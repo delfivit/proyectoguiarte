@@ -80,9 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
       buyMsg.textContent = 'Enviando...';
       if (GAS_ENDPOINT){
         try{
+          console.log('[form] Enviando a GAS_ENDPOINT:', GAS_ENDPOINT);
           const payload = { email, product, ts: new Date().toISOString() };
+          console.log('[form] Payload:', payload);
           // Try POST first; if it fails (CORS/network), fallback to JSONP GET
           const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
+          console.log('[form] Resultado envío:', ok);
           if (ok){
             buyMsg.textContent = '¡Listo! Te avisaremos cuando esté disponible.';
             buyMsg.style.color = '#b8ffd6';
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveLocal(email, product);
           }
         }catch(err){
-          console.error(err);
+          console.error('[form] Error:', err);
           buyMsg.textContent = 'Error de conexión. Guardado localmente.';
           buyMsg.style.color = '#ffb0b0';
           saveLocal(email, product);
@@ -180,7 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
       const src = url + (url.indexOf('?') === -1 ? '?' : '&') + query;
 
+      console.log('[jsonpRequest] Creando script con src:', src);
+
       let timer = setTimeout(()=>{
+        console.warn('[jsonpRequest] Timeout después de', timeout, 'ms');
         cleanup();
         resolve(false);
       }, timeout);
@@ -193,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       window[callbackName] = function(resp){
+        console.log('[jsonpRequest] Callback invocado con respuesta:', resp);
         cleanup();
         if (resp && resp.status === 'ok') resolve(true);
         else resolve(false);
@@ -201,7 +208,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const s = document.createElement('script');
       s.src = src;
       s.id = callbackName;
-      s.onerror = function(){ cleanup(); resolve(false); };
+      s.onerror = function(){ 
+        console.error('[jsonpRequest] Script load error');
+        cleanup(); 
+        resolve(false); 
+      };
       document.head.appendChild(s);
     });
   }
@@ -209,20 +220,31 @@ document.addEventListener('DOMContentLoaded', () => {
   async function sendToEndpoint(url, payload){
     // try POST first
     try{
+      console.log('[sendToEndpoint] Intentando POST a:', url);
       const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-      if (res && res.ok) return true;
+      console.log('[sendToEndpoint] Respuesta POST:', res.status, res.ok);
+      if (res && res.ok) {
+        const respText = await res.text();
+        console.log('[sendToEndpoint] Cuerpo respuesta:', respText);
+        return true;
+      }
       // server returned non-OK; still try fallback
+      const text = await res.text();
+      console.warn('[sendToEndpoint] POST no-OK. Status:', res.status, 'Body:', text);
     }catch(err){
       // likely CORS or network error
-      console.warn('POST to GAS failed, will try JSONP fallback', err);
+      console.warn('[sendToEndpoint] POST falló (CORS/red):', err.message);
     }
 
     // JSONP fallback: send as GET with callback
     try{
+      console.log('[sendToEndpoint] Intentando fallback JSONP...');
       const params = { email: payload.email, product: payload.product, ts: payload.ts };
       const ok = await jsonpRequest(url, params, 9000);
+      console.log('[sendToEndpoint] JSONP resultado:', ok);
       return ok;
     }catch(e){
+      console.error('[sendToEndpoint] JSONP falló:', e);
       return false;
     }
   }
