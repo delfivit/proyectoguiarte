@@ -326,7 +326,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
 /* ================ Footer ================ */
 .site-footer{padding:28px 0; background:#000; color:var(--muted); margin-top:28px}
-.footer-inner{display:flex; align-items:center; justify-content:center}
+.footer-inner{display:flex; align-items:center; justify-content:space-between}
 
 /* ================ Responsive ================ */
 @media (max-width:1000px){
