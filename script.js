@@ -3,6 +3,7 @@
 */
 
 const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzP7JaFNr8NwlJqtiSknMIES7gKOtlW_QRbPveSEcyePdwhE8Cb6sJ_uB2YYvbGPqTr/exec';
+
 document.addEventListener('DOMContentLoaded', () => {
   // HERO: add/remove .scrolled on small scroll
   const hero = document.getElementById('hero');
