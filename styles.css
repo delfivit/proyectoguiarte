@@ -143,6 +143,8 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   color:#fff;
   font-size: clamp(18px, 2.2vw, 22px);
   white-space:nowrap;
+  transition: font-size 500ms ease, transform 500ms ease, opacity 400ms ease;
+  opacity: 1;
 }
 .hero-follow{margin-top:24px; display:flex; gap:12px; align-items:center; justify-content:center; flex-direction:column}
 .hero-follow-text{margin:0; font-weight:600}
@@ -158,6 +160,12 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   font-size: clamp(24px, 5vw, 48px);
   transform: translateY(-30px);
   opacity: 0.7;
+}
+
+.hero.scrolled .hero-sub{
+  font-size: clamp(14px, 1.8vw, 18px);
+  transform: translateY(-30px);
+  opacity: 0.6;
 }
 
 /* ================ QUIENES SOMOS (with background image) ================ */
