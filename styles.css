@@ -114,14 +114,14 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   justify-content:center;
 }
 
-/* TITLE - Proyecto Guiarte (large, fades out on scroll) */
+/* TITLE - Proyecto Guiarte (large, scales down on scroll) */
 .hero-title{
   margin:0;
   font-family:'Zamora', 'Fredoka One', cursive;
   font-size: clamp(48px, 10vw, 120px);
   line-height:0.95;
   color: var(--accent-orange); /* fallback */
-  transition: opacity 400ms ease, transform 400ms ease;
+  transition: font-size 500ms ease, transform 500ms ease, opacity 400ms ease;
   opacity: 1;
 }
 
@@ -153,11 +153,11 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: fade out title */
+/* SCROLLED state: shrink and move title up */
 .hero.scrolled .hero-title{
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
+  font-size: clamp(24px, 5vw, 48px);
+  transform: translateY(-30px);
+  opacity: 0.7;
 }
 
 /* ================ QUIENES SOMOS (with background image) ================ */
