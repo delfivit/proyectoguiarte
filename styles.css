@@ -106,6 +106,28 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
 }
 .logo-img{width:32px; height:auto; transition: all 300ms ease;}
 .logo-text{font-family:'Zamora', 'Fredoka One', sans-serif; font-size:20px; color:#fff}
+
+/* Header title - appears on all pages except index */
+.header-title{
+  position: absolute;
+  left: 58px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 105;
+}
+
+/* Hide header title on index page (uses hero scroll effect instead) */
+.page-index .header-title{
+  display: none;
+}
+
 .main-nav{display:flex; gap:28px; font-family:Montserrat, sans-serif; font-weight:600}
 .main-nav a{padding:8px 6px; color:#fff; text-decoration:none}
 
@@ -198,7 +220,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .hero.scrolled .hero-title{
   font-size: 18px;
   position: fixed !important;
-  top: 50%;
+  top: 36px;
   left: 58px;
   transform: translateY(-50%);
   z-index: 115;
@@ -412,6 +434,12 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
   /* Mobile: hide desktop nav and show hamburger */
   .main-nav{display:none}
+
+  /* Mobile: adjust header title */
+  .header-title{
+    font-size: 13px;
+    left: 58px;
+  }
 
   /* Mobile: adjust hero title position when scrolled */
   .hero.scrolled .hero-title{
