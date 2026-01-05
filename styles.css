@@ -233,7 +233,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   top: 36px;
   left: 58px;
   transform: translateY(-50%);
-  z-index: 120;
+  z-index: 9999 !important;
   height: auto;
   line-height: 1;
   padding: 0;
