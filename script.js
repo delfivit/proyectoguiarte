@@ -36,7 +36,7 @@ loadComponents().then(() => {
 });
 
 function initApp() {
-  // HERO: add/remove .scrolled on small scroll (Nude Project style)
+  // HERO: title moves to header next to logo on scroll
   const hero = document.getElementById('hero');
   const THRESHOLD = 100;
   function handleHeroScroll(){
@@ -44,10 +44,8 @@ function initApp() {
     if (!hero) return;
     if (y > THRESHOLD) {
       hero.classList.add('scrolled');
-      document.body.classList.add('scrolled');
     } else {
       hero.classList.remove('scrolled');
-      document.body.classList.remove('scrolled');
     }
   }
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
