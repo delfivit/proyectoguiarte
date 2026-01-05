@@ -196,10 +196,10 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
 /* SCROLLED state: title moves to header next to logo */
 .hero.scrolled .hero-title{
-  font-size: 20px;
+  font-size: 18px;
   position: fixed !important;
   top: 50%;
-  left: 60px;
+  left: 58px;
   transform: translateY(-50%);
   z-index: 115;
   height: auto;
@@ -415,9 +415,9 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
   /* Mobile: adjust hero title position when scrolled */
   .hero.scrolled .hero-title{
-    font-size: 14px !important;
-    left: 50px !important;
-    max-width: calc(100vw - 120px);
+    font-size: 13px !important;
+    left: 58px !important;
+    max-width: calc(100vw - 130px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
