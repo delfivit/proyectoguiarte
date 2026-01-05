@@ -51,6 +51,17 @@ function initApp() {
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
 
+  // Hero title click - scroll back to top
+  const heroTitle = document.getElementById('hero-title');
+  if (heroTitle) {
+    heroTitle.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
   // Video ahora se reproduce en todas las pantallas (mobile incluido)
 
   // Buy modal logic (unchanged)

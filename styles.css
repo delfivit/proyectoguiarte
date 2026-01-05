@@ -119,8 +119,16 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 105;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.header-title:hover{
+  opacity: 0.8;
 }
 
 /* Hide header title on index page (uses hero scroll effect instead) */
@@ -225,7 +233,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   top: 36px;
   left: 58px;
   transform: translateY(-50%);
-  z-index: 115;
+  z-index: 120;
   height: auto;
   line-height: 1;
   padding: 0;
@@ -242,6 +250,12 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   max-width: none;
   white-space: nowrap;
   pointer-events: auto;
+  cursor: pointer;
+  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
+}
+
+.hero.scrolled .hero-title:hover{
+  opacity: 0.8;
 }
 
 .hero.scrolled .hero-sub{
