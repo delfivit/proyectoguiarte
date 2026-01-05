@@ -36,14 +36,19 @@ loadComponents().then(() => {
 });
 
 function initApp() {
-  // HERO: add/remove .scrolled on small scroll
+  // HERO: add/remove .scrolled on small scroll (Nude Project style)
   const hero = document.getElementById('hero');
-  const THRESHOLD = 6;
+  const THRESHOLD = 100;
   function handleHeroScroll(){
     const y = window.scrollY || window.pageYOffset;
     if (!hero) return;
-    if (y > THRESHOLD) hero.classList.add('scrolled');
-    else hero.classList.remove('scrolled');
+    if (y > THRESHOLD) {
+      hero.classList.add('scrolled');
+      document.body.classList.add('scrolled');
+    } else {
+      hero.classList.remove('scrolled');
+      document.body.classList.remove('scrolled');
+    }
   }
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
