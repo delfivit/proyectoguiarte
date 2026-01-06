@@ -76,12 +76,19 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   position:fixed;
   inset:0 0 auto 0;
   height:var(--header-h);
-  background:var(--black);
   z-index:110;
   display:flex;
   align-items:center;
   border-bottom:1px solid rgba(255,255,255,0.04);
   transition: all 300ms ease;
+}
+
+.site-header::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  z-index: -1;
 }
 .header-inner{
   width:100%;
@@ -92,6 +99,7 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   align-items:center;
   justify-content:center;
   position:relative;
+  z-index:1;
 }
 .logo{
   position:absolute;
@@ -113,6 +121,7 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   left: 58px;
   top: 50%;
   transform: translateY(-50%);
+  font-family: 'Zamora', 'Fredoka One', cursive;
   font-size: 18px;
   background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
   -webkit-background-clip: text;
@@ -228,6 +237,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
 /* SCROLLED state: title moves to header next to logo */
 .hero.scrolled .hero-title{
+  font-family: 'Zamora', 'Fredoka One', cursive !important;
   font-size: 18px;
   position: fixed !important;
   top: 26px !important;
@@ -243,6 +253,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
   backdrop-filter: none;
   border-bottom: none;
   box-shadow: none;
