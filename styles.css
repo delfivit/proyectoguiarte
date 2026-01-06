@@ -106,7 +106,7 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   left:18px;
   top:50%;
   transform:translateY(-50%);
-  display:flex;
+  display:none;
   gap:10px;
   align-items:center;
   text-decoration:none;
@@ -118,7 +118,7 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
 /* Header title - appears on all pages except index */
 .header-title{
   position: absolute;
-  left: 58px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   font-family: 'Zamora', 'Fredoka One', cursive;
@@ -444,7 +444,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   /* Mobile: adjust header title */
   .header-title{
     font-size: 13px;
-    left: 58px;
+    left: 20px;
   }
 
   /* Mobile: adjust hero title position when scrolled */
