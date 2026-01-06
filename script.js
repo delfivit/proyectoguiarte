@@ -36,7 +36,7 @@ loadComponents().then(() => {
 });
 
 function initApp() {
-  // HERO: title moves to header next to logo on scroll
+  // HERO: hide hero title and show header title on scroll
   const hero = document.getElementById('hero');
   const THRESHOLD = 100;
   function handleHeroScroll(){
@@ -44,17 +44,31 @@ function initApp() {
     if (!hero) return;
     if (y > THRESHOLD) {
       hero.classList.add('scrolled');
+      document.body.classList.add('scrolled');
     } else {
       hero.classList.remove('scrolled');
+      document.body.classList.remove('scrolled');
     }
   }
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
 
-  // Hero title click - scroll back to top
+  // Hero title click - scroll back to top (for when it's visible in hero)
   const heroTitle = document.getElementById('hero-title');
   if (heroTitle) {
     heroTitle.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Header title click - scroll to top on index page
+  const headerTitle = document.querySelector('.header-title');
+  if (headerTitle && document.body.classList.contains('page-index')) {
+    headerTitle.addEventListener('click', (e) => {
+      e.preventDefault();
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

@@ -235,38 +235,17 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: title moves to header next to logo */
+/* SCROLLED state: hide hero title and show header title */
 .hero.scrolled .hero-title{
-  font-family: 'Zamora', 'Fredoka One', cursive !important;
-  font-size: 18px;
-  position: fixed !important;
-  top: 26px !important;
-  left: 58px !important;
-  transform: none !important;
-  z-index: 9999 !important;
-  height: auto;
-  line-height: 1;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet)) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
-  backdrop-filter: none;
-  border-bottom: none;
-  box-shadow: none;
-  width: auto;
-  max-width: none;
-  white-space: nowrap;
-  pointer-events: auto;
-  cursor: pointer;
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.hero.scrolled .hero-title:hover{
-  opacity: 0.8;
+/* Show header title when scrolled on index page */
+.page-index.scrolled .header-title{
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .hero.scrolled .hero-sub{
