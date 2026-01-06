@@ -145,18 +145,18 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  animation: slideUp 400ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: slideOutToCenter 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-/* Header title slides up when returning to top */
-@keyframes slideUp {
+/* Header title slides back to center when returning to top */
+@keyframes slideOutToCenter {
   from {
     opacity: 1;
-    transform: translateY(0) translateY(-50%);
+    transform: translate(0, 0) translateY(-50%) scale(1);
   }
   to {
     opacity: 0;
-    transform: translateY(-50px) translateY(-50%);
+    transform: translate(200%, 300px) translateY(-50%) scale(2);
   }
 }
 
@@ -249,12 +249,12 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: hero title moves up and shrinks */
+/* SCROLLED state: hero title moves to header position (left and up) */
 .hero.scrolled .hero-title{
   opacity: 0;
-  transform: translateY(-300px) scale(0.3);
+  transform: translate(-45%, -400px) scale(0.2);
   pointer-events: none;
-  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Show header title when scrolled on index page with delay */
@@ -262,18 +262,18 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  animation: slideDown 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms both;
+  animation: slideInFromCenter 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 300ms both;
 }
 
-/* Header title slides down from top */
-@keyframes slideDown {
+/* Header title slides in from center-right (where hero title was) */
+@keyframes slideInFromCenter {
   from {
     opacity: 0;
-    transform: translateY(-50px) translateY(-50%);
+    transform: translate(200%, 300px) translateY(-50%) scale(2);
   }
   to {
     opacity: 1;
-    transform: translateY(0) translateY(-50%);
+    transform: translate(0, 0) translateY(-50%) scale(1);
   }
 }
 
