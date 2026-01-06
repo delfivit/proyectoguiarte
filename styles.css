@@ -145,18 +145,16 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  animation: slideOutToTop 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fadeOutPlace 300ms ease both;
 }
 
-/* Header title slides back up when returning to top */
-@keyframes slideOutToTop {
+/* Header title fades out in place (no movement) */
+@keyframes fadeOutPlace {
   from {
     opacity: 1;
-    transform: translateY(0) translateY(-50%);
   }
   to {
     opacity: 0;
-    transform: translateY(-100px) translateY(-50%);
   }
 }
 
@@ -249,31 +247,29 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: hero title slides left and up (goes under the bar) */
+/* SCROLLED state: hero title slides to exact header position */
 .hero.scrolled .hero-title{
   opacity: 0;
-  transform: translate(-50%, -200px) scale(0.4);
+  transform: translate(calc(-50% + 20px), calc(-50vh + 36px)) scale(0.15);
   pointer-events: none;
-  transition: all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Show header title when scrolled on index page */
+/* Show header title when scrolled - fade in at position */
 .page-index.scrolled .header-title{
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  animation: slideInFromTop 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms both;
+  animation: fadeInPlace 500ms ease 400ms both;
 }
 
-/* Header title slides down from above the bar */
-@keyframes slideInFromTop {
+/* Header title fades in at its position (no movement) */
+@keyframes fadeInPlace {
   from {
     opacity: 0;
-    transform: translateY(-100px) translateY(-50%);
   }
   to {
     opacity: 1;
-    transform: translateY(0) translateY(-50%);
   }
 }
 
