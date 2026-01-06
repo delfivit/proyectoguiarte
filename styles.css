@@ -145,18 +145,18 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  animation: slideOutToCenter 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: slideOutToTop 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-/* Header title slides back to center when returning to top */
-@keyframes slideOutToCenter {
+/* Header title slides back up when returning to top */
+@keyframes slideOutToTop {
   from {
     opacity: 1;
-    transform: translate(0, 0) translateY(-50%) scale(1);
+    transform: translateY(0) translateY(-50%);
   }
   to {
     opacity: 0;
-    transform: translate(200%, 300px) translateY(-50%) scale(2);
+    transform: translateY(-100px) translateY(-50%);
   }
 }
 
@@ -249,31 +249,31 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: hero title moves to header position (left and up) */
+/* SCROLLED state: hero title slides left and up (goes under the bar) */
 .hero.scrolled .hero-title{
   opacity: 0;
-  transform: translate(-45%, -400px) scale(0.2);
+  transform: translate(-50%, -200px) scale(0.4);
   pointer-events: none;
-  transition: all 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Show header title when scrolled on index page with delay */
+/* Show header title when scrolled on index page */
 .page-index.scrolled .header-title{
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  animation: slideInFromCenter 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 300ms both;
+  animation: slideInFromTop 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms both;
 }
 
-/* Header title slides in from center-right (where hero title was) */
-@keyframes slideInFromCenter {
+/* Header title slides down from above the bar */
+@keyframes slideInFromTop {
   from {
     opacity: 0;
-    transform: translate(200%, 300px) translateY(-50%) scale(2);
+    transform: translateY(-100px) translateY(-50%);
   }
   to {
     opacity: 1;
-    transform: translate(0, 0) translateY(-50%) scale(1);
+    transform: translateY(0) translateY(-50%);
   }
 }
 
