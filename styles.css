@@ -145,6 +145,19 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
+  animation: slideUp 400ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Header title slides up when returning to top */
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0) translateY(-50%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px) translateY(-50%);
+  }
 }
 
 .main-nav{display:flex; gap:28px; font-family:Montserrat, sans-serif; font-weight:600}
@@ -197,8 +210,9 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   font-size: clamp(48px, 10vw, 120px);
   line-height:0.95;
   color: var(--accent-orange); /* fallback */
-  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
+  transform: translateY(0) scale(1);
   white-space: nowrap;
   position: relative;
   padding: 0 20px;
@@ -235,17 +249,32 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 .socials a{display:flex; align-items:center; justify-content:center}
 .footer-logo{width:24px; height:24px; object-fit:contain}
 
-/* SCROLLED state: hide hero title and show header title */
+/* SCROLLED state: hero title moves up and shrinks */
 .hero.scrolled .hero-title{
   opacity: 0;
+  transform: translateY(-300px) scale(0.3);
   pointer-events: none;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Show header title when scrolled on index page */
+/* Show header title when scrolled on index page with delay */
 .page-index.scrolled .header-title{
   display: inline-block !important;
   opacity: 1 !important;
   visibility: visible !important;
+  animation: slideDown 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms both;
+}
+
+/* Header title slides down from top */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateY(-50%);
+  }
 }
 
 .hero.scrolled .hero-sub{
