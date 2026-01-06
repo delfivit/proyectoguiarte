@@ -464,6 +464,7 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   .events-grid{grid-template-columns:1fr}
   .main-nav{gap:16px}
   .hero-inner{padding:28px 16px}
+  .hero-title{font-size: clamp(40px, 9vw, 80px); padding: 0 15px;}
   .hero-sub{white-space:normal}
   /* Video se muestra en todas las pantallas ahora */
 
@@ -472,8 +473,9 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
   /* Mobile: adjust header title */
   .header-title{
-    font-size: 13px;
+    font-size: 11px;
     left: 20px;
+    padding-right: 10px;
   }
 
   /* Mobile: adjust hero title position when scrolled */
