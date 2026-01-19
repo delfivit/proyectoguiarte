@@ -87,7 +87,7 @@ p{font-family:"Satoshi","Inter",system-ui; font-weight:400; line-height:1.6}
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--black);
+  background: #AE57C0;
   z-index: -1;
 }
 .header-inner{
