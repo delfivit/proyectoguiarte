@@ -617,6 +617,121 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   }
 }
 
+/* ================ PRODUCT CATEGORIES ================ */
+.product-categories-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.category-card{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 400ms ease, box-shadow 400ms ease;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.category-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+
+.category-image{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.category-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+  transition: background 400ms ease;
+}
+
+.category-card:hover .category-overlay{
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%);
+}
+
+.category-content{
+  position: relative;
+  z-index: 1;
+  padding: 40px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-title{
+  font-size: clamp(28px, 4vw, 36px);
+  margin: 0;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.category-description{
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+.category-cta{
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+  margin-top: 8px;
+  transition: transform 300ms ease;
+  display: inline-block;
+}
+
+.category-card:hover .category-cta{
+  transform: translateX(8px);
+}
+
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 8px 0;
+}
+
+.back-link:hover{
+  color: white;
+  transform: translateX(-4px);
+}
+
+/* Responsive para categorías */
+@media (max-width:700px){
+  .product-categories-grid{
+    grid-template-columns: 1fr;
+  }
+  
+  .category-card{
+    min-height: 380px;
+  }
+  
+  .category-content{
+    padding: 28px;
+  }
+}
+
 /* ================ Footer ================ */
 .site-footer{padding:28px 0; background:#000; color:var(--muted); margin-top:28px}
 .footer-inner{display:flex; align-items:center; justify-content:space-between}
