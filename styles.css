@@ -509,6 +509,104 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
   box-shadow: 0 8px 24px rgba(255,122,24,0.3);
 }
 
+/* ================ EXPERIENCIAS CARDS ================ */
+.experience-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 40px;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.experience-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.experience-image img,
+.experience-video video{
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.experience-content{
+  padding: 32px;
+}
+
+.experience-date{
+  margin-bottom: 16px;
+}
+
+.date-badge{
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.experience-title{
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 16px 0;
+  background: linear-gradient(90deg, #fff, var(--muted));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.experience-description{
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.experience-info{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+}
+
+.experience-info span{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.past-experience{
+  opacity: 0.85;
+}
+
+.past-experience:hover{
+  opacity: 1;
+}
+
+/* Responsive para experiencias */
+@media (max-width:700px){
+  .experience-image img,
+  .experience-video video{
+    height: 250px;
+  }
+  
+  .experience-content{
+    padding: 24px;
+  }
+  
+  .experience-info{
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
 /* ================ Footer ================ */
 .site-footer{padding:28px 0; background:#000; color:var(--muted); margin-top:28px}
 .footer-inner{display:flex; align-items:center; justify-content:space-between}
