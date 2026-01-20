@@ -195,7 +195,7 @@ body:not(.page-index) .logo{
 }
 
 .logo-img{
-  height: 44px;
+  height: 32px;
   width: auto;
   filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.15));
   transition: all 300ms ease;
@@ -662,10 +662,12 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 
 /* modal */
 .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(174,87,192,0.9); z-index:300}
-.modal.open{display:flex}
-.modal-dialog{background:#8B3FA8; border-radius:12px; padding:22px; width:100%; max-width:480px; box-shadow:0 12px 48px rgba(0,0,0,0.6)}
-.modal-close{position:absolute; right:18px; top:18px; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer}
+.modal.open, .modal.active{display:flex}
+.modal-dialog{background:#8B3FA8; border-radius:12px; padding:22px; width:100%; max-width:480px; box-shadow:0 12px 48px rgba(0,0,0,0.6); position: relative;}
+.modal-close{position:absolute; right:18px; top:18px; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; transition: transform 200ms ease;}
+.modal-close:hover{transform: scale(1.2);}
 .modal input{width:100%; padding:12px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:#fff; margin-bottom:12px}
+.modal input:focus{outline: 2px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.05);}
 .msg{
   margin-top: 12px;
   padding: 8px 12px;
