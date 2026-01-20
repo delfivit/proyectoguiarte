@@ -37,47 +37,29 @@ function initCart() {
   loadStock();
 }
 
-// Cargar stock desde Google Sheets
-async function loadStock() {
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: 'getStock'
-      })
-    });
-    
-    // Como usamos no-cors, no podemos leer la respuesta
-    // En su lugar, hacemos una petición con JSONP o fetch normal si el CORS está configurado
-    // Por ahora, asumimos que el stock está disponible
-    
-    // Si tu Google Apps Script permite CORS, podés hacer:
-    // const data = await response.json();
-    // productStock = data.stock;
-    // updateProductsVisibility();
-    
-  } catch (error) {
-    console.error('Error al cargar stock:', error);
-  }
-}
-
-// Cargar stock usando JSONP (alternativa)
-function loadStockJSONP() {
+// Cargar stock desde Google Sheets usando JSONP
+function loadStock() {
+  // Usar JSONP para evitar problemas de CORS
+  const callbackName = 'handleStockResponse_' + Date.now();
+  window[callbackName] = function(data) {
+    if (data.status === 'success') {
+      productStock = data.stock;
+      updateProductsVisibility();
+      console.log('Stock cargado:', productStock);
+    } else {
+      console.error('Error al cargar stock:', data.message);
+    }
+    // Limpiar
+    delete window[callbackName];
+  };
+  
   const script = document.createElement('script');
-  script.src = SCRIPT_URL + '?action=getStock&callback=handleStockResponse';
-  document.body.appendChild(script);
-}
-
-// Manejar respuesta del stock
-function handleStockResponse(data) {
-  if (data.status === 'success') {
-    productStock = data.stock;
-    updateProductsVisibility();
-  }
+  script.src = SCRIPT_URL + '?action=getStock&callback=' + callbackName;
+  script.onerror = function() {
+    console.error('Error al cargar el script de stock');
+    delete window[callbackName];
+  };
+  document.head.appendChild(script);
 }
 
 // Actualizar visibilidad de productos según stock

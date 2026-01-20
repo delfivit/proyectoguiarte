@@ -45,11 +45,41 @@ Reemplazá tu código actual de Apps Script con este nuevo código que incluye g
 // Email donde querés recibir las notificaciones
 const EMAIL_DESTINO = 'projectguiarte@gmail.com';
 
+function doGet(e) {
+  try {
+    // Manejar peticiones GET (para consultas de stock con JSONP)
+    if (e.parameter.action === 'getStock') {
+      const result = obtenerStock();
+      const callback = e.parameter.callback || 'callback';
+      
+      // Retornar JSONP
+      return ContentService
+        .createTextOutput(callback + '(' + result.getContent() + ')')
+        .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      'status': 'error',
+      'message': 'Acción no reconocida'
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    Logger.log('Error en doGet: ' + error.toString());
+    const callback = e.parameter.callback || 'callback';
+    return ContentService
+      .createTextOutput(callback + '(' + JSON.stringify({
+        'status': 'error',
+        'message': error.toString()
+      }) + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     
-    // Si es una consulta de stock
+    // Si es una consulta de stock (también aceptar por POST)
     if (data.action === 'getStock') {
       return obtenerStock();
     }
