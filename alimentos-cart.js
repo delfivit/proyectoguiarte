@@ -1,5 +1,6 @@
 // Shopping cart management for Alimentos
 let cart = [];
+let productStock = {}; // Stock actual de productos
 
 // Product prices (price per unit: kg, liter, or unit)
 const productPrices = {
@@ -20,13 +21,116 @@ const productPrices = {
   'yerba-organica': 3.80        // per gram (3800/1000)
 };
 
-// Initialize cart from localStorage
+// Google Sheets Script URL - REEMPLAZAR CON TU URL
+const SCRIPT_URL = 'TU_URL_DEL_GOOGLE_APPS_SCRIPT_AQUI';
+
+// Initialize cart from localStorage and load stock
 function initCart() {
   const savedCart = localStorage.getItem('alimentosCart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
     updateCartBadge();
   }
+  // Cargar stock al iniciar
+  loadStock();
+}
+
+// Cargar stock desde Google Sheets
+async function loadStock() {
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'getStock'
+      })
+    });
+    
+    // Como usamos no-cors, no podemos leer la respuesta
+    // En su lugar, hacemos una petición con JSONP o fetch normal si el CORS está configurado
+    // Por ahora, asumimos que el stock está disponible
+    
+    // Si tu Google Apps Script permite CORS, podés hacer:
+    // const data = await response.json();
+    // productStock = data.stock;
+    // updateProductsVisibility();
+    
+  } catch (error) {
+    console.error('Error al cargar stock:', error);
+  }
+}
+
+// Cargar stock usando JSONP (alternativa)
+function loadStockJSONP() {
+  const script = document.createElement('script');
+  script.src = SCRIPT_URL + '?action=getStock&callback=handleStockResponse';
+  document.body.appendChild(script);
+}
+
+// Manejar respuesta del stock
+function handleStockResponse(data) {
+  if (data.status === 'success') {
+    productStock = data.stock;
+    updateProductsVisibility();
+  }
+}
+
+// Actualizar visibilidad de productos según stock
+function updateProductsVisibility() {
+  const productCards = document.querySelectorAll('.product-card');
+  
+  productCards.forEach(card => {
+    const input = card.querySelector('input[data-product]');
+    if (input) {
+      const productId = input.getAttribute('data-product');
+      const stock = productStock[productId] || 0;
+      const button = card.querySelector('.btn-add-to-cart');
+      
+      if (stock <= 0) {
+        // Sin stock - deshabilitar y agregar badge
+        card.style.opacity = '0.5';
+        button.disabled = true;
+        button.textContent = 'Sin Stock';
+        button.style.background = '#666';
+        button.style.cursor = 'not-allowed';
+        
+        // Agregar badge de sin stock
+        if (!card.querySelector('.out-of-stock-badge')) {
+          const badge = document.createElement('div');
+          badge.className = 'out-of-stock-badge';
+          badge.textContent = 'Agotado';
+          badge.style.cssText = `
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #f44336;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+          `;
+          card.style.position = 'relative';
+          card.appendChild(badge);
+        }
+      } else {
+        // Con stock - habilitar
+        card.style.opacity = '1';
+        button.disabled = false;
+        button.textContent = 'Agregar';
+        button.style.background = '';
+        button.style.cursor = 'pointer';
+        
+        // Remover badge si existe
+        const badge = card.querySelector('.out-of-stock-badge');
+        if (badge) badge.remove();
+      }
+    }
+  });
 }
 
 // Add product to cart
@@ -236,8 +340,19 @@ async function submitOrder(e) {
     return sum + calculateItemPrice(item.id, item.quantity);
   }, 0);
   
+  // Prepare cart items with prices
+  const cartItems = cart.map(item => ({
+    id: item.id,
+    name: item.name,
+    quantity: item.quantity,
+    unit: item.unit,
+    price: calculateItemPrice(item.id, item.quantity),
+    priceFormatted: formatPrice(calculateItemPrice(item.id, item.quantity))
+  }));
+  
   // Prepare data for Google Sheets
   const orderData = {
+    action: 'submitOrder', // Important: specify the action
     orderNumber: orderNumber,
     date: orderDate,
     customerName: name,
@@ -248,20 +363,13 @@ async function submitOrder(e) {
     deliveryDay: deliveryDay,
     deliveryTime: deliveryTime,
     items: cart.map(item => `${item.name} (${item.quantity} ${item.unit})`).join(', '),
-    itemsDetailed: cart.map(item => ({
-      ...item,
-      price: calculateItemPrice(item.id, item.quantity),
-      priceFormatted: formatPrice(calculateItemPrice(item.id, item.quantity))
-    })),
+    cartItems: cartItems, // Detailed items with prices for stock deduction
     totalPrice: totalPrice,
     totalPriceFormatted: formatPrice(totalPrice)
   };
   
   try {
-    // TODO: Replace this URL with your Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzM4HqOQjd6Oqlbfz9JocyX8HhWTUOGyl_edNu6wyou8nZ1BFOCfhMGD6l0ocOk1e2F/exec';
-    
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Important for Google Apps Script
       headers: {
@@ -278,6 +386,11 @@ async function submitOrder(e) {
     cart = [];
     saveCart();
     updateCartBadge();
+    
+    // Reload stock after order
+    setTimeout(() => {
+      loadStock();
+    }, 2000);
     
     // Close modal after 3 seconds
     setTimeout(() => {
