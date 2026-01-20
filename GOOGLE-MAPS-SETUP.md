@@ -71,7 +71,81 @@ Google Maps Platform ofrece:
 
 ## Notas de Seguridad
 
-- **NUNCA** compartas tu API key públicamente en GitHub o redes sociales
-- Siempre restringe tu API key a tu dominio específico
-- Monitorea el uso en Google Cloud Console
-- Configura alertas de presupuesto si querés asegurarte de no exceder los créditos gratis
+### ⚠️ IMPORTANTE: Tu API key estará visible en el código
+
+Como este es un sitio estático (HTML/JavaScript), la API key **debe estar** en el código frontend y será visible para cualquiera que vea el código fuente. Esto es **normal y esperado** para sitios estáticos.
+
+### 🔒 Cómo proteger tu API key:
+
+**1. Restricciones de dominio (CRÍTICO):**
+- Ve a [Google Cloud Console - Credentials](https://console.cloud.google.com/apis/credentials)
+- Edita tu API key
+- En **Application restrictions**, selecciona **HTTP referrers (web sites)**
+- Agrega **SOLO** estos referrers:
+  - `https://proyectoguiarte.com/*`
+  - `https://*.proyectoguiarte.com/*`
+- **NO agregues** `*`, `localhost`, ni ningún otro dominio
+
+Con estas restricciones, aunque alguien vea tu API key en GitHub, **NO podrá usarla** desde otros sitios web.
+
+**2. Restricciones de API (CRÍTICO):**
+- En **API restrictions**, selecciona **Restrict key**
+- Marca **SOLO**:
+  - ✅ Maps JavaScript API
+  - ✅ Places API (New)
+- **NO marques** otras APIs
+
+Esto limita qué servicios de Google puede usar esta key.
+
+**3. Configurar alertas de presupuesto:**
+- Ve a [Google Cloud Billing](https://console.cloud.google.com/billing)
+- Selecciona tu proyecto
+- Ve a **Budgets & alerts**
+- Crea un presupuesto de $10 USD por mes
+- Configura alertas al 50%, 90% y 100%
+
+Recibirás emails si hay uso inusual.
+
+**4. Monitorear el uso:**
+- Ve a [Google Cloud Console - APIs](https://console.cloud.google.com/apis/dashboard)
+- Revisa regularmente las métricas de uso
+- Deberías ver muy pocos requests diarios (solo de tu sitio)
+
+### 🚨 Si Google te avisa de "API key expuesta":
+
+Es normal recibir este aviso porque GitHub es público. **No te preocupes** si:
+- ✅ Tenés restricciones de dominio configuradas
+- ✅ Tenés restricciones de API configuradas
+- ✅ Solo funciona en tu dominio
+
+Google escanea repositorios públicos y envía alertas automáticas, pero con las restricciones correctas, tu key está segura.
+
+### ✅ Verificar que las restricciones funcionan:
+
+1. Abrí tu sitio (https://proyectoguiarte.com)
+2. El autocompletado de direcciones debería funcionar ✅
+3. Abrí la consola del navegador (F12)
+4. Copia tu API key
+5. Intentá usarla desde otro sitio (ej: jsfiddle.net)
+6. Debería dar error "RefererNotAllowedMapError" ✅
+
+Si da error, significa que las restricciones están funcionando correctamente.
+
+## Alternativa: Ocultar la API key (solo si tenés backend)
+
+Si en el futuro agregás un backend (Node.js, PHP, Python, etc.), podés:
+1. Mover la API key al servidor
+2. Crear un endpoint proxy (ej: `/api/places`)
+3. Guardar la key en variables de entorno (.env)
+4. El frontend llama a tu API, no directamente a Google
+
+Pero para sitios estáticos como el tuyo, **no hay forma de ocultar la key**, y **no es necesario** con las restricciones correctas.
+
+---
+
+## Notas de Seguridad (Resumen)
+
+- **NUNCA** compartas tu API key públicamente en GitHub o redes sociales ← ⚠️ Esto ya pasó, pero está OK con restricciones
+- Siempre restringe tu API key a tu dominio específico ← ✅ CRÍTICO
+- Monitorea el uso en Google Cloud Console ← ✅ Recomendado
+- Configura alertas de presupuesto si querés asegurarte de no exceder los créditos gratis ← ✅ Recomendado
