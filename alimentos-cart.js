@@ -18,7 +18,9 @@ const productPrices = {
   'brocoli-hidroponico': 2.80,  // per gram (2800/1000)
   'cebolla-hidroponica': 1.50,  // per gram (1500/1000)
   'morron-hidroponico': 3.20,   // per gram (3200/1000)
-  'yerba-organica': 3.80        // per gram (3800/1000)
+  'yerba-organica': 3.80,       // per gram (3800/1000)
+  'jabon-liquido-ropa': 3.50,   // per ml (3500/1000)
+  'detergente-ecologico': 2.80  // per ml (2800/1000)
 };
 
 // Google Sheets Script URL
@@ -83,7 +85,8 @@ function updateProductsVisibility() {
   const productCards = document.querySelectorAll('.product-card');
   
   productCards.forEach(card => {
-    const input = card.querySelector('input[data-product]');
+    // Buscar tanto input como select
+    const input = card.querySelector('input[data-product], select[data-product]');
     if (input) {
       const productId = input.getAttribute('data-product');
       const stock = productStock[productId] || 0;
@@ -135,8 +138,9 @@ function updateProductsVisibility() {
 
 // Add product to cart
 function addToCart(productId, productName) {
-  const input = document.querySelector(`input[data-product="${productId}"]`);
-  const quantity = parseInt(input.value);
+  // Get input or select element
+  const inputOrSelect = document.querySelector(`input[data-product="${productId}"], select[data-product="${productId}"]`);
+  const quantity = parseInt(inputOrSelect.value);
   
   if (!quantity || quantity <= 0) {
     alert('Por favor ingresá una cantidad válida');
@@ -162,7 +166,7 @@ function addToCart(productId, productName) {
   updateCartBadge();
   
   // Visual feedback
-  const btn = input.closest('.product-card, .product-item').querySelector('.btn-add-to-cart, .btn-add-cart');
+  const btn = inputOrSelect.closest('.product-card, .product-item').querySelector('.btn-add-to-cart, .btn-add-cart');
   const originalText = btn.textContent;
   btn.textContent = '✓ Agregado';
   btn.style.background = '#4CAF50';
@@ -176,7 +180,7 @@ function addToCart(productId, productName) {
 // Get unit for product (gramos, ml, unidades)
 function getUnit(productId) {
   if (productId === 'huevos-campo') return 'unidades';
-  if (productId === 'leche-tambo') return 'ml';
+  if (productId === 'leche-tambo' || productId === 'jabon-liquido-ropa' || productId === 'detergente-ecologico') return 'ml';
   return 'gramos';
 }
 

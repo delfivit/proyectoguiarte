@@ -376,8 +376,10 @@
                 <p>Yogurt griego cremoso y natural, elaborado con leche de tambo. Rico en proteínas y probióticos.</p>
                 <div class="product-footer">
                   <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="500" data-product="yogurt-griego">
-                    <label>gramos</label>
+                    <select data-product="yogurt-griego" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="500">½ kg (500g)</option>
+                      <option value="1000">1 kg</option>
+                    </select>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('yogurt-griego', 'Yogurt Griego')">Agregar</button>
                 </div>
@@ -392,8 +394,12 @@
                 <p>Huevos de gallinas criadas en libertad, con alimentación natural. Yema intensa y cáscara resistente.</p>
                 <div class="product-footer">
                   <div class="quantity-controls">
-                    <input type="number" min="1" step="1" value="12" data-product="huevos-campo">
-                    <label>unidades</label>
+                    <select data-product="huevos-campo" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="6">½ docena (6 unidades)</option>
+                      <option value="12" selected>1 docena (12 unidades)</option>
+                      <option value="18">1½ docena (18 unidades)</option>
+                      <option value="30">2½ docenas (30 unidades)</option>
+                    </select>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('huevos-campo', 'Huevos de Campo')">Agregar</button>
                 </div>
@@ -424,8 +430,13 @@
                 <p>Leche fresca de tambo, entera y sin procesar. Sabor natural y nutritivo directo del productor.</p>
                 <div class="product-footer">
                   <div class="quantity-controls">
-                    <input type="number" min="500" step="500" value="1000" data-product="leche-tambo">
-                    <label>ml</label>
+                    <select data-product="leche-tambo" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="1000" selected>1 litro</option>
+                      <option value="2000">2 litros</option>
+                      <option value="3000">3 litros</option>
+                      <option value="4000">4 litros</option>
+                      <option value="5000">5 litros</option>
+                    </select>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('leche-tambo', 'Leche de Tambo')">Agregar</button>
                 </div>
@@ -440,8 +451,10 @@
                 <p>Dulce de leche artesanal, hecho con leche de tambo. Cremoso, intenso y sin aditivos artificiales.</p>
                 <div class="product-footer">
                   <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="500" data-product="dulce-leche-campo">
-                    <label>gramos</label>
+                    <select data-product="dulce-leche-campo" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="500" selected>500g</option>
+                      <option value="1000">1 kg</option>
+                    </select>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('dulce-leche-campo', 'Dulce de Leche de Campo')">Agregar</button>
                 </div>
@@ -456,10 +469,58 @@
                 <p>Miel pura de apicultura sustentable. Sabor floral y propiedades naturales para endulzar de forma consciente.</p>
                 <div class="product-footer">
                   <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="500" data-product="miel-campo">
-                    <label>gramos</label>
+                    <select data-product="miel-campo" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="500" selected>500g</option>
+                      <option value="1000">1 kg</option>
+                    </select>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('miel-campo', 'Miel de Campo')">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Productos de Limpieza -->
+        <article class="product-group">
+          <h2 class="zamora">Productos de Limpieza</h2>
+          
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">🧴</div>
+              <div class="product-body">
+                <h3>Jabón Líquido para Ropa</h3>
+                <div class="product-price">$3.500 <span class="product-price-unit">/ litro</span></div>
+                <p>Jabón líquido concentrado para ropa. Biodegradable, sin fosfatos y con alto poder de limpieza.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <select data-product="jabon-liquido-ropa" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="1000" selected>1 litro</option>
+                      <option value="2000">2 litros</option>
+                      <option value="3000">3 litros</option>
+                      <option value="5000">5 litros</option>
+                    </select>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('jabon-liquido-ropa', 'Jabón Líquido para Ropa')">Agregar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">🧼</div>
+              <div class="product-body">
+                <h3>Detergente Ecológico</h3>
+                <div class="product-price">$2.800 <span class="product-price-unit">/ litro</span></div>
+                <p>Detergente líquido para vajilla. Fórmula suave con tu piel y efectiva contra la grasa. Sin químicos agresivos.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <select data-product="detergente-ecologico" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;">
+                      <option value="500" selected>500 ml</option>
+                      <option value="1000">1 litro</option>
+                      <option value="2000">2 litros</option>
+                    </select>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('detergente-ecologico', 'Detergente Ecológico')">Agregar</button>
                 </div>
               </div>
             </div>
