@@ -42,6 +42,8 @@ brocoli-hidroponico	Brócoli Hidropónico	2000	gramos
 cebolla-hidroponica	Cebolla Hidropónica	3500	gramos
 morron-hidroponico	Morrón Hidropónico	2500	gramos
 yerba-organica	Yerba Orgánica	5000	gramos
+jabon-liquido-ropa	Jabón Líquido para Ropa	10000	ml
+detergente-ecologico	Detergente Ecológico	8000	ml
 ```
 
 ### 3. Actualizar el Google Apps Script
