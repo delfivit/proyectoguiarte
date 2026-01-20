@@ -21,8 +21,8 @@ const productPrices = {
   'yerba-organica': 3.80        // per gram (3800/1000)
 };
 
-// Google Sheets Script URL - REEMPLAZAR CON TU URL
-const SCRIPT_URL = 'TU_URL_DEL_GOOGLE_APPS_SCRIPT_AQUI';
+// Google Sheets Script URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz07K2NyNpbXpRisv-1-fETxOod_XBUYQPN8jVoWX6VxwIm13vCsqD8CdqNYBwtEDDH/exec';
 
 // Initialize cart from localStorage and load stock
 function initCart() {
