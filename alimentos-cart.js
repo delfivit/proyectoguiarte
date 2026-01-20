@@ -493,6 +493,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login form submit
   document.getElementById('loginForm').addEventListener('submit', submitOrder);
   
+  // Inicializar Google Places Autocomplete cuando la API esté lista
+  initGooglePlacesAutocomplete();
+  
   // Close modals on outside click
   ['cartModal', 'loginModal'].forEach(modalId => {
     document.getElementById(modalId).addEventListener('click', (e) => {
@@ -502,6 +505,90 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Inicializar Google Places Autocomplete
+function initGooglePlacesAutocomplete() {
+  // Esperar a que la API de Google Maps esté cargada
+  const checkGoogleMaps = setInterval(() => {
+    if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+      clearInterval(checkGoogleMaps);
+      
+      const addressInput = document.getElementById('userAddress');
+      const postalCodeInput = document.getElementById('userPostalCode');
+      
+      // Configurar autocompletado para Argentina
+      const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+        componentRestrictions: { country: 'ar' },
+        fields: ['address_components', 'formatted_address', 'geometry'],
+        types: ['address']
+      });
+      
+      // Cuando el usuario selecciona una dirección
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        
+        if (!place.address_components) {
+          console.log('No se pudo obtener la dirección completa');
+          return;
+        }
+        
+        // Extraer componentes de la dirección
+        let streetNumber = '';
+        let route = '';
+        let locality = '';
+        let postalCode = '';
+        
+        place.address_components.forEach(component => {
+          const types = component.types;
+          
+          if (types.includes('street_number')) {
+            streetNumber = component.long_name;
+          }
+          if (types.includes('route')) {
+            route = component.long_name;
+          }
+          if (types.includes('locality')) {
+            locality = component.long_name;
+          }
+          if (types.includes('postal_code')) {
+            postalCode = component.long_name;
+          }
+        });
+        
+        // Construir dirección formateada
+        let fullAddress = '';
+        if (route) {
+          fullAddress = route;
+          if (streetNumber) {
+            fullAddress += ' ' + streetNumber;
+          }
+          if (locality) {
+            fullAddress += ', ' + locality;
+          }
+        } else {
+          // Si no hay calle específica, usar la dirección formateada
+          fullAddress = place.formatted_address;
+        }
+        
+        // Actualizar los campos
+        addressInput.value = fullAddress;
+        
+        // Autocompletar código postal si está disponible
+        if (postalCode && !postalCodeInput.value) {
+          postalCodeInput.value = postalCode;
+        }
+        
+        console.log('Dirección seleccionada:', fullAddress);
+        console.log('CP:', postalCode);
+      });
+    }
+  }, 100);
+  
+  // Timeout de seguridad (30 segundos)
+  setTimeout(() => {
+    clearInterval(checkGoogleMaps);
+  }, 30000);
+}
 
 // Export functions to global scope
 window.addToCart = addToCart;

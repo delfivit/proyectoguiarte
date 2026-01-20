@@ -33,7 +33,65 @@
   <link rel="preload" href="Zamora-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google Maps API para autocompletado de direcciones -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnZ8F8vQ0xZxKxKxKxKxKxKxKxKxKxKx&libraries=places&language=es&region=AR" async defer></script>
+  
   <style>
+    /* Estilos para Google Places Autocomplete */
+    .pac-container {
+      background-color: #2a2a2a;
+      border: 1px solid rgba(174, 87, 192, 0.3);
+      border-radius: 12px;
+      margin-top: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      font-family: 'Montserrat', sans-serif;
+      z-index: 10000 !important;
+    }
+    
+    .pac-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 200ms ease;
+    }
+    
+    .pac-item:first-child {
+      border-top: none;
+    }
+    
+    .pac-item:hover {
+      background-color: rgba(174, 87, 192, 0.2);
+    }
+    
+    .pac-item-selected,
+    .pac-item-selected:hover {
+      background-color: rgba(174, 87, 192, 0.3);
+    }
+    
+    .pac-item-query {
+      color: #AE57C0;
+      font-weight: 600;
+    }
+    
+    .pac-matched {
+      font-weight: 700;
+      color: white;
+    }
+    
+    .pac-icon {
+      display: none;
+    }
+    
+    .pac-logo:after {
+      display: none;
+    }
+    
+    #userAddress {
+      position: relative;
+    }
+    
     /* Cart floating button */
     .cart-float-btn{
       position: fixed;
@@ -692,7 +750,7 @@
           <input type="tel" id="userPhone" placeholder="Teléfono (ej: 11-1234-5678)" required>
           
           <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
-            <input type="text" id="userAddress" placeholder="Dirección de entrega" required>
+            <input type="text" id="userAddress" placeholder="Dirección de entrega (comenzá a escribir...)" required autocomplete="off">
             <input type="text" id="userPostalCode" placeholder="CP" maxlength="4" pattern="[0-9]{4}" required>
           </div>
           
