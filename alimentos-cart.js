@@ -169,7 +169,7 @@ async function submitOrder(e) {
   
   try {
     // TODO: Replace this URL with your Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzM4HqOQjd6Oqlbfz9JocyX8HhWTUOGyl_edNu6wyou8nZ1BFOCfhMGD6l0ocOk1e2F/exec';
     
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
