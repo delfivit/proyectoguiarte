@@ -8,7 +8,7 @@ El sistema de carrito ya está implementado y funciona con **FormSubmit**, un se
 
 1. El cliente agrega productos al carrito (guardado en localStorage)
 2. Al finalizar el pedido, ingresa sus datos (nombre, email, teléfono, dirección)
-3. Se envía un email automático a **proyectoguiarte@gmail.com** con:
+3. Se envía un email automático a **projectguiarte@gmail.com** con:
    - Número de orden
    - Datos del cliente
    - Lista de productos con cantidades
@@ -16,7 +16,7 @@ El sistema de carrito ya está implementado y funciona con **FormSubmit**, un se
 
 ### Para activar el sistema:
 
-**IMPORTANTE:** La primera vez que se envíe un pedido, FormSubmit enviará un email de verificación a `proyectoguiarte@gmail.com`. Deben hacer click en el link de confirmación para activar el servicio.
+**IMPORTANTE:** La primera vez que se envíe un pedido, FormSubmit enviará un email de verificación a `projectguiarte@gmail.com`. Deben hacer click en el link de confirmación para activar el servicio.
 
 ### Opcional: Backend propio con PHP
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents("pedidos/$filename", $csv);
     
     // Enviar email
-    $to = "proyectoguiarte@gmail.com";
+    $to = "projectguiarte@gmail.com";
     $subject = "Nuevo pedido #$orderNumber";
     $message = $csv;
     $headers = "From: noreply@proyectoguiarte.com\r\n";

@@ -158,7 +158,7 @@ async function submitOrder(e) {
   
   try {
     // Send order via email (using FormSubmit or similar service)
-    const response = await fetch('https://formsubmit.co/ajax/proyectoguiarte@gmail.com', {
+    const response = await fetch('https://formsubmit.co/ajax/projectguiarte@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ async function sendCustomerConfirmation(orderData) {
         'Número de Orden': orderData.orderNumber,
         Productos: formatOrderForEmail(orderData.items),
         'Próximos pasos': 'Te contactaremos en breve para coordinar el pago y la entrega.',
-        Contacto: 'proyectoguiarte@gmail.com'
+        Contacto: 'projectguiarte@gmail.com'
       })
     });
   } catch (error) {
