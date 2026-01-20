@@ -82,6 +82,9 @@ function updateProductsVisibility() {
         button.style.background = '#666';
         button.style.cursor = 'not-allowed';
         
+        // Deshabilitar el input/select
+        input.disabled = true;
+        
         // Agregar badge de sin stock
         if (!card.querySelector('.out-of-stock-badge')) {
           const badge = document.createElement('div');
@@ -103,12 +106,22 @@ function updateProductsVisibility() {
           card.appendChild(badge);
         }
       } else {
-        // Con stock - habilitar
+        // Con stock - habilitar y ajustar máximo
         card.style.opacity = '1';
         button.disabled = false;
         button.textContent = 'Agregar';
         button.style.background = '';
         button.style.cursor = 'pointer';
+        input.disabled = false;
+        
+        // Ajustar máximo disponible según tipo de control
+        if (input.tagName === 'SELECT') {
+          // Para selects, filtrar opciones según stock
+          updateSelectOptions(input, stock);
+        } else if (input.tagName === 'INPUT') {
+          // Para inputs, establecer max
+          input.setAttribute('max', stock);
+        }
         
         // Remover badge si existe
         const badge = card.querySelector('.out-of-stock-badge');
@@ -116,6 +129,34 @@ function updateProductsVisibility() {
       }
     }
   });
+}
+
+// Actualizar opciones de un select según stock disponible
+function updateSelectOptions(select, maxStock) {
+  const productId = select.getAttribute('data-product');
+  const options = Array.from(select.options);
+  
+  options.forEach(option => {
+    const value = parseInt(option.value);
+    if (value > maxStock) {
+      option.disabled = true;
+      option.textContent += ' (Sin stock)';
+    } else {
+      option.disabled = false;
+      // Remover " (Sin stock)" si ya estaba
+      option.textContent = option.textContent.replace(' (Sin stock)', '');
+    }
+  });
+  
+  // Si la opción seleccionada está sin stock, cambiar a la primera disponible
+  if (parseInt(select.value) > maxStock) {
+    for (let i = 0; i < options.length; i++) {
+      if (parseInt(options[i].value) <= maxStock) {
+        select.value = options[i].value;
+        break;
+      }
+    }
+  }
 }
 
 // Add product to cart
@@ -129,12 +170,27 @@ function addToCart(productId, productName) {
     return;
   }
   
+  // Verificar stock disponible
+  const availableStock = productStock[productId];
+  if (availableStock !== undefined && quantity > availableStock) {
+    const unit = getUnit(productId);
+    alert(`⚠️ Stock insuficiente.\nDisponible: ${availableStock} ${unit}\nIntentaste agregar: ${quantity} ${unit}`);
+    return;
+  }
+  
   // Check if product already in cart
   const existingIndex = cart.findIndex(item => item.id === productId);
   
   if (existingIndex > -1) {
+    // Verificar que la suma no exceda el stock
+    const newTotal = cart[existingIndex].quantity + quantity;
+    if (availableStock !== undefined && newTotal > availableStock) {
+      const unit = getUnit(productId);
+      alert(`⚠️ Stock insuficiente.\nDisponible: ${availableStock} ${unit}\nYa tenés en el carrito: ${cart[existingIndex].quantity} ${unit}\nIntentaste agregar: ${quantity} ${unit}`);
+      return;
+    }
     // Sum quantities if product already exists
-    cart[existingIndex].quantity += quantity;
+    cart[existingIndex].quantity = newTotal;
   } else {
     cart.push({
       id: productId,
