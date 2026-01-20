@@ -663,11 +663,16 @@ main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses ful
 /* modal */
 .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(174,87,192,0.9); z-index:300}
 .modal.open, .modal.active{display:flex}
-.modal-dialog{background:#8B3FA8; border-radius:12px; padding:22px; width:100%; max-width:480px; box-shadow:0 12px 48px rgba(0,0,0,0.6); position: relative;}
+.modal-dialog{background:#8B3FA8; border-radius:12px; padding:22px; width:100%; max-width:480px; max-height:90vh; box-shadow:0 12px 48px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column;}
 .modal-close{position:absolute; right:18px; top:18px; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; transition: transform 200ms ease;}
 .modal-close:hover{transform: scale(1.2);}
 .modal input{width:100%; padding:12px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:#fff; margin-bottom:12px}
 .modal input:focus{outline: 2px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.05);}
+#cartItems{max-height: 50vh; overflow-y: auto; margin: 16px 0; padding-right: 8px;}
+#cartItems::-webkit-scrollbar{width: 8px;}
+#cartItems::-webkit-scrollbar-track{background: rgba(255,255,255,0.05); border-radius: 4px;}
+#cartItems::-webkit-scrollbar-thumb{background: rgba(255,255,255,0.2); border-radius: 4px;}
+#cartItems::-webkit-scrollbar-thumb:hover{background: rgba(255,255,255,0.3);}
 .msg{
   margin-top: 12px;
   padding: 8px 12px;
