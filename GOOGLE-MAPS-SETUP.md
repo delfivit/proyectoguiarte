@@ -31,9 +31,9 @@
 1. Abre el archivo `productos-alimentos.html`
 2. Busca esta línea (aproximadamente línea 37):
    ```html
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnZ8F8vQ0xZxKxKxKxKxKxKxKxKxKxKx&libraries=places&language=es&region=AR" async defer></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNVgy-MT0an_M2Z3MQ46XUCqyYSdZ9P8&libraries=places&language=es&region=AR" async defer></script>
    ```
-3. Reemplaza `AIzaSyBqnZ8F8vQ0xZxKxKxKxKxKxKxKxKxKxKx` con tu API key real
+3. Tu API key (`AIzaSyDCNVgy-MT0an_M2Z3MQ46XUCqyYSdZ9P8`) ya está configurada ✅
 
 ## Paso 4: Verificar que funciona
 
