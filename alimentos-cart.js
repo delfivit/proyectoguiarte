@@ -43,7 +43,8 @@ function addToCart(productId, productName) {
   const existingIndex = cart.findIndex(item => item.id === productId);
   
   if (existingIndex > -1) {
-    cart[existingIndex].quantity = quantity;
+    // Sum quantities if product already exists
+    cart[existingIndex].quantity += quantity;
   } else {
     cart.push({
       id: productId,
