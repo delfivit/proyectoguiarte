@@ -755,23 +755,19 @@
           </div>
           
           <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-top: 8px;">
-            <label style="display: block; color: white; font-weight: 600; margin-bottom: 12px; font-size: 0.95rem;">
-              📅 Día de entrega:
+            <label for="deliveryDate" style="display: block; color: white; font-weight: 600; margin-bottom: 12px; font-size: 0.95rem;">
+              📅 Fecha de entrega (Lunes, Miércoles o Viernes):
             </label>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-              <label class="delivery-option">
-                <input type="radio" name="deliveryDay" value="Lunes" required>
-                <span>Lunes</span>
-              </label>
-              <label class="delivery-option">
-                <input type="radio" name="deliveryDay" value="Miércoles" required>
-                <span>Miércoles</span>
-              </label>
-              <label class="delivery-option">
-                <input type="radio" name="deliveryDay" value="Viernes" required>
-                <span>Viernes</span>
-              </label>
-            </div>
+            <input 
+              type="date" 
+              id="deliveryDate" 
+              name="deliveryDate" 
+              required
+              style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 1rem; font-family: 'Montserrat', sans-serif;"
+            >
+            <small style="display: block; color: rgba(255,255,255,0.6); margin-top: 8px; font-size: 0.85rem;">
+              Solo podés elegir lunes, miércoles o viernes
+            </small>
           </div>
           
           <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px;">

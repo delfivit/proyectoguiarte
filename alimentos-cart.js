@@ -346,7 +346,7 @@ async function submitOrder(e) {
   const phone = document.getElementById('userPhone').value;
   const address = document.getElementById('userAddress').value;
   const postalCode = document.getElementById('userPostalCode').value;
-  const deliveryDay = document.querySelector('input[name="deliveryDay"]:checked')?.value;
+  const deliveryDateInput = document.getElementById('deliveryDate').value;
   const deliveryTime = document.querySelector('input[name="deliveryTime"]:checked')?.value;
   
   const msgEl = document.getElementById('loginMsg');
@@ -359,8 +359,28 @@ async function submitOrder(e) {
     return;
   }
   
-  if (!deliveryDay || !deliveryTime) {
-    msgEl.textContent = '❌ Por favor seleccioná día y horario de entrega';
+  // Validar fecha de entrega
+  if (!deliveryDateInput) {
+    msgEl.textContent = '❌ Por favor seleccioná una fecha de entrega';
+    msgEl.style.color = '#ff4444';
+    return;
+  }
+  
+  // Verificar que sea lunes, miércoles o viernes
+  const selectedDate = new Date(deliveryDateInput + 'T00:00:00');
+  const dayOfWeek = selectedDate.getDay();
+  if (dayOfWeek !== 1 && dayOfWeek !== 3 && dayOfWeek !== 5) {
+    msgEl.textContent = '❌ Solo podés elegir Lunes, Miércoles o Viernes';
+    msgEl.style.color = '#ff4444';
+    return;
+  }
+  
+  // Formatear la fecha para mostrar (ej: "Lunes 27/01/2026")
+  const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const deliveryDay = `${dayNames[dayOfWeek]} ${selectedDate.getDate()}/${String(selectedDate.getMonth() + 1).padStart(2, '0')}/${selectedDate.getFullYear()}`;
+  
+  if (!deliveryTime) {
+    msgEl.textContent = '❌ Por favor seleccioná horario de entrega';
     msgEl.style.color = '#ff4444';
     return;
   }
@@ -496,6 +516,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inicializar Google Places Autocomplete cuando la API esté lista
   initGooglePlacesAutocomplete();
   
+  // Inicializar validación de fecha de entrega
+  initDeliveryDateValidation();
+  
   // Close modals on outside click
   ['cartModal', 'loginModal'].forEach(modalId => {
     document.getElementById(modalId).addEventListener('click', (e) => {
@@ -505,6 +528,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Validar que solo se puedan elegir lunes, miércoles o viernes
+function initDeliveryDateValidation() {
+  const deliveryDateInput = document.getElementById('deliveryDate');
+  
+  if (!deliveryDateInput) return;
+  
+  // Establecer fecha mínima (mañana)
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  deliveryDateInput.min = tomorrow.toISOString().split('T')[0];
+  
+  // Establecer fecha máxima (3 meses adelante)
+  const maxDate = new Date();
+  maxDate.setMonth(maxDate.getMonth() + 3);
+  deliveryDateInput.max = maxDate.toISOString().split('T')[0];
+  
+  // Validar cuando el usuario selecciona una fecha
+  deliveryDateInput.addEventListener('input', function() {
+    const selectedDate = new Date(this.value + 'T00:00:00');
+    const dayOfWeek = selectedDate.getDay(); // 0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado
+    
+    // Solo permitir lunes (1), miércoles (3) o viernes (5)
+    if (dayOfWeek !== 1 && dayOfWeek !== 3 && dayOfWeek !== 5) {
+      alert('⚠️ Solo podés elegir días Lunes, Miércoles o Viernes para la entrega.');
+      this.value = '';
+      return;
+    }
+  });
+}
 
 // Inicializar Google Places Autocomplete
 function initGooglePlacesAutocomplete() {
