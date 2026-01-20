@@ -10,9 +10,9 @@
 
 En la primera fila, agregá estos encabezados:
 
-| A | B | C | D | E | F | G |
-|---|---|---|---|---|---|---|
-| **Número de Orden** | **Fecha** | **Nombre** | **Email** | **Teléfono** | **Dirección** | **Productos** |
+| A | B | C | D | E | F | G | H | I |
+|---|---|---|---|---|---|---|---|---|
+| **Número de Orden** | **Fecha** | **Nombre** | **Email** | **Teléfono** | **Dirección** | **CP** | **Día de Entrega** | **Horario** | **Productos** |
 
 ## Paso 3: Crear el Apps Script
 
@@ -40,6 +40,9 @@ function doPost(e) {
       data.customerEmail,
       data.customerPhone,
       data.customerAddress,
+      data.customerPostalCode,
+      data.deliveryDay,
+      data.deliveryTime,
       data.items
     ]);
     
@@ -85,6 +88,13 @@ function enviarEmailPedido(data) {
           <p><strong>Email:</strong> ${data.customerEmail}</p>
           <p><strong>Teléfono:</strong> ${data.customerPhone}</p>
           <p><strong>Dirección:</strong> ${data.customerAddress}</p>
+          <p><strong>Código Postal:</strong> ${data.customerPostalCode}</p>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+          <h2 style="color: #AE57C0; margin-top: 0;">📦 Entrega</h2>
+          <p><strong>Día:</strong> ${data.deliveryDay}</p>
+          <p><strong>Horario:</strong> ${data.deliveryTime}</p>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 8px;">
@@ -147,7 +157,8 @@ function enviarConfirmacionCliente(data) {
             ${formatearProductos(data.itemsDetailed)}
           </div>
           
-          <p style="margin-top: 15px;"><strong>Dirección de entrega:</strong><br>${data.customerAddress}</p>
+          <p style="margin-top: 15px;"><strong>Dirección de entrega:</strong><br>${data.customerAddress}, CP ${data.customerPostalCode}</p>
+          <p><strong>Entrega programada:</strong><br>${data.deliveryDay} de ${data.deliveryTime}</p>
         </div>
         
         <div style="background: #FFF3CD; border-left: 4px solid #FFC107; padding: 15px; border-radius: 4px; margin: 20px 0;">
@@ -189,6 +200,9 @@ function testearPedido() {
     customerEmail: EMAIL_DESTINO, // Cambiar por tu email para probar
     customerPhone: '11-1234-5678',
     customerAddress: 'Dirección de prueba 123',
+    customerPostalCode: '3100',
+    deliveryDay: 'Lunes',
+    deliveryTime: '9:00 - 13:00',
     items: 'Yogurt Griego (500 gramos), Lechuga Hidropónica (200 gramos)',
     itemsDetailed: [
       { name: 'Yogurt Griego', quantity: 500, unit: 'gramos' },

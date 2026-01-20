@@ -75,7 +75,126 @@
     }
     
     /* Product card with quantity input */
+    .products-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .product-card{
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 300ms ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .product-image{
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #C77DD4, #AE57C0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image::after{
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-body{
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    
+    .product-card h3{
+      color: white;
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .product-card p{
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      flex: 1;
+    }
+    
+    .product-footer{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+    
+    .quantity-controls{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 8px 12px;
+      border-radius: 12px;
+    }
+    .quantity-controls input{
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .quantity-controls label{
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    
+    .btn-add-to-cart{
+      background: white;
+      color: #AE57C0;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-add-to-cart:hover{
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+    }
+    .btn-add-to-cart:active{
+      transform: scale(0.98);
+    }
+    
+    /* LEGACY: Old horizontal design - keeping for backward compatibility */
     .product-item{
+      display: none; /* Hidden by default, use new card design */
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border-radius: 20px;
@@ -143,7 +262,54 @@
       box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
     }
     
+    /* Delivery options radio buttons */
+    .delivery-option{
+      display: block;
+      position: relative;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 250ms ease;
+      border: 2px solid transparent;
+    }
+    .delivery-option:hover{
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+    .delivery-option input[type="radio"]{
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .delivery-option input[type="radio"]:checked + span{
+      color: #AE57C0;
+      font-weight: 700;
+    }
+    .delivery-option input[type="radio"]:checked ~ *{
+      border-color: #AE57C0;
+    }
+    .delivery-option:has(input[type="radio"]:checked){
+      background: white;
+      border-color: #AE57C0;
+    }
+    .delivery-option span{
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: block;
+      transition: all 250ms ease;
+    }
+    
     @media (max-width: 768px){
+      .products-grid{
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .product-image{
+        height: 180px;
+      }
       .product-item{
         grid-template-columns: 1fr;
         gap: 16px;
@@ -190,87 +356,95 @@
         <article class="product-group">
           <h2 class="zamora">Lácteos de Campo</h2>
           
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Yogurt Griego</h3>
-              <p>Yogurt griego cremoso y natural, elaborado con leche de tambo. Rico en proteínas y probióticos, ideal para un desayuno saludable.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="yogurt-griego">
-                <label>gramos</label>
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">🥛</div>
+              <div class="product-body">
+                <h3>Yogurt Griego</h3>
+                <p>Yogurt griego cremoso y natural, elaborado con leche de tambo. Rico en proteínas y probióticos.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="yogurt-griego">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('yogurt-griego', 'Yogurt Griego')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('yogurt-griego', 'Yogurt Griego')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Huevos de Campo</h3>
-              <p>Huevos de gallinas criadas en libertad, con alimentación natural. Yema intensa y cáscara resistente. Precio por unidad.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="1" step="1" value="12" data-product="huevos-campo">
-                <label>unidades</label>
+            <div class="product-card">
+              <div class="product-image">🥚</div>
+              <div class="product-body">
+                <h3>Huevos de Campo</h3>
+                <p>Huevos de gallinas criadas en libertad, con alimentación natural. Yema intensa y cáscara resistente.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="1" step="1" value="12" data-product="huevos-campo">
+                    <label>unidades</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('huevos-campo', 'Huevos de Campo')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('huevos-campo', 'Huevos de Campo')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Queso de Campo</h3>
-              <p>Queso artesanal elaborado con leche de tambo. Sabor auténtico y textura firme, perfecto para tus comidas.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="queso-campo">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🧀</div>
+              <div class="product-body">
+                <h3>Queso de Campo</h3>
+                <p>Queso artesanal elaborado con leche de tambo. Sabor auténtico y textura firme, perfecto para tus comidas.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="queso-campo">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('queso-campo', 'Queso de Campo')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('queso-campo', 'Queso de Campo')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Leche de Tambo</h3>
-              <p>Leche fresca de tambo, entera y sin procesar. Sabor natural y nutritivo directo del productor.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="500" step="500" value="1000" data-product="leche-tambo">
-                <label>ml</label>
+            <div class="product-card">
+              <div class="product-image">🥛</div>
+              <div class="product-body">
+                <h3>Leche de Tambo</h3>
+                <p>Leche fresca de tambo, entera y sin procesar. Sabor natural y nutritivo directo del productor.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="500" step="500" value="1000" data-product="leche-tambo">
+                    <label>ml</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('leche-tambo', 'Leche de Tambo')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('leche-tambo', 'Leche de Tambo')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Dulce de Leche de Campo</h3>
-              <p>Dulce de leche artesanal, hecho con leche de tambo. Cremoso, intenso y sin aditivos artificiales.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="dulce-leche-campo">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🍯</div>
+              <div class="product-body">
+                <h3>Dulce de Leche de Campo</h3>
+                <p>Dulce de leche artesanal, hecho con leche de tambo. Cremoso, intenso y sin aditivos artificiales.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="dulce-leche-campo">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('dulce-leche-campo', 'Dulce de Leche de Campo')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('dulce-leche-campo', 'Dulce de Leche de Campo')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Miel de Campo</h3>
-              <p>Miel pura de apicultura sustentable. Sabor floral y propiedades naturales para endulzar de forma consciente.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="miel-campo">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🍯</div>
+              <div class="product-body">
+                <h3>Miel de Campo</h3>
+                <p>Miel pura de apicultura sustentable. Sabor floral y propiedades naturales para endulzar de forma consciente.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="miel-campo">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('miel-campo', 'Miel de Campo')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('miel-campo', 'Miel de Campo')">Agregar</button>
             </div>
           </div>
         </article>
@@ -279,115 +453,125 @@
         <article class="product-group">
           <h2 class="zamora">Verduras Hidropónicas</h2>
           
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Lechuga Hidropónica</h3>
-              <p>Lechuga fresca cultivada en sistema hidropónico. Hojas crocantes, sin pesticidas y con máximo sabor.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="200" data-product="lechuga-hidroponica">
-                <label>gramos</label>
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">🥬</div>
+              <div class="product-body">
+                <h3>Lechuga Hidropónica</h3>
+                <p>Lechuga fresca cultivada en sistema hidropónico. Hojas crocantes, sin pesticidas y con máximo sabor.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="200" data-product="lechuga-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('lechuga-hidroponica', 'Lechuga Hidropónica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('lechuga-hidroponica', 'Lechuga Hidropónica')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Espinaca Hidropónica</h3>
-              <p>Espinaca tierna cultivada hidropónicamente. Rica en hierro, vitaminas y minerales esenciales.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="300" data-product="espinaca-hidroponica">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🥬</div>
+              <div class="product-body">
+                <h3>Espinaca Hidropónica</h3>
+                <p>Espinaca tierna cultivada hidropónicamente. Rica en hierro, vitaminas y minerales esenciales.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="300" data-product="espinaca-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('espinaca-hidroponica', 'Espinaca Hidropónica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('espinaca-hidroponica', 'Espinaca Hidropónica')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Tomate Hidropónico</h3>
-              <p>Tomates cultivados en ambiente controlado. Sabor intenso, textura firme y frescura garantizada.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="tomate-hidroponico">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🍅</div>
+              <div class="product-body">
+                <h3>Tomate Hidropónico</h3>
+                <p>Tomates cultivados en ambiente controlado. Sabor intenso, textura firme y frescura garantizada.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="tomate-hidroponico">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('tomate-hidroponico', 'Tomate Hidropónico')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('tomate-hidroponico', 'Tomate Hidropónico')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Zanahoria Hidropónica</h3>
-              <p>Zanahorias cultivadas hidropónicamente. Dulces, crocantes y llenas de betacarotenos.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="zanahoria-hidroponica">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🥕</div>
+              <div class="product-body">
+                <h3>Zanahoria Hidropónica</h3>
+                <p>Zanahorias cultivadas hidropónicamente. Dulces, crocantes y llenas de betacarotenos.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="zanahoria-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('zanahoria-hidroponica', 'Zanahoria Hidropónica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('zanahoria-hidroponica', 'Zanahoria Hidropónica')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Papa Hidropónica</h3>
-              <p>Papas cultivadas en sistema hidropónico. Textura suave y sabor neutro, perfectas para cualquier preparación.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="1000" data-product="papa-hidroponica">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🥔</div>
+              <div class="product-body">
+                <h3>Papa Hidropónica</h3>
+                <p>Papas cultivadas en sistema hidropónico. Textura suave y sabor neutro, perfectas para cualquier preparación.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="1000" data-product="papa-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('papa-hidroponica', 'Papa Hidropónica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('papa-hidroponica', 'Papa Hidropónica')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Brócoli Hidropónico</h3>
-              <p>Brócoli fresco cultivado hidropónicamente. Alto contenido de vitaminas, minerales y antioxidantes.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="400" data-product="brocoli-hidroponico">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🥦</div>
+              <div class="product-body">
+                <h3>Brócoli Hidropónico</h3>
+                <p>Brócoli fresco cultivado hidropónicamente. Alto contenido de vitaminas, minerales y antioxidantes.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="400" data-product="brocoli-hidroponico">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('brocoli-hidroponico', 'Brócoli Hidropónico')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('brocoli-hidroponico', 'Brócoli Hidropónico')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Cebolla Hidropónica</h3>
-              <p>Cebollas cultivadas en ambiente controlado. Sabor balanceado y textura consistente para tus recetas.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="500" data-product="cebolla-hidroponica">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🧅</div>
+              <div class="product-body">
+                <h3>Cebolla Hidropónica</h3>
+                <p>Cebollas cultivadas en ambiente controlado. Sabor balanceado y textura consistente para tus recetas.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="cebolla-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('cebolla-hidroponica', 'Cebolla Hidropónica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('cebolla-hidroponica', 'Cebolla Hidropónica')">Agregar</button>
             </div>
-          </div>
 
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Morrón Hidropónico</h3>
-              <p>Morrones rojos, amarillos y verdes cultivados hidropónicamente. Crujientes, dulces y llenos de vitamina C.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="100" step="100" value="400" data-product="morron-hidroponico">
-                <label>gramos</label>
+            <div class="product-card">
+              <div class="product-image">🫑</div>
+              <div class="product-body">
+                <h3>Morrón Hidropónico</h3>
+                <p>Morrones rojos, amarillos y verdes cultivados hidropónicamente. Crujientes, dulces y llenos de vitamina C.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="400" data-product="morron-hidroponico">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('morron-hidroponico', 'Morrón Hidropónico')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('morron-hidroponico', 'Morrón Hidropónico')">Agregar</button>
             </div>
           </div>
         </article>
@@ -396,18 +580,23 @@
         <article class="product-group">
           <h2 class="zamora">Yerba Orgánica</h2>
           
-          <div class="product-item">
-            <div class="product-info">
-              <h3>Yerba Orgánica</h3>
-              <p>Yerba mate 100% orgánica, sin agrotóxicos. Sabor auténtico y producción sustentable para tus momentos de mate.</p>
-            </div>
-            <div class="product-actions">
-              <div class="quantity-input">
-                <input type="number" min="500" step="500" value="1000" data-product="yerba-organica">
-                <label>gramos</label>
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">🧉</div>
+              <div class="product-body">
+                <h3>Yerba Orgánica</h3>
+                <p>Yerba mate 100% orgánica, sin agrotóxicos. Sabor auténtico y producción sustentable para tus momentos de mate.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="500" step="500" value="1000" data-product="yerba-organica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('yerba-organica', 'Yerba Orgánica')">Agregar</button>
+                </div>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('yerba-organica', 'Yerba Orgánica')">Agregar</button>
             </div>
+          </div>
+        </article>
           </div>
         </article>
 
@@ -427,14 +616,55 @@
 
     <!-- Login Modal -->
     <div id="loginModal" class="modal" aria-hidden="true">
-      <div class="modal-dialog" style="max-width: 400px;">
+      <div class="modal-dialog" style="max-width: 500px;">
         <button class="modal-close" id="loginModalClose" aria-label="Cerrar">×</button>
         <h3>Ingresá tus datos</h3>
         <form id="loginForm" style="display: flex; flex-direction: column; gap: 16px;">
           <input type="text" id="userName" placeholder="Nombre completo" required>
           <input type="email" id="userEmail" placeholder="Email" required>
-          <input type="tel" id="userPhone" placeholder="Teléfono" required>
-          <input type="text" id="userAddress" placeholder="Dirección de entrega" required>
+          <input type="tel" id="userPhone" placeholder="Teléfono (ej: 11-1234-5678)" required>
+          
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+            <input type="text" id="userAddress" placeholder="Dirección de entrega" required>
+            <input type="text" id="userPostalCode" placeholder="CP" maxlength="4" pattern="[0-9]{4}" required>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-top: 8px;">
+            <label style="display: block; color: white; font-weight: 600; margin-bottom: 12px; font-size: 0.95rem;">
+              📅 Día de entrega:
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+              <label class="delivery-option">
+                <input type="radio" name="deliveryDay" value="Lunes" required>
+                <span>Lunes</span>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="deliveryDay" value="Miércoles" required>
+                <span>Miércoles</span>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="deliveryDay" value="Viernes" required>
+                <span>Viernes</span>
+              </label>
+            </div>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px;">
+            <label style="display: block; color: white; font-weight: 600; margin-bottom: 12px; font-size: 0.95rem;">
+              🕐 Horario de entrega:
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+              <label class="delivery-option">
+                <input type="radio" name="deliveryTime" value="9:00 - 13:00" required>
+                <span>9 a 13hs</span>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="deliveryTime" value="18:00 - 22:00" required>
+                <span>18 a 22hs</span>
+              </label>
+            </div>
+          </div>
+          
           <button class="btn-primary" type="submit">Enviar Pedido</button>
         </form>
         <p id="loginMsg" class="msg" aria-live="polite"></p>

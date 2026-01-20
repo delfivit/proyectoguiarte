@@ -38,7 +38,7 @@ function addToCart(productId, productName) {
   updateCartBadge();
   
   // Visual feedback
-  const btn = input.closest('.product-item').querySelector('.btn-add-cart');
+  const btn = input.closest('.product-card, .product-item').querySelector('.btn-add-to-cart, .btn-add-cart');
   const originalText = btn.textContent;
   btn.textContent = '✓ Agregado';
   btn.style.background = '#4CAF50';
@@ -144,16 +144,34 @@ async function submitOrder(e) {
   const email = document.getElementById('userEmail').value;
   const phone = document.getElementById('userPhone').value;
   const address = document.getElementById('userAddress').value;
+  const postalCode = document.getElementById('userPostalCode').value;
+  const deliveryDay = document.querySelector('input[name="deliveryDay"]:checked')?.value;
+  const deliveryTime = document.querySelector('input[name="deliveryTime"]:checked')?.value;
+  
+  const msgEl = document.getElementById('loginMsg');
+  
+  // Validate Paraná postal code (3100-3199)
+  const postalCodeNum = parseInt(postalCode);
+  if (postalCodeNum < 3100 || postalCodeNum > 3199) {
+    msgEl.textContent = '❌ Por ahora solo hacemos entregas en Paraná (CP 3100-3199)';
+    msgEl.style.color = '#ff4444';
+    return;
+  }
+  
+  if (!deliveryDay || !deliveryTime) {
+    msgEl.textContent = '❌ Por favor seleccioná día y horario de entrega';
+    msgEl.style.color = '#ff4444';
+    return;
+  }
+  
+  msgEl.textContent = 'Enviando pedido...';
+  msgEl.style.color = '#AE57C0';
   
   const orderNumber = 'PG-' + Date.now();
   const orderDate = new Date().toLocaleString('es-AR', { 
     dateStyle: 'short', 
     timeStyle: 'short' 
   });
-  
-  const msgEl = document.getElementById('loginMsg');
-  msgEl.textContent = 'Enviando pedido...';
-  msgEl.style.color = '#AE57C0';
   
   // Prepare data for Google Sheets
   const orderData = {
@@ -163,6 +181,9 @@ async function submitOrder(e) {
     customerEmail: email,
     customerPhone: phone,
     customerAddress: address,
+    customerPostalCode: postalCode,
+    deliveryDay: deliveryDay,
+    deliveryTime: deliveryTime,
     items: cart.map(item => `${item.name} (${item.quantity} ${item.unit})`).join(', '),
     itemsDetailed: cart
   };
