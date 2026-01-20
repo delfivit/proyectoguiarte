@@ -10,9 +10,9 @@
 
 En la primera fila, agregá estos encabezados:
 
-| A | B | C | D | E | F | G | H | I |
-|---|---|---|---|---|---|---|---|---|
-| **Número de Orden** | **Fecha** | **Nombre** | **Email** | **Teléfono** | **Dirección** | **CP** | **Día de Entrega** | **Horario** | **Productos** |
+| A | B | C | D | E | F | G | H | I | J |
+|---|---|---|---|---|---|---|---|---|---|
+| **Número de Orden** | **Fecha** | **Nombre** | **Email** | **Teléfono** | **Dirección** | **CP** | **Día de Entrega** | **Horario** | **Productos** | **Total** |
 
 ## Paso 3: Crear el Apps Script
 
@@ -43,7 +43,8 @@ function doPost(e) {
       data.customerPostalCode,
       data.deliveryDay,
       data.deliveryTime,
-      data.items
+      data.items,
+      data.totalPriceFormatted
     ]);
     
     // Enviar email con el pedido
@@ -102,6 +103,10 @@ function enviarEmailPedido(data) {
           <div style="background: #f5f5f5; padding: 15px; border-radius: 6px; font-family: monospace;">
             ${formatearProductos(data.itemsDetailed)}
           </div>
+          <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #C77DD4, #AE57C0); border-radius: 8px; text-align: center;">
+            <p style="margin: 0; color: white; font-size: 14px; font-weight: 600;">TOTAL DEL PEDIDO</p>
+            <p style="margin: 5px 0 0 0; color: white; font-size: 28px; font-weight: 700;">${data.totalPriceFormatted}</p>
+          </div>
         </div>
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd;">
@@ -127,7 +132,7 @@ function formatearProductos(items) {
   if (!items || items.length === 0) return 'No hay productos';
   
   return items.map(item => 
-    `• ${item.name}: <strong>${item.quantity} ${item.unit}</strong>`
+    `• ${item.name}: <strong>${item.quantity} ${item.unit}</strong> - ${item.priceFormatted || 'N/A'}`
   ).join('<br>');
 }
 
@@ -155,6 +160,11 @@ function enviarConfirmacionCliente(data) {
           <h4 style="color: #AE57C0; margin-bottom: 10px;">Productos:</h4>
           <div style="background: #f5f5f5; padding: 15px; border-radius: 6px;">
             ${formatearProductos(data.itemsDetailed)}
+          </div>
+          
+          <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #C77DD4, #AE57C0); border-radius: 8px; text-align: center;">
+            <p style="margin: 0; color: white; font-size: 14px; font-weight: 600;">TOTAL A PAGAR</p>
+            <p style="margin: 5px 0 0 0; color: white; font-size: 28px; font-weight: 700;">${data.totalPriceFormatted}</p>
           </div>
           
           <p style="margin-top: 15px;"><strong>Dirección de entrega:</strong><br>${data.customerAddress}, CP ${data.customerPostalCode}</p>
@@ -205,9 +215,10 @@ function testearPedido() {
     deliveryTime: '9:00 - 13:00',
     items: 'Yogurt Griego (500 gramos), Lechuga Hidropónica (200 gramos)',
     itemsDetailed: [
-      { name: 'Yogurt Griego', quantity: 500, unit: 'gramos' },
-      { name: 'Lechuga Hidropónica', quantity: 200, unit: 'gramos' }
-    ]
+      { name: 'Yogurt Griego', quantity: 500, unit: 'gramos', priceFormatted: '$1.400' },
+      { name: 'Lechuga Hidropónica', quantity: 200, unit: 'gramos', priceFormatted: '$360' }
+    ],
+    totalPriceFormatted: '$1.760'
   };
   
   enviarEmailPedido(dataPrueba);

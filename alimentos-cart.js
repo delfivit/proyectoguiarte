@@ -1,6 +1,25 @@
 // Shopping cart management for Alimentos
 let cart = [];
 
+// Product prices (price per unit: kg, liter, or unit)
+const productPrices = {
+  'yogurt-griego': 2.80,        // per gram (2800/1000)
+  'huevos-campo': 350,          // per unit
+  'queso-campo': 8.50,          // per gram (8500/1000)
+  'leche-tambo': 1.20,          // per ml (1200/1000)
+  'dulce-leche-campo': 4.20,    // per gram (4200/1000)
+  'miel-campo': 6.50,           // per gram (6500/1000)
+  'lechuga-hidroponica': 1.80,  // per gram (1800/1000)
+  'espinaca-hidroponica': 2.20, // per gram (2200/1000)
+  'tomate-hidroponico': 2.50,   // per gram (2500/1000)
+  'zanahoria-hidroponica': 1.60,// per gram (1600/1000)
+  'papa-hidroponica': 1.40,     // per gram (1400/1000)
+  'brocoli-hidroponico': 2.80,  // per gram (2800/1000)
+  'cebolla-hidroponica': 1.50,  // per gram (1500/1000)
+  'morron-hidroponico': 3.20,   // per gram (3200/1000)
+  'yerba-organica': 3.80        // per gram (3800/1000)
+};
+
 // Initialize cart from localStorage
 function initCart() {
   const savedCart = localStorage.getItem('alimentosCart');
@@ -56,6 +75,29 @@ function getUnit(productId) {
   return 'gramos';
 }
 
+// Calculate price for item
+function calculateItemPrice(productId, quantity) {
+  const pricePerUnit = productPrices[productId] || 0;
+  
+  if (productId === 'huevos-campo') {
+    // Eggs: price per unit
+    return pricePerUnit * quantity;
+  } else {
+    // Everything else: price per gram/ml
+    return pricePerUnit * quantity;
+  }
+}
+
+// Format price for display
+function formatPrice(price) {
+  return new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(price);
+}
+
 // Save cart to localStorage
 function saveCart() {
   localStorage.setItem('alimentosCart', JSON.stringify(cart));
@@ -81,14 +123,20 @@ function openCart() {
   
   // Render cart items
   let html = '<div style="display: flex; flex-direction: column; gap: 16px;">';
+  let totalPrice = 0;
+  
   cart.forEach((item, index) => {
+    const itemPrice = calculateItemPrice(item.id, item.quantity);
+    totalPrice += itemPrice;
+    
     html += `
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 12px;">
-        <div>
-          <strong>${item.name}</strong><br>
-          <span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">${item.quantity} ${item.unit}</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; gap: 16px;">
+        <div style="flex: 1;">
+          <strong style="font-size: 1.05rem;">${item.name}</strong><br>
+          <span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">${item.quantity} ${item.unit}</span><br>
+          <span style="color: #C77DD4; font-size: 1.1rem; font-weight: 600;">${formatPrice(itemPrice)}</span>
         </div>
-        <button onclick="removeFromCart(${index})" style="background: #ff4444; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">
+        <button onclick="removeFromCart(${index})" style="background: #ff4444; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 250ms ease;">
           Eliminar
         </button>
       </div>
@@ -98,10 +146,19 @@ function openCart() {
   
   itemsContainer.innerHTML = html;
   
-  // Show total items
+  // Show total
   document.getElementById('cartTotal').innerHTML = `
-    <strong>Total de productos: ${cart.length}</strong><br>
-    <span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">El precio final se coordinará por separado</span>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <strong style="font-size: 1.1rem;">Total de productos:</strong>
+      <strong style="font-size: 1.1rem;">${cart.length}</strong>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 12px;">
+      <strong style="font-size: 1.5rem; color: white;">TOTAL:</strong>
+      <strong style="font-size: 1.8rem; color: #C77DD4;">${formatPrice(totalPrice)}</strong>
+    </div>
+    <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 12px; text-align: center;">
+      * Precio final sujeto a disponibilidad y método de pago
+    </p>
   `;
   
   modal.setAttribute('aria-hidden', 'false');
@@ -173,6 +230,11 @@ async function submitOrder(e) {
     timeStyle: 'short' 
   });
   
+  // Calculate total
+  const totalPrice = cart.reduce((sum, item) => {
+    return sum + calculateItemPrice(item.id, item.quantity);
+  }, 0);
+  
   // Prepare data for Google Sheets
   const orderData = {
     orderNumber: orderNumber,
@@ -185,7 +247,13 @@ async function submitOrder(e) {
     deliveryDay: deliveryDay,
     deliveryTime: deliveryTime,
     items: cart.map(item => `${item.name} (${item.quantity} ${item.unit})`).join(', '),
-    itemsDetailed: cart
+    itemsDetailed: cart.map(item => ({
+      ...item,
+      price: calculateItemPrice(item.id, item.quantity),
+      priceFormatted: formatPrice(calculateItemPrice(item.id, item.quantity))
+    })),
+    totalPrice: totalPrice,
+    totalPriceFormatted: formatPrice(totalPrice)
   };
   
   try {
