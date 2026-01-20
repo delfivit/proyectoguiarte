@@ -4,23 +4,23 @@ let productStock = {}; // Stock actual de productos
 
 // Product prices (price per unit: kg, liter, or unit)
 const productPrices = {
-  'yogurt-griego': 2.80,        // per gram (2800/1000)
-  'huevos-campo': 350,          // per unit
-  'queso-campo': 8.50,          // per gram (8500/1000)
-  'leche-tambo': 1.20,          // per ml (1200/1000)
-  'dulce-leche-campo': 4.20,    // per gram (4200/1000)
-  'miel-campo': 6.50,           // per gram (6500/1000)
-  'lechuga-hidroponica': 1.80,  // per gram (1800/1000)
-  'espinaca-hidroponica': 2.20, // per gram (2200/1000)
-  'tomate-hidroponico': 2.50,   // per gram (2500/1000)
-  'zanahoria-hidroponica': 1.60,// per gram (1600/1000)
-  'papa-hidroponica': 1.40,     // per gram (1400/1000)
-  'brocoli-hidroponico': 2.80,  // per gram (2800/1000)
-  'cebolla-hidroponica': 1.50,  // per gram (1500/1000)
-  'morron-hidroponico': 3.20,   // per gram (3200/1000)
-  'yerba-organica': 3.80,       // per gram (3800/1000)
-  'jabon-liquido-ropa': 3.50,   // per ml (3500/1000)
-  'detergente-ecologico': 2.80  // per ml (2800/1000)
+  'yogurt-griego': 15.00,       // per gram (15000/1000)
+  'huevos-campo': 400,          // per unit
+  'queso-campo': 12.00,         // per gram (12000/1000)
+  'leche-tambo': 1.20,          // per ml (1200/1000) - sin cambio
+  'dulce-leche-campo': 7.00,    // per gram (7000/1000)
+  'miel-campo': 10.00,          // per gram (10000/1000)
+  'lechuga-hidroponica': 1.80,  // per gram (1800/1000) - sin cambio
+  'espinaca-hidroponica': 2.20, // per gram (2200/1000) - sin cambio
+  'tomate-hidroponico': 2.50,   // per gram (2500/1000) - sin cambio
+  'zanahoria-hidroponica': 1.60,// per gram (1600/1000) - sin cambio
+  'papa-hidroponica': 1.40,     // per gram (1400/1000) - sin cambio
+  'brocoli-hidroponico': 2.80,  // per gram (2800/1000) - sin cambio
+  'cebolla-hidroponica': 1.50,  // per gram (1500/1000) - sin cambio
+  'morron-hidroponico': 3.20,   // per gram (3200/1000) - sin cambio
+  'yerba-organica': 6.00,       // per gram (6000/1000)
+  'jabon-liquido-ropa': 30.00,  // per ml (30000/1000)
+  'detergente-ecologico': 80.00 // per ml (80000/1000)
 };
 
 // Google Sheets Script URL
