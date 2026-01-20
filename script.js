@@ -36,13 +36,19 @@ loadComponents().then(() => {
 });
 
 function initApp() {
-  // HERO: hide hero title and show header title on scroll
+  // HERO: show title in header when header reaches title position
   const hero = document.getElementById('hero');
-  const THRESHOLD = 100;
+  const heroTitle = document.getElementById('hero-title');
+  
   function handleHeroScroll(){
+    if (!hero || !heroTitle) return;
+    
     const y = window.scrollY || window.pageYOffset;
-    if (!hero) return;
-    if (y > THRESHOLD) {
+    const heroTitleRect = heroTitle.getBoundingClientRect();
+    const headerHeight = 64; // Height of the header
+    
+    // When the hero title reaches the header position
+    if (heroTitleRect.top <= headerHeight) {
       hero.classList.add('scrolled');
       document.body.classList.add('scrolled');
     } else {
@@ -50,11 +56,11 @@ function initApp() {
       document.body.classList.remove('scrolled');
     }
   }
+  
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
 
   // Hero title click - scroll back to top (for when it's visible in hero)
-  const heroTitle = document.getElementById('hero-title');
   if (heroTitle) {
     heroTitle.addEventListener('click', () => {
       window.scrollTo({

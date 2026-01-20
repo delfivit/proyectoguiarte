@@ -421,7 +421,6 @@ body:has([class*="meditation-"]) .section-black,
   white-space:nowrap;
   transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
-  text-shadow: 0 4px 16px rgba(0,0,0,0.2);
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 @keyframes fadeInUp {
