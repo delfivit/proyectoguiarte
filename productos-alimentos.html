@@ -471,6 +471,7 @@
           <h2 class="zamora">Verduras Hidropónicas</h2>
           
           <div class="products-grid">
+            <!-- Hojas Verdes -->
             <div class="product-card">
               <div class="product-image">🥬</div>
               <div class="product-body">
@@ -503,6 +504,7 @@
               </div>
             </div>
 
+            <!-- Frutos -->
             <div class="product-card">
               <div class="product-image">🍅</div>
               <div class="product-body">
@@ -520,7 +522,24 @@
             </div>
 
             <div class="product-card">
-              <div class="product-image">🥕</div>
+              <div class="product-image">�</div>
+              <div class="product-body">
+                <h3>Morrón Hidropónico</h3>
+                <div class="product-price">$3.200 <span class="product-price-unit">/ kg</span></div>
+                <p>Morrones rojos, amarillos y verdes cultivados hidropónicamente. Crujientes, dulces y llenos de vitamina C.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="400" data-product="morron-hidroponico">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('morron-hidroponico', 'Morrón Hidropónico')">Agregar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Raíces y Tubérculos -->
+            <div class="product-card">
+              <div class="product-image">�🥕</div>
               <div class="product-body">
                 <h3>Zanahoria Hidropónica</h3>
                 <div class="product-price">$1.600 <span class="product-price-unit">/ kg</span></div>
@@ -552,6 +571,23 @@
             </div>
 
             <div class="product-card">
+              <div class="product-image">🧅</div>
+              <div class="product-body">
+                <h3>Cebolla Hidropónica</h3>
+                <div class="product-price">$1.500 <span class="product-price-unit">/ kg</span></div>
+                <p>Cebollas cultivadas en ambiente controlado. Sabor balanceado y textura consistente para tus recetas.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="100" step="100" value="500" data-product="cebolla-hidroponica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('cebolla-hidroponica', 'Cebolla Hidropónica')">Agregar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Crucíferas -->
+            <div class="product-card">
               <div class="product-image">🥦</div>
               <div class="product-body">
                 <h3>Brócoli Hidropónico</h3>
@@ -560,6 +596,40 @@
                 <div class="product-footer">
                   <div class="quantity-controls">
                     <input type="number" min="100" step="100" value="400" data-product="brocoli-hidroponico">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('brocoli-hidroponico', 'Brócoli Hidropónico')">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yerba Orgánica -->
+        <article class="product-group">
+          <h2 class="zamora">Yerba Orgánica</h2>
+          
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">🧉</div>
+              <div class="product-body">
+                <h3>Yerba Orgánica</h3>
+                <div class="product-price">$3.800 <span class="product-price-unit">/ kg</span></div>
+                <p>Yerba mate 100% orgánica, sin agrotóxicos. Sabor auténtico y producción sustentable para tus momentos de mate.</p>
+                <div class="product-footer">
+                  <div class="quantity-controls">
+                    <input type="number" min="500" step="500" value="1000" data-product="yerba-organica">
+                    <label>gramos</label>
+                  </div>
+                  <button class="btn-add-to-cart" onclick="addToCart('yerba-organica', 'Yerba Orgánica')">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
                     <label>gramos</label>
                   </div>
                   <button class="btn-add-to-cart" onclick="addToCart('brocoli-hidroponico', 'Brócoli Hidropónico')">Agregar</button>
@@ -589,80 +659,7 @@
                 <h3>Morrón Hidropónico</h3>
                 <div class="product-price">$3.200 <span class="product-price-unit">/ kg</span></div>
                 <p>Morrones rojos, amarillos y verdes cultivados hidropónicamente. Crujientes, dulces y llenos de vitamina C.</p>
-              <div class="product-body">
-                <h3>Zanahoria Hidropónica</h3>
-                <p>Zanahorias cultivadas hidropónicamente. Dulces, crocantes y llenas de betacarotenos.</p>
-                <div class="product-footer">
-                  <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="500" data-product="zanahoria-hidroponica">
-                    <label>gramos</label>
-                  </div>
-                  <button class="btn-add-to-cart" onclick="addToCart('zanahoria-hidroponica', 'Zanahoria Hidropónica')">Agregar</button>
-                </div>
-              </div>
-            </div>
 
-            <div class="product-card">
-              <div class="product-image">🥔</div>
-              <div class="product-body">
-                <h3>Papa Hidropónica</h3>
-                <p>Papas cultivadas en sistema hidropónico. Textura suave y sabor neutro, perfectas para cualquier preparación.</p>
-                <div class="product-footer">
-                  <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="1000" data-product="papa-hidroponica">
-                    <label>gramos</label>
-                  </div>
-                  <button class="btn-add-to-cart" onclick="addToCart('papa-hidroponica', 'Papa Hidropónica')">Agregar</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <div class="product-image">🥦</div>
-              <div class="product-body">
-                <h3>Brócoli Hidropónico</h3>
-                <p>Brócoli fresco cultivado hidropónicamente. Alto contenido de vitaminas, minerales y antioxidantes.</p>
-                <div class="product-footer">
-                  <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="400" data-product="brocoli-hidroponico">
-                    <label>gramos</label>
-                  </div>
-                  <button class="btn-add-to-cart" onclick="addToCart('brocoli-hidroponico', 'Brócoli Hidropónico')">Agregar</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <div class="product-image">🧅</div>
-              <div class="product-body">
-                <h3>Cebolla Hidropónica</h3>
-                <p>Cebollas cultivadas en ambiente controlado. Sabor balanceado y textura consistente para tus recetas.</p>
-                <div class="product-footer">
-                  <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="500" data-product="cebolla-hidroponica">
-                    <label>gramos</label>
-                  </div>
-                  <button class="btn-add-to-cart" onclick="addToCart('cebolla-hidroponica', 'Cebolla Hidropónica')">Agregar</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <div class="product-image">🫑</div>
-              <div class="product-body">
-                <h3>Morrón Hidropónico</h3>
-                <p>Morrones rojos, amarillos y verdes cultivados hidropónicamente. Crujientes, dulces y llenos de vitamina C.</p>
-                <div class="product-footer">
-                  <div class="quantity-controls">
-                    <input type="number" min="100" step="100" value="400" data-product="morron-hidroponico">
-                    <label>gramos</label>
-                  </div>
-                  <button class="btn-add-to-cart" onclick="addToCart('morron-hidroponico', 'Morrón Hidropónico')">Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
 
         <!-- Yerba Orgánica -->
         <article class="product-group">
