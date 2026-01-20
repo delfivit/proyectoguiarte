@@ -1,24 +1,58 @@
 # Sistema de E-commerce para Alimentos
 
-## Configuración del Backend
+## ⚡ Configuración Rápida
 
-El sistema de carrito ya está implementado y funciona con **FormSubmit**, un servicio gratuito que envía emails sin necesidad de backend.
+**El sistema está listo, solo falta un paso:**
 
-### Cómo funciona actualmente:
+👉 **Seguí las instrucciones en [google-sheets-setup.md](google-sheets-setup.md)** para configurar Google Sheets y recibir los pedidos.
+
+---
+
+## Cómo funciona el sistema:
 
 1. El cliente agrega productos al carrito (guardado en localStorage)
 2. Al finalizar el pedido, ingresa sus datos (nombre, email, teléfono, dirección)
-3. Se envía un email automático a **projectguiarte@gmail.com** con:
-   - Número de orden
-   - Datos del cliente
-   - Lista de productos con cantidades
-4. El cliente recibe un email de confirmación automático
+3. El pedido se envía automáticamente a Google Sheets
+4. **Recibís un email hermoso** con todos los detalles del pedido
+5. **El cliente recibe confirmación** por email
+6. Todos los pedidos quedan registrados en la planilla para consultar histórico
 
-### Para activar el sistema:
+## 📊 Ventajas de usar Google Sheets
 
-**IMPORTANTE:** La primera vez que se envíe un pedido, FormSubmit enviará un email de verificación a `projectguiarte@gmail.com`. Deben hacer click en el link de confirmación para activar el servicio.
+✅ Email automático con el pedido completo (sin clicks extras)
+✅ Todos los pedidos guardados en una planilla
+✅ Podés exportar a Excel cuando quieras
+✅ Hacer filtros, estadísticas, gráficos
+✅ 100% gratis, sin límites
+✅ Email profesional con diseño personalizado para el cliente
 
-### Opcional: Backend propio con PHP
+---
+
+## Estado Actual
+
+✅ Frontend completo con carrito funcional
+✅ 15 productos con descripciones detalladas
+✅ Sistema de cantidades por gramos/ml/unidades
+✅ Modal de login/registro
+✅ Persistencia del carrito en localStorage
+⏳ **Falta configurar Google Sheets** (ver google-sheets-setup.md)
+
+## Próximos Pasos
+
+1. ✅ Logo más pequeño en header - HECHO
+2. ✅ Sistema de e-commerce completo - HECHO  
+3. 📋 **Configurar Google Sheets siguiendo google-sheets-setup.md**
+4. 🧪 Probar haciendo un pedido de prueba
+5. 📧 Verificar que lleguen los emails correctamente
+
+---
+
+## Configuración del Backend (LEGACY - ya no se usa)
+
+**NOTA:** La configuración con FormSubmit ya no se usa. Ahora usamos Google Sheets + Apps Script que es mucho mejor.
+
+<details>
+<summary>Ver configuración anterior (solo por referencia)</summary>
 
 Si prefieren tener más control y generar archivos Excel, pueden implementar un backend PHP:
 

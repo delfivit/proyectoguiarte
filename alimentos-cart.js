@@ -145,58 +145,59 @@ async function submitOrder(e) {
   const phone = document.getElementById('userPhone').value;
   const address = document.getElementById('userAddress').value;
   
-  const orderData = {
-    customer: { name, email, phone, address },
-    items: cart,
-    date: new Date().toISOString(),
-    orderNumber: 'PG-' + Date.now()
-  };
+  const orderNumber = 'PG-' + Date.now();
+  const orderDate = new Date().toLocaleString('es-AR', { 
+    dateStyle: 'short', 
+    timeStyle: 'short' 
+  });
   
   const msgEl = document.getElementById('loginMsg');
   msgEl.textContent = 'Enviando pedido...';
   msgEl.style.color = '#AE57C0';
   
+  // Prepare data for Google Sheets
+  const orderData = {
+    orderNumber: orderNumber,
+    date: orderDate,
+    customerName: name,
+    customerEmail: email,
+    customerPhone: phone,
+    customerAddress: address,
+    items: cart.map(item => `${item.name} (${item.quantity} ${item.unit})`).join(', '),
+    itemsDetailed: cart
+  };
+  
   try {
-    // Send order via email (using FormSubmit or similar service)
-    const response = await fetch('https://formsubmit.co/ajax/projectguiarte@gmail.com', {
+    // TODO: Replace this URL with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+    
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors', // Important for Google Apps Script
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
       },
-      body: JSON.stringify({
-        _subject: `Nuevo pedido #${orderData.orderNumber}`,
-        Nombre: name,
-        Email: email,
-        Teléfono: phone,
-        Dirección: address,
-        Pedido: formatOrderForEmail(cart),
-        'Número de Orden': orderData.orderNumber
-      })
+      body: JSON.stringify(orderData)
     });
     
-    if (response.ok) {
-      msgEl.textContent = '✓ ¡Pedido enviado! Te llegará una confirmación por email.';
-      msgEl.style.color = '#4CAF50';
-      
-      // Clear cart
-      cart = [];
-      saveCart();
-      updateCartBadge();
-      
-      // Close modal after 3 seconds
-      setTimeout(() => {
-        closeModal('loginModal');
-        document.getElementById('loginForm').reset();
-        msgEl.textContent = '';
-      }, 3000);
-      
-      // Send confirmation to customer
-      sendCustomerConfirmation(orderData);
-    } else {
-      throw new Error('Error al enviar');
-    }
+    // With no-cors mode, we can't read the response, so we assume success
+    msgEl.textContent = '✓ ¡Pedido enviado! Te llegará una confirmación por email.';
+    msgEl.style.color = '#4CAF50';
+    
+    // Clear cart
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    
+    // Close modal after 3 seconds
+    setTimeout(() => {
+      closeModal('loginModal');
+      document.getElementById('loginForm').reset();
+      msgEl.textContent = '';
+    }, 3000);
+    
   } catch (error) {
+    console.error('Error:', error);
     msgEl.textContent = 'Error al enviar el pedido. Por favor contactanos por WhatsApp.';
     msgEl.style.color = '#ff4444';
   }
