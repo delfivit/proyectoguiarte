@@ -115,10 +115,7 @@ function updateProductsVisibility() {
         input.disabled = false;
         
         // Ajustar máximo disponible según tipo de control
-        if (input.tagName === 'SELECT') {
-          // Para selects, filtrar opciones según stock
-          updateSelectOptions(input, stock);
-        } else if (input.tagName === 'INPUT') {
+        if (input.tagName === 'INPUT') {
           // Para inputs, establecer max
           input.setAttribute('max', stock);
         }
@@ -131,7 +128,7 @@ function updateProductsVisibility() {
   });
 }
 
-// Actualizar opciones de un select según stock disponible
+// Actualizar opciones de un select según stock disponible (legacy - ya no se usa)
 function updateSelectOptions(select, maxStock) {
   const productId = select.getAttribute('data-product');
   const options = Array.from(select.options);
