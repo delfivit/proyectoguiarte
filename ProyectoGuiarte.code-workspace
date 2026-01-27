@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Satoshi_Complete"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ProyectoGuiarte"
+	}
+}

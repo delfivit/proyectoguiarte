@@ -567,6 +567,7 @@ body:has([class*="meditation-"]) .section-black,
 
 /* ================ PRODUCTOS & EVENTOS (image backgrounds) ================ */
 .section-productos{background-image: url('img-productos.jpg');}
+.section-meditaciones{background-image: url('img-meditaciones.jpg');}
 .section-eventos{background-image: url('img-eventos.jpg');}
 
 /* ================ EXPERIENCIAS SECTIONS (image backgrounds) ================ */
