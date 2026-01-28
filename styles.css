@@ -543,7 +543,7 @@ body:has([class*="meditation-"]) .section-black,
 
 /* ================ EXPERIENCIAS (video bg) ================ */
 .section-media{
-  min-height:56vh;
+  min-height:73vh;
   width:100%;
   background-size:cover;
   background-position:center;
