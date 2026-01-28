@@ -138,40 +138,24 @@ h1, h2, h3, h4, h5, h6{
   z-index:110;
   display:flex;
   align-items:center;
-  border-bottom:1px solid rgba(255,255,255,0);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-}
-
-/* Transparent on scroll down */
-body.scrolled.scroll-down .site-header{
-  background: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  border-bottom: 1px solid rgba(255,255,255,0);
-}
-
-body.scrolled.scroll-down .site-header::before{
-  opacity: 0;
-}
-
-/* Violet background on scroll up */
-body.scrolled.scroll-up .site-header{
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.95);
 }
 
-body.scrolled.scroll-up .site-header::before{
-  opacity: 1;
+/* White background for Nude style */
+.page-index .site-header{
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .site-header::before{
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(174,87,192,0.9);
+  background: transparent;
   z-index: -1;
   transition: opacity 400ms ease;
 }
@@ -196,37 +180,28 @@ body.scrolled.scroll-up .site-header::before{
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: 4px;
   border-radius: 12px;
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Show logo on all pages except index */
-body:not(.page-index) .logo{
   opacity: 1;
   visibility: visible;
 }
 
-/* Show logo on index when scrolled up */
-.page-index.scrolled.scroll-up .logo{
-  opacity: 1 !important;
-  visibility: visible !important;
-  animation: fadeInPlace 500ms ease 400ms both;
-}
-
 .logo:hover{
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.05);
+  background: rgba(174,87,192,0.05);
 }
 
 .logo-img{
   height: 18px;
   width: auto;
-  filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+  filter: none;
   transition: all 300ms ease;
 }
 
+.page-index .logo-img{
+  filter: none; /* Show logo in its original colors on index */
+}
+
 .logo:hover .logo-img{
-  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+  opacity: 0.8;
 }
 
 /* Header title - completely hidden, we use logo instead */
@@ -264,7 +239,7 @@ body:not(.page-index) .logo{
 
 .main-nav a{
   padding:8px 16px; 
-  color:#fff; 
+  color:#000;
   text-decoration:none;
   position: relative;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -273,11 +248,15 @@ body:not(.page-index) .logo{
   align-items: center;
 }
 
+.page-index .main-nav a{
+  color: #000; /* Black text on white background */
+}
+
 .main-nav a::before{
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.08);
+  background: rgba(174,87,192,0.08);
   border-radius: var(--radius);
   opacity: 0;
   transition: opacity 250ms ease;
@@ -289,28 +268,14 @@ body:not(.page-index) .logo{
 
 .main-nav a:hover{
   transform: translateY(-2px);
-  color: #fff;
-}
-
-.main-nav a::before{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-  opacity: 0;
-  transition: opacity 250ms ease;
-}
-
-.main-nav a:hover::before{
-  opacity: 1;
+  color: var(--primary-violet);
 }
 
 /* Hamburger hidden on desktop by default */
 .hamburger{display:none}
 
 /* main spacing */
-main{padding-top: calc(var(--header-h) + 0px);} /* header handled; hero uses full viewport minus header */
+main{padding-top: var(--header-h);} /* Account for fixed header */
 
 /* ================= SECTIONS ================= */
 .section-black{
@@ -1316,4 +1281,531 @@ body:has([class*="meditation-"]) .section-black,
   .menu-open .menu-panel{display:block; position:fixed; inset:var(--header-h) 12px auto auto; right:12px; top:var(--header-h); background:rgba(0,0,0,0.9); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); z-index:130}
   .menu-open .menu-panel .main-nav{display:flex; flex-direction:column; gap:10px}
   .menu-open .menu-panel .main-nav a{display:block; padding:8px 12px}
+}
+
+/* ================ NUDE PROJECT STYLE REDESIGN ================ */
+
+/* Announcement Bar */
+.announcement-bar{
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
+  color: #fff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.announcement-bar a{
+  color: #fff;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.announcement-bar a:hover{
+  opacity: 0.8;
+}
+
+/* Hero Nude Style */
+.hero-nude{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - var(--header-h) - 48px);
+  background: #fff;
+  overflow: hidden;
+}
+
+.hero-nude-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  background: var(--primary-violet);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-nude-text{
+  max-width: 500px;
+}
+
+.hero-badge{
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.hero-nude-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.hero-nude-ctas{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-nude-primary{
+  display: inline-block;
+  padding: 16px 32px;
+  background: #fff;
+  color: var(--primary-violet);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  transition: all 300ms ease;
+  text-decoration: none;
+}
+
+.btn-nude-primary:hover{
+  background: var(--accent-orange);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.btn-nude-secondary{
+  display: inline-block;
+  padding: 16px 32px;
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  transition: all 300ms ease;
+  text-decoration: none;
+}
+
+.btn-nude-secondary:hover{
+  background: #fff;
+  color: var(--primary-violet);
+  transform: translateY(-2px);
+}
+
+.hero-nude-image{
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-nude-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.hero-nude:hover .hero-nude-image img{
+  transform: scale(1.05);
+}
+
+/* Collections Grid */
+.collections-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+.collection-card{
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+
+.collection-large{
+  grid-column: span 2;
+  min-height: 700px;
+}
+
+.collection-image{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 600ms ease;
+}
+
+.collection-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.collection-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+  transition: background 400ms ease;
+}
+
+.collection-card:hover .collection-overlay{
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
+}
+
+.collection-card:hover .collection-image,
+.collection-card:hover .collection-video{
+  transform: scale(1.05);
+}
+
+.collection-content{
+  position: relative;
+  z-index: 2;
+  padding: 48px;
+  color: #fff;
+  width: 100%;
+}
+
+.collection-badge{
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.collection-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.collection-description{
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+  opacity: 0.95;
+}
+
+.btn-collection{
+  display: inline-block;
+  padding: 14px 28px;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  transition: all 300ms ease;
+  text-decoration: none;
+}
+
+.btn-collection:hover{
+  background: var(--accent-orange);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Banner Full Width */
+.banner-fullwidth{
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.banner-fullwidth::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(174,87,192,0.85), rgba(123,47,247,0.85));
+  z-index: 1;
+}
+
+.banner-content{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 600px;
+  padding: 40px;
+}
+
+.banner-badge{
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.banner-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.banner-description{
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  opacity: 0.95;
+}
+
+/* About Section Nude Style */
+.about-nude{
+  background: #fff;
+  padding: 100px 0;
+}
+
+.about-nude-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-nude-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--primary-violet);
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.about-nude-text p{
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.about-quote{
+  font-family: 'Zamora', serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--accent-orange);
+  font-style: italic;
+  margin: 32px 0 0 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent-orange);
+}
+
+.about-nude-image{
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+}
+
+.about-nude-image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 600ms ease;
+}
+
+.about-nude:hover .about-nude-image img{
+  transform: scale(1.03);
+}
+
+/* Categories Section */
+.categories-section{
+  background: #f5f5f5;
+  padding: 100px 0;
+}
+
+.section-heading{
+  font-family: 'Zamora', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  text-align: center;
+  color: #000;
+  margin: 0 0 60px 0;
+  letter-spacing: -0.02em;
+}
+
+.categories-grid-nude{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.category-nude-card{
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 400ms ease;
+  text-decoration: none;
+}
+
+.category-nude-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+
+.category-nude-image{
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 600ms ease;
+}
+
+.category-nude-card:hover .category-nude-image{
+  transform: scale(1.05);
+}
+
+.category-nude-content{
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+
+.category-nude-content h3{
+  font-family: 'Satoshi', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.category-arrow{
+  font-size: 24px;
+  color: var(--accent-orange);
+  transition: transform 300ms ease;
+}
+
+.category-nude-card:hover .category-arrow{
+  transform: translateX(8px);
+}
+
+/* Instagram Section */
+.instagram-section{
+  background: #fff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.instagram-subtitle{
+  font-size: 16px;
+  color: #666;
+  margin: 16px 0 32px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px){
+  .hero-nude{
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-nude-image{
+    min-height: 400px;
+  }
+  
+  .collections-grid{
+    grid-template-columns: 1fr;
+  }
+  
+  .collection-large{
+    grid-column: span 1;
+  }
+  
+  .about-nude-container{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .categories-grid-nude{
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 600px){
+  .hero-nude-content{
+    padding: 40px 24px;
+  }
+  
+  .hero-nude-ctas{
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-nude-primary,
+  .btn-nude-secondary{
+    width: 100%;
+    text-align: center;
+  }
+  
+  .collection-content{
+    padding: 32px 24px;
+  }
+  
+  .banner-content{
+    padding: 40px 24px;
+  }
+  
+  .about-nude{
+    padding: 60px 0;
+  }
+  
+  .about-nude-container{
+    padding: 0 24px;
+  }
+  
+  .categories-section{
+    padding: 60px 0;
+  }
+  
+  .instagram-section{
+    padding: 60px 0;
+  }
 }
