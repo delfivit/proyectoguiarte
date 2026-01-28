@@ -94,7 +94,7 @@ html,body{
   margin:0; 
   font-family:"Satoshi",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; 
   color:#fff; 
-  background:#AE57C0; 
+  background:#000; 
   -webkit-font-smoothing:antialiased; 
   -moz-osx-font-smoothing:grayscale;
   font-size: 16px;
@@ -279,7 +279,7 @@ main{padding-top: var(--header-h);} /* Account for fixed header */
 
 /* ================= SECTIONS ================= */
 .section-black{
-  background: #AE57C0;
+  background: #000;
   padding: var(--spacing-xl) 0;
   position: relative;
 }
@@ -287,7 +287,7 @@ main{padding-top: var(--header-h);} /* Account for fixed header */
 /* Meditaciones page specific background */
 body:has([class*="meditation-"]) .section-black,
 .meditation-section .section-black {
-  background-image: linear-gradient(rgba(174, 87, 192, 0.75), rgba(174, 87, 192, 0.75)), url('meditation-bg.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('meditation-bg.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -318,7 +318,7 @@ body:has([class*="meditation-"]) .section-black,
   position:relative;
   min-height: calc(100vh - var(--header-h));
   height: calc(100vh - var(--header-h));
-  background: #AE57C0;
+  background: #000;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -328,7 +328,7 @@ body:has([class*="meditation-"]) .section-black,
   position:absolute; 
   inset:0; 
   z-index:0; 
-  background: #AE57C0;
+  background: #000;
   opacity: 1;
 }
 @keyframes float {
@@ -551,7 +551,7 @@ body:has([class*="meditation-"]) .section-black,
   position:relative;
   overflow:hidden;
 }
-.section-experiencias{background-color:#AE57C0;}
+.section-experiencias{background-color:#000;}
 .section-experiencias .bg-video{
   position:absolute;
   inset:0;
@@ -659,9 +659,9 @@ body:has([class*="meditation-"]) .section-black,
 .btn-primary:active{transform: scale(0.98)}
 
 /* modal */
-.modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(174,87,192,0.9); z-index:300}
+.modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.9); z-index:300}
 .modal.open, .modal.active{display:flex}
-.modal-dialog{background:#8B3FA8; border-radius:12px; padding:22px; width:100%; max-width:480px; max-height:90vh; box-shadow:0 12px 48px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column;}
+.modal-dialog{background:#1a1a1a; border-radius:12px; padding:22px; width:100%; max-width:480px; max-height:90vh; box-shadow:0 12px 48px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column;}
 .modal-close{position:absolute; right:18px; top:18px; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer; transition: transform 200ms ease;}
 .modal-close:hover{transform: scale(1.2);}
 .modal input{width:100%; padding:12px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:#fff; margin-bottom:12px}
