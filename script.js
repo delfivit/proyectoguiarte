@@ -39,25 +39,53 @@ function initApp() {
   // HERO: show title in header when header reaches title position
   const hero = document.getElementById('hero');
   const heroTitle = document.getElementById('hero-title');
+  let lastScrollY = window.scrollY || window.pageYOffset;
+  let ticking = false;
   
   function handleHeroScroll(){
     if (!hero || !heroTitle) return;
     
     const y = window.scrollY || window.pageYOffset;
     const heroTitleRect = heroTitle.getBoundingClientRect();
-    const headerHeight = 64; // Height of the header
+    const headerHeight = 45; // Updated height
+    
+    // Determine scroll direction
+    const scrollingDown = y > lastScrollY;
+    const scrollingUp = y < lastScrollY;
     
     // When the hero title reaches the header position
-    if (heroTitleRect.top <= headerHeight) {
+    if (y > 100) { // Scrolled past initial view
       hero.classList.add('scrolled');
       document.body.classList.add('scrolled');
+      
+      if (scrollingDown) {
+        document.body.classList.add('scroll-down');
+        document.body.classList.remove('scroll-up');
+        hero.classList.add('scroll-down');
+        hero.classList.remove('scroll-up');
+      } else if (scrollingUp) {
+        document.body.classList.add('scroll-up');
+        document.body.classList.remove('scroll-down');
+        hero.classList.add('scroll-up');
+        hero.classList.remove('scroll-down');
+      }
     } else {
-      hero.classList.remove('scrolled');
-      document.body.classList.remove('scrolled');
+      hero.classList.remove('scrolled', 'scroll-down', 'scroll-up');
+      document.body.classList.remove('scrolled', 'scroll-down', 'scroll-up');
+    }
+    
+    lastScrollY = y;
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleHeroScroll);
+      ticking = true;
     }
   }
   
-  window.addEventListener('scroll', handleHeroScroll, { passive: true });
+  window.addEventListener('scroll', requestTick, { passive: true });
   handleHeroScroll();
 
   // Hero title click - scroll back to top (for when it's visible in hero)
@@ -79,6 +107,57 @@ function initApp() {
         top: 0,
         behavior: 'smooth'
       });
+    });
+  }
+
+  // Newsletter form handler
+  const newsletterForm = document.getElementById('newsletterForm');
+  const newsletterEmail = document.getElementById('newsletterEmail');
+  const newsletterMessage = document.getElementById('newsletterMessage');
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = newsletterEmail.value.trim();
+      
+      if (!validateEmail(email)) {
+        newsletterMessage.textContent = 'Please enter a valid email address.';
+        newsletterMessage.style.color = '#ff6b6b';
+        return;
+      }
+      
+      newsletterMessage.textContent = 'Subscribing...';
+      newsletterMessage.style.color = 'rgba(255,255,255,0.7)';
+      
+      if (GAS_ENDPOINT) {
+        try {
+          const payload = { 
+            email, 
+            product: 'Newsletter Subscription', 
+            ts: new Date().toISOString() 
+          };
+          const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
+          
+          if (ok) {
+            newsletterMessage.textContent = '¡Perfect! Welcome to the movement ✨';
+            newsletterMessage.style.color = '#51cf66';
+            newsletterForm.reset();
+          } else {
+            newsletterMessage.textContent = 'Error. Saved locally.';
+            newsletterMessage.style.color = '#ff6b6b';
+            saveLocal(email, 'Newsletter Subscription');
+          }
+        } catch (err) {
+          newsletterMessage.textContent = 'Connection error. Saved locally.';
+          newsletterMessage.style.color = '#ff6b6b';
+          saveLocal(email, 'Newsletter Subscription');
+        }
+      } else {
+        saveLocal(email, 'Newsletter Subscription');
+        newsletterMessage.textContent = 'Saved locally. Configure GAS_ENDPOINT.';
+        newsletterMessage.style.color = '#51cf66';
+        newsletterForm.reset();
+      }
     });
   }
 
