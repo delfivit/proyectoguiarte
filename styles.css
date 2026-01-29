@@ -1694,24 +1694,29 @@ body:has([class*="meditation-"]) .section-black,
 /* About Editorial - Typography Playground */
 .about-editorial{
   background: #000;
-  padding: 140px 0;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-editorial-container{
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 80px 40px;
+  width: 100%;
 }
 
 .about-editorial-title{
   font-family: 'Zamora', serif;
-  margin: 0 0 80px 0;
-  line-height: 1;
+  margin: 0 0 100px 0;
+  line-height: 0.9;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: -10px;
 }
 
 .about-title-line{
@@ -1721,41 +1726,48 @@ body:has([class*="meditation-"]) .section-black,
 
 .about-uppercase{
   text-transform: uppercase;
-  font-size: clamp(48px, 8vw, 96px);
+  font-size: clamp(56px, 10vw, 110px);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   color: #fff;
+  line-height: 0.85;
 }
 
 .about-lowercase{
   text-transform: lowercase;
-  font-size: clamp(64px, 10vw, 120px);
+  font-size: clamp(80px, 14vw, 160px);
   font-weight: 400;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: #AE57C0;
   font-style: italic;
+  line-height: 0.8;
+  margin-top: -20px;
 }
 
 .about-editorial-content{
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .about-editorial-lead{
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.6;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.4;
   color: rgba(255,255,255,0.95);
   margin: 0;
   font-weight: 500;
+  text-align: center;
 }
 
 .about-editorial-body{
-  font-size: clamp(16px, 2vw, 18px);
-  line-height: 1.8;
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.7;
   color: rgba(255,255,255,0.75);
   margin: 0;
   font-weight: 400;
+  text-align: center;
 }
 
 .highlight-violet{
@@ -1764,40 +1776,41 @@ body:has([class*="meditation-"]) .section-black,
   font-style: italic;
   position: relative;
   display: inline-block;
+  font-size: 1.1em;
 }
 
 .highlight-orange{
   color: #FF7A18;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.95em;
+  letter-spacing: 0.08em;
+  font-size: 0.9em;
 }
 
 .about-editorial-quote{
-  margin: 48px 0 0 0;
-  padding: 40px;
+  margin: 60px 0 0 0;
+  padding: 50px;
   background: rgba(174,87,192,0.08);
-  border-left: 4px solid #AE57C0;
-  border-radius: 4px;
+  border-left: 5px solid #AE57C0;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   font-family: 'Zamora', serif;
   font-style: normal;
 }
 
 .quote-text{
-  font-size: clamp(18px, 2.5vw, 24px);
-  line-height: 1.5;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.4;
   color: rgba(255,255,255,0.85);
   display: block;
   font-weight: 400;
 }
 
 .quote-text-alt{
-  font-size: clamp(18px, 2.5vw, 24px);
-  line-height: 1.5;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.4;
   color: rgba(255,255,255,0.85);
   display: block;
   font-style: italic;
@@ -1805,14 +1818,14 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 .quote-text-emphasis{
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.4;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.3;
   color: #FF7A18;
   display: block;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-top: 8px;
+  letter-spacing: 0.05em;
+  margin-top: 16px;
 }
 
 /* Old About Nude - kept for compatibility */
@@ -1984,6 +1997,7 @@ body:has([class*="meditation-"]) .section-black,
   }
   
   .about-editorial{
+    min-height: auto;
     padding: 80px 0;
   }
   
@@ -1991,12 +2005,31 @@ body:has([class*="meditation-"]) .section-black,
     padding: 0 24px;
   }
   
+  .about-editorial-title{
+    margin-bottom: 60px;
+  }
+  
   .about-uppercase{
-    font-size: 48px;
+    font-size: 56px;
+    letter-spacing: 0.03em;
   }
   
   .about-lowercase{
-    font-size: 64px;
+    font-size: 80px;
+    margin-top: -15px;
+  }
+  
+  .about-editorial-lead{
+    font-size: 22px;
+  }
+  
+  .about-editorial-body{
+    font-size: 17px;
+  }
+  
+  .about-editorial-quote{
+    padding: 32px;
+    margin-top: 40px;
   }
   
   .hero-nude{
@@ -2026,16 +2059,57 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 @media (max-width: 600px){
+  .hero-centered{
+    min-height: 70vh;
+  }
+  
   .hero-centered-logo{
     max-width: 90%;
   }
   
+  .about-editorial{
+    padding: 60px 0;
+  }
+  
+  .about-editorial-container{
+    padding: 0 20px;
+  }
+  
   .about-editorial-title{
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+  }
+  
+  .about-uppercase{
+    font-size: 42px;
+  }
+  
+  .about-lowercase{
+    font-size: 60px;
+    margin-top: -10px;
+  }
+  
+  .about-editorial-lead{
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  
+  .about-editorial-body{
+    font-size: 16px;
   }
   
   .about-editorial-quote{
     padding: 24px;
+    margin-top: 32px;
+  }
+  
+  .quote-text,
+  .quote-text-alt{
+    font-size: 18px;
+  }
+  
+  .quote-text-emphasis{
+    font-size: 22px;
+    margin-top: 12px;
   }
   
   .hero-nude-content{
