@@ -1004,9 +1004,11 @@ body:has([class*="meditation-"]) .section-black,
 /* Top Grid: Newsletter (left) + Links & Socials (right) */
 .footer-top-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto;
   gap: 80px;
   align-items: start;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Newsletter Section */
@@ -1093,16 +1095,16 @@ body:has([class*="meditation-"]) .section-black,
 .footer-right-section{
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   align-items: flex-end;
 }
 
 /* Footer Links (horizontal) */
 .footer-links{
   display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
 }
 
 .footer-links a{
@@ -1152,15 +1154,13 @@ body:has([class*="meditation-"]) .section-black,
 /* Logo Section (Full Width at Bottom) */
 .footer-logo-section{
   width: 100%;
-  padding-top: 40px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 60px;
   display: flex;
   justify-content: center;
 }
 
 .footer-main-logo{
   width: 100%;
-  max-width: 600px;
   height: auto;
   object-fit: contain;
   opacity: 0.9;
