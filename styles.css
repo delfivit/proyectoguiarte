@@ -1817,3 +1817,481 @@ body:has([class*="meditation-"]) .section-black,
     padding: 60px 0;
   }
 }
+
+/* ===============================================
+   EXPERIENCIAS PAGE - UX/UI MODERN REDESIGN
+   =============================================== */
+
+/* Hero Section */
+.exp-hero{
+  padding: 140px 0 80px;
+  background: #000;
+  text-align: center;
+}
+
+.exp-hero-content{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exp-hero-title{
+  font-size: clamp(48px, 8vw, 72px);
+  margin: 0 0 24px 0;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.exp-hero-subtitle{
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Section Layout */
+.exp-section{
+  padding: 100px 0;
+  background: #000;
+}
+
+.exp-section-dark{
+  background: #070507;
+}
+
+.exp-section-header{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.exp-section-title{
+  font-size: clamp(32px, 5vw, 48px);
+  margin: 0 0 16px 0;
+  color: #fff;
+}
+
+.exp-section-subtitle{
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Grid 4 Columnas - Responsive */
+.exp-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px){
+  .exp-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px){
+  .exp-grid{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Event Cards */
+.exp-card{
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 400ms ease;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-card:hover{
+  transform: translateY(-8px);
+  border-color: rgba(174,87,192,0.4);
+  box-shadow: 0 12px 40px rgba(174,87,192,0.15);
+}
+
+.exp-card-image{
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+}
+
+.exp-card-image img,
+.exp-card-image video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.exp-card:hover .exp-card-image img,
+.exp-card:hover .exp-card-image video{
+  transform: scale(1.08);
+}
+
+.exp-card-badge{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(174,87,192,0.95);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+}
+
+/* Placeholder Cards */
+.exp-card-placeholder{
+  background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exp-placeholder-content{
+  text-align: center;
+}
+
+.exp-placeholder-text{
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Card Content */
+.exp-card-content{
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.exp-card-title{
+  font-family: 'Zamora', serif;
+  font-size: 22px;
+  margin: 0;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.exp-card-description{
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.exp-card-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.exp-meta-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+.exp-meta-item svg{
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.exp-card-cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #AE57C0;
+  text-decoration: none;
+  transition: all 300ms ease;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.exp-card-cta:hover{
+  color: #fff;
+  gap: 12px;
+}
+
+/* Past Event Cards (less emphasis) */
+.exp-card-past{
+  opacity: 0.85;
+}
+
+.exp-card-past:hover{
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+/* Types of Experiences Grid */
+.exp-types-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px){
+  .exp-types-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px){
+  .exp-types-grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.exp-type-card{
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 400ms ease;
+}
+
+.exp-type-card:hover{
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(174,87,192,0.3);
+  transform: translateY(-4px);
+}
+
+.exp-type-icon{
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(174,87,192,0.1);
+  color: #AE57C0;
+  transition: all 400ms ease;
+}
+
+.exp-type-card:hover .exp-type-icon{
+  background: rgba(174,87,192,0.2);
+  transform: scale(1.1);
+}
+
+.exp-type-title{
+  font-family: 'Zamora', serif;
+  font-size: 20px;
+  margin: 0 0 12px 0;
+  color: #fff;
+}
+
+.exp-type-description{
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Contact Section */
+.exp-contact-section{
+  padding: 120px 0;
+  background: linear-gradient(135deg, #070507 0%, #000 100%);
+  position: relative;
+}
+
+.exp-contact-section::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,87,192,0.3), transparent);
+}
+
+.exp-contact-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (min-width: 1024px){
+  .exp-contact-container{
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.exp-contact-content{
+  max-width: 540px;
+}
+
+.exp-contact-title{
+  font-size: clamp(32px, 5vw, 48px);
+  margin: 0 0 24px 0;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.exp-contact-text{
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin: 0 0 32px 0;
+}
+
+.exp-contact-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exp-contact-list li{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+}
+
+.exp-contact-list li::before{
+  content: '→';
+  color: #AE57C0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Contact Form */
+.exp-contact-form-wrapper{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 40px;
+}
+
+.exp-contact-form{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.exp-form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-form-group label{
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.8);
+}
+
+.exp-form-group input,
+.exp-form-group textarea{
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px;
+  transition: all 300ms ease;
+}
+
+.exp-form-group input::placeholder,
+.exp-form-group textarea::placeholder{
+  color: rgba(255,255,255,0.4);
+}
+
+.exp-form-group input:focus,
+.exp-form-group textarea:focus{
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  border-color: #AE57C0;
+}
+
+.exp-form-group textarea{
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.exp-form-submit{
+  padding: 16px 40px;
+  background: #AE57C0;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 400ms ease;
+  margin-top: 8px;
+}
+
+.exp-form-submit:hover{
+  background: #9747ab;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(174,87,192,0.3);
+}
+
+.exp-form-submit:active{
+  transform: translateY(0);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px){
+  .exp-hero{
+    padding: 100px 0 60px;
+  }
+  
+  .exp-section{
+    padding: 60px 0;
+  }
+  
+  .exp-contact-section{
+    padding: 80px 0;
+  }
+  
+  .exp-contact-form-wrapper{
+    padding: 28px 20px;
+  }
+  
+  .exp-grid{
+    gap: 24px;
+  }
+  
+  .exp-types-grid{
+    gap: 20px;
+  }
+}

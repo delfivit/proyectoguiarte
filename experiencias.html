@@ -101,121 +101,294 @@
   <div id="header-placeholder"></div>
 
   <main>
-    <!-- PRÓXIMAS EXPERIENCIAS -->
-    <section class="section-black">
+    <!-- HERO SECTION -->
+    <section class="exp-hero">
       <div class="container">
-        <h1 class="section-title zamora">Próximas Experiencias</h1>
-        
-        <!-- Yoga & Sunset - 31 de Enero -->
-        <div class="experience-card upcoming-experience">
-          <div class="experience-image">
-            <img src="yoga-sunset-experiencias.png" alt="Yoga & Sunset" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;">
-          </div>
-          <div class="experience-content">
-            <div class="experience-date">
-              <span class="date-badge">31 de Enero</span>
-            </div>
-            <h2 class="experience-title zamora">Yoga & Sunset</h2>
-            <p class="experience-description">
-              Una tarde mágica de conexión. Salimos a las 18:00 hs desde la costanera hacia la Isla Puente, 
-              donde compartiremos una clase de yoga guiada por Agus, de Amatista. Disfrutaremos del atardecer 
-              para luego recibir la luz de la luna llena entre música y momentos de encuentro, ya sea con otros 
-              o con vos mismo. Regresamos a las 21:00 hs.
-            </p>
-            <div class="experience-info">
-              <span>📍 Costanera → Isla Puente</span>
-              <span>⏰ 18:00 - 21:00 hs</span>
-              <span>🧘‍♀️ Yoga con Amatista</span>
-            </div>
-          </div>
+        <div class="exp-hero-content">
+          <h1 class="exp-hero-title zamora">Experiencias</h1>
+          <p class="exp-hero-subtitle">Espacios para reconectar con vos mismo a través del movimiento, la creatividad y la presencia.</p>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCIAS PASADAS -->
-    <section class="section-black" style="padding-top: 40px;">
+    <!-- PRÓXIMOS EVENTOS - GRID 4 COLUMNAS -->
+    <section class="exp-section">
       <div class="container">
-        <h1 class="section-title zamora">Experiencias Pasadas</h1>
+        <div class="exp-section-header">
+          <h2 class="exp-section-title zamora">Próximos eventos</h2>
+          <p class="exp-section-subtitle">Únete a nuestras próximas experiencias</p>
+        </div>
         
-        <!-- Vision Board 2026 -->
-        <div class="experience-card past-experience">
-          <div class="experience-video">
-            <video 
-              src="video-experiencias.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline
-              style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;">
-            </video>
-          </div>
-          <div class="experience-content">
-            <h2 class="experience-title zamora">Vision Board 2026</h2>
-            <p class="experience-description">
-              Una tarde de conectar con lo que queremos ver materializado en el próximo año. 
-              Y un círculo final para escucharnos y acompañarnos.
-            </p>
-          </div>
+        <div class="exp-grid">
+          <!-- Evento 1: Yoga & Sunset -->
+          <article class="exp-card">
+            <div class="exp-card-image">
+              <img src="yoga-sunset-experiencias.png" alt="Yoga & Sunset">
+              <span class="exp-card-badge">31 ENE</span>
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Yoga & Sunset</h3>
+              <p class="exp-card-description">Clase de yoga con atardecer y luna llena en Isla Puente</p>
+              <div class="exp-card-meta">
+                <span class="exp-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  18:00 - 21:00
+                </span>
+                <span class="exp-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  Isla Puente
+                </span>
+              </div>
+              <a href="#" class="exp-card-cta">Más info →</a>
+            </div>
+          </article>
+
+          <!-- Evento 2: Placeholder -->
+          <article class="exp-card">
+            <div class="exp-card-image exp-card-placeholder">
+              <div class="exp-placeholder-content">
+                <span class="exp-placeholder-text">Próximamente</span>
+              </div>
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Nueva experiencia</h3>
+              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
+              <div class="exp-card-meta">
+                <span class="exp-meta-item">Fecha por confirmar</span>
+              </div>
+              <a href="#contacto" class="exp-card-cta">Avisame →</a>
+            </div>
+          </article>
+
+          <!-- Evento 3: Placeholder -->
+          <article class="exp-card">
+            <div class="exp-card-image exp-card-placeholder">
+              <div class="exp-placeholder-content">
+                <span class="exp-placeholder-text">Próximamente</span>
+              </div>
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Nueva experiencia</h3>
+              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
+              <div class="exp-card-meta">
+                <span class="exp-meta-item">Fecha por confirmar</span>
+              </div>
+              <a href="#contacto" class="exp-card-cta">Avisame →</a>
+            </div>
+          </article>
+
+          <!-- Evento 4: Placeholder -->
+          <article class="exp-card">
+            <div class="exp-card-image exp-card-placeholder">
+              <div class="exp-placeholder-content">
+                <span class="exp-placeholder-text">Próximamente</span>
+              </div>
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Nueva experiencia</h3>
+              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
+              <div class="exp-card-meta">
+                <span class="exp-meta-item">Fecha por confirmar</span>
+              </div>
+              <a href="#contacto" class="exp-card-cta">Avisame →</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- FUTURAS EXPERIENCIAS -->
-    <section class="section-black" style="padding-top: 60px;">
+    <!-- TIPOS DE EXPERIENCIAS - GRID COMPACTO -->
+    <section class="exp-section exp-section-dark">
       <div class="container">
-        <h1 class="section-title zamora" style="margin-bottom: 20px;">Futuras Experiencias</h1>
-        <p class="lead" style="text-align:center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
-          Conocé los diferentes tipos de experiencias que ofrecemos. Próximamente anunciaremos nuevas fechas.
-        </p>
+        <div class="exp-section-header">
+          <h2 class="exp-section-title zamora">Tipos de experiencias</h2>
+          <p class="exp-section-subtitle">Explora las diferentes propuestas que ofrecemos</p>
+        </div>
+        
+        <div class="exp-types-grid">
+          <!-- Talleres Creativos -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Talleres Creativos</h3>
+            <p class="exp-type-description">Arte y expresión como puertas al autoconocimiento</p>
+          </article>
+
+          <!-- Autoconocimiento -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Autoconocimiento</h3>
+            <p class="exp-type-description">Encuentros que integran disciplinas corporales y reflexivas</p>
+          </article>
+
+          <!-- Yoga -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2v20M2 12h20"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Yoga</h3>
+            <p class="exp-type-description">Clases personalizadas para grupos, donde vos elijas</p>
+          </article>
+
+          <!-- Meditación -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Meditación</h3>
+            <p class="exp-type-description">Espacios guiados para cultivar la presencia</p>
+          </article>
+
+          <!-- Orientación Vocacional -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Orientación Vocacional</h3>
+            <p class="exp-type-description">Acompañamiento en procesos de elección profesional</p>
+          </article>
+
+          <!-- Retiros -->
+          <article class="exp-type-card">
+            <div class="exp-type-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <h3 class="exp-type-title">Retiros</h3>
+            <p class="exp-type-description">Experiencias inmersivas para habitar el tiempo con presencia</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <!-- TALLERES CREATIVOS -->
-      <section class="section-media section-exp-creativos">
-        <div class="media-content container">
-          <h2 class="media-title zamora">TALLERES CREATIVOS</h2>
-          <p class="media-description">Propuestas que utilizan el arte, la expresión y el hacer manual como puertas de acceso al autoconocimiento, la exploración emocional y la conexión con la intuición.</p>
+    <!-- EXPERIENCIAS PASADAS - GRID 4 COLUMNAS -->
+    <section class="exp-section">
+      <div class="container">
+        <div class="exp-section-header">
+          <h2 class="exp-section-title zamora">Experiencias pasadas</h2>
+          <p class="exp-section-subtitle">Un vistazo a nuestros encuentros anteriores</p>
         </div>
-      </section>
+        
+        <div class="exp-grid">
+          <!-- Evento pasado 1: Vision Board -->
+          <article class="exp-card exp-card-past">
+            <div class="exp-card-image">
+              <video 
+                src="video-experiencias.mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline>
+              </video>
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Vision Board 2026</h3>
+              <p class="exp-card-description">Tarde de conexión y manifestación de intenciones para el año</p>
+              <div class="exp-card-meta">
+                <span class="exp-meta-item">Diciembre 2025</span>
+              </div>
+            </div>
+          </article>
 
-      <!-- TALLERES DE AUTOCONOCIMIENTO -->
-      <section class="section-media section-exp-autoconocimiento">
-        <div class="media-content container">
-          <h2 class="media-title zamora">TALLERES DE AUTOCONOCIMIENTO</h2>
-          <p class="media-description">Encuentros donde se entrelazan distintas disciplinas y herramientas —corporales, creativas y reflexivas— para abordar el autoconocimiento desde una mirada amplia, sensible y vivencial.</p>
-        </div>
-      </section>
+          <!-- Placeholders para más eventos pasados -->
+          <article class="exp-card exp-card-past">
+            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Evento anterior</h3>
+              <p class="exp-card-description">Contenido próximamente</p>
+            </div>
+          </article>
 
-      <!-- CLASES DE YOGA -->
-      <section class="section-media section-exp-yoga">
-        <div class="media-content container">
-          <h2 class="media-title zamora">CLASES DE YOGA</h2>
-          <p class="media-description">Clases de yoga para grupos, diseñadas a medida y realizadas en el lugar que elijan, al aire libre o en espacios privados, combinando movimiento consciente, respiración y presencia compartida.</p>
-        </div>
-      </section>
+          <article class="exp-card exp-card-past">
+            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Evento anterior</h3>
+              <p class="exp-card-description">Contenido próximamente</p>
+            </div>
+          </article>
 
-      <!-- CLASES DE MEDITACIÓN -->
-      <section class="section-media section-exp-meditacion">
-        <div class="media-content container">
-          <h2 class="media-title zamora">CLASES DE MEDITACIÓN</h2>
-          <p class="media-description">Espacios guiados para entrenar la atención, cultivar la presencia y desarrollar una práctica personal de meditación, accesible tanto para principiantes como para quienes ya practican.</p>
+          <article class="exp-card exp-card-past">
+            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
+            </div>
+            <div class="exp-card-content">
+              <h3 class="exp-card-title">Evento anterior</h3>
+              <p class="exp-card-description">Contenido próximamente</p>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ORIENTACIÓN VOCACIONAL -->
-      <section class="section-media section-exp-orientacion">
-        <div class="media-content container">
-          <h2 class="media-title zamora">ORIENTACIÓN VOCACIONAL</h2>
-          <p class="media-description">Sesiones individuales para acompañar procesos de sentido y elección profesional desde la escucha y el trabajo reflexivo.</p>
+    <!-- CONTACTO PARA EXPERIENCIA PERSONALIZADA -->
+    <section class="exp-contact-section" id="contacto">
+      <div class="container">
+        <div class="exp-contact-container">
+          <div class="exp-contact-content">
+            <h2 class="exp-contact-title zamora">¿Querés organizar tu experiencia personalizada?</h2>
+            <p class="exp-contact-text">
+              Diseñamos experiencias a medida para grupos, empresas o eventos especiales. 
+              Ya sea una clase de yoga privada, un taller de autoconocimiento o un retiro personalizado, 
+              nos adaptamos a tus necesidades.
+            </p>
+            <ul class="exp-contact-list">
+              <li>Experiencias para grupos y empresas</li>
+              <li>Eventos corporativos de bienestar</li>
+              <li>Retiros personalizados</li>
+              <li>Talleres privados</li>
+            </ul>
+          </div>
+          <div class="exp-contact-form-wrapper">
+            <form class="exp-contact-form">
+              <div class="exp-form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="exp-form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="exp-form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+              <div class="exp-form-group">
+                <label for="message">Contanos sobre tu experiencia ideal</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="exp-form-submit">Enviar consulta</button>
+            </form>
+          </div>
         </div>
-      </section>
-
-      <!-- RETIROS -->
-      <section class="section-media section-exp-retiros">
-        <div class="media-content container">
-          <h2 class="media-title zamora">RETIROS</h2>
-          <p class="media-description">Experiencias inmersivas diseñadas para salir de la rutina y habitar el tiempo con mayor presencia, combinando prácticas de silencio, movimiento consciente, meditación y alimentación atenta.</p>
-        </div>
-      </section>
+      </div>
     </section>
 
     <div id="footer-placeholder"></div>
