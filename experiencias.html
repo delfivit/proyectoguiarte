@@ -101,17 +101,18 @@
   <div id="header-placeholder"></div>
 
   <main>
-    <!-- HERO SECTION -->
-    <section class="exp-hero">
-      <div class="container">
-        <div class="exp-hero-content">
-          <h1 class="exp-hero-title zamora">Experiencias</h1>
-          <p class="exp-hero-subtitle">Espacios para reconectar con vos mismo a través del movimiento, la creatividad y la presencia.</p>
-        </div>
+    <!-- SECCIÓN 1: HERO CON VIDEO EXPERIENCIAS -->
+    <section class="exp-hero-video">
+      <video autoplay muted loop playsinline class="exp-hero-video-bg">
+        <source src="video-experiencias.mp4" type="video/mp4">
+      </video>
+      <div class="exp-hero-video-overlay"></div>
+      <div class="exp-hero-video-content">
+        <h1 class="exp-hero-video-title zamora">Experiencias</h1>
       </div>
     </section>
 
-    <!-- PRÓXIMOS EVENTOS - GRID 4 COLUMNAS -->
+    <!-- SECCIÓN 2: PRÓXIMOS EVENTOS -->
     <section class="exp-section">
       <div class="container">
         <div class="exp-section-header">
@@ -119,92 +120,88 @@
           <p class="exp-section-subtitle">Únete a nuestras próximas experiencias</p>
         </div>
         
-        <div class="exp-grid">
-          <!-- Evento 1: Yoga & Sunset -->
-          <article class="exp-card">
-            <div class="exp-card-image">
+        <div class="exp-single-event">
+          <!-- Yoga & Sunset - Único evento -->
+          <article class="exp-event-featured">
+            <div class="exp-event-image">
               <img src="yoga-sunset-experiencias.png" alt="Yoga & Sunset">
-              <span class="exp-card-badge">31 ENE</span>
+              <span class="exp-event-badge">31 ENE</span>
             </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Yoga & Sunset</h3>
-              <p class="exp-card-description">Clase de yoga con atardecer y luna llena en Isla Puente</p>
-              <div class="exp-card-meta">
-                <span class="exp-meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="exp-event-content">
+              <h3 class="exp-event-title zamora">Yoga & Sunset</h3>
+              <p class="exp-event-description">
+                Clase de yoga, atardecer y luna llena en un entorno natural único
+              </p>
+              <div class="exp-event-details">
+                <div class="exp-detail-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <polyline points="12 6 12 12 16 14"/>
                   </svg>
-                  18:00 - 21:00
-                </span>
-                <span class="exp-meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span>18:00 - 21:00 hs</span>
+                </div>
+                <div class="exp-detail-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
-                  Isla Puente
-                </span>
+                  <span>Isla Curupí</span>
+                </div>
+                <div class="exp-detail-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  </svg>
+                  <span>Yoga con Amatista</span>
+                </div>
               </div>
-              <a href="#" class="exp-card-cta">Más info →</a>
-            </div>
-          </article>
-
-          <!-- Evento 2: Placeholder -->
-          <article class="exp-card">
-            <div class="exp-card-image exp-card-placeholder">
-              <div class="exp-placeholder-content">
-                <span class="exp-placeholder-text">Próximamente</span>
-              </div>
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Nueva experiencia</h3>
-              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
-              <div class="exp-card-meta">
-                <span class="exp-meta-item">Fecha por confirmar</span>
-              </div>
-              <a href="#contacto" class="exp-card-cta">Avisame →</a>
-            </div>
-          </article>
-
-          <!-- Evento 3: Placeholder -->
-          <article class="exp-card">
-            <div class="exp-card-image exp-card-placeholder">
-              <div class="exp-placeholder-content">
-                <span class="exp-placeholder-text">Próximamente</span>
-              </div>
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Nueva experiencia</h3>
-              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
-              <div class="exp-card-meta">
-                <span class="exp-meta-item">Fecha por confirmar</span>
-              </div>
-              <a href="#contacto" class="exp-card-cta">Avisame →</a>
-            </div>
-          </article>
-
-          <!-- Evento 4: Placeholder -->
-          <article class="exp-card">
-            <div class="exp-card-image exp-card-placeholder">
-              <div class="exp-placeholder-content">
-                <span class="exp-placeholder-text">Próximamente</span>
-              </div>
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Nueva experiencia</h3>
-              <p class="exp-card-description">Estamos preparando algo especial para vos</p>
-              <div class="exp-card-meta">
-                <span class="exp-meta-item">Fecha por confirmar</span>
-              </div>
-              <a href="#contacto" class="exp-card-cta">Avisame →</a>
+              <a href="https://wa.me/34652790940" target="_blank" rel="noopener" class="exp-event-cta">
+                Más info y reservas →
+              </a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- TIPOS DE EXPERIENCIAS - GRID COMPACTO -->
+    <!-- SECCIÓN 3: EXPERIENCIAS PASADAS -->
     <section class="exp-section exp-section-dark">
+      <div class="container">
+        <div class="exp-section-header">
+          <h2 class="exp-section-title zamora">Experiencias pasadas</h2>
+          <p class="exp-section-subtitle">Un vistazo a nuestros encuentros anteriores</p>
+        </div>
+        
+        <div class="exp-past-single">
+          <!-- Vision Board 2026 - Único evento pasado -->
+          <article class="exp-event-past">
+            <div class="exp-event-video-wrapper">
+              <video 
+                src="video-experiencias.mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                class="exp-event-video">
+              </video>
+            </div>
+            <div class="exp-event-content">
+              <h3 class="exp-event-title zamora">Vision Board 2026</h3>
+              <p class="exp-event-description">
+                Una tarde de conectar con lo que queremos ver materializado en el próximo año. 
+                Y un círculo final para escucharnos y acompañarnos.
+              </p>
+              <div class="exp-event-meta">
+                <span class="exp-meta-date">Diciembre 2025</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: TIPOS DE EXPERIENCIAS -->
+    <section class="exp-section">
       <div class="container">
         <div class="exp-section-header">
           <h2 class="exp-section-title zamora">Tipos de experiencias</h2>
@@ -288,67 +285,7 @@
       </div>
     </section>
 
-    <!-- EXPERIENCIAS PASADAS - GRID 4 COLUMNAS -->
-    <section class="exp-section">
-      <div class="container">
-        <div class="exp-section-header">
-          <h2 class="exp-section-title zamora">Experiencias pasadas</h2>
-          <p class="exp-section-subtitle">Un vistazo a nuestros encuentros anteriores</p>
-        </div>
-        
-        <div class="exp-grid">
-          <!-- Evento pasado 1: Vision Board -->
-          <article class="exp-card exp-card-past">
-            <div class="exp-card-image">
-              <video 
-                src="video-experiencias.mp4" 
-                autoplay 
-                loop 
-                muted 
-                playsinline>
-              </video>
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Vision Board 2026</h3>
-              <p class="exp-card-description">Tarde de conexión y manifestación de intenciones para el año</p>
-              <div class="exp-card-meta">
-                <span class="exp-meta-item">Diciembre 2025</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Placeholders para más eventos pasados -->
-          <article class="exp-card exp-card-past">
-            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Evento anterior</h3>
-              <p class="exp-card-description">Contenido próximamente</p>
-            </div>
-          </article>
-
-          <article class="exp-card exp-card-past">
-            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Evento anterior</h3>
-              <p class="exp-card-description">Contenido próximamente</p>
-            </div>
-          </article>
-
-          <article class="exp-card exp-card-past">
-            <div class="exp-card-image" style="background: linear-gradient(135deg, rgba(174,87,192,0.1), rgba(123,47,247,0.1));">
-            </div>
-            <div class="exp-card-content">
-              <h3 class="exp-card-title">Evento anterior</h3>
-              <p class="exp-card-description">Contenido próximamente</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO PARA EXPERIENCIA PERSONALIZADA -->
+    <!-- SECCIÓN 5: FORMULARIO CONTACTO -->
     <section class="exp-contact-section" id="contacto">
       <div class="container">
         <div class="exp-contact-container">
@@ -367,24 +304,25 @@
             </ul>
           </div>
           <div class="exp-contact-form-wrapper">
-            <form class="exp-contact-form">
+            <form class="exp-contact-form" id="expContactForm">
               <div class="exp-form-group">
-                <label for="name">Nombre</label>
-                <input type="text" id="name" name="name" required>
+                <label for="exp-name">Nombre</label>
+                <input type="text" id="exp-name" name="nombre" required>
               </div>
               <div class="exp-form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <label for="exp-email">Email</label>
+                <input type="email" id="exp-email" name="email" required>
               </div>
               <div class="exp-form-group">
-                <label for="phone">Teléfono</label>
-                <input type="tel" id="phone" name="phone">
+                <label for="exp-phone">Teléfono</label>
+                <input type="tel" id="exp-phone" name="telefono">
               </div>
               <div class="exp-form-group">
-                <label for="message">Contanos sobre tu experiencia ideal</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="exp-message">Contanos sobre tu experiencia ideal</label>
+                <textarea id="exp-message" name="mensaje" rows="5" required></textarea>
               </div>
               <button type="submit" class="exp-form-submit">Enviar consulta</button>
+              <div id="expFormMessage" class="exp-form-message"></div>
             </form>
           </div>
         </div>

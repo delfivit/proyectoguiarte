@@ -369,4 +369,80 @@ function initApp() {
     const params = { email: payload.email, product: payload.product, ts: payload.ts };
     return await jsonpRequest(url, params, 9000);
   }
+
+  // Experiences Contact Form Handler
+  const expContactForm = document.getElementById('expContactForm');
+  const expFormMessage = document.getElementById('expFormMessage');
+
+  if (expContactForm) {
+    expContactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(expContactForm);
+      const data = {
+        nombre: formData.get('nombre'),
+        email: formData.get('email'),
+        telefono: formData.get('telefono') || '',
+        mensaje: formData.get('mensaje'),
+        tipo: 'Consulta Experiencia Personalizada',
+        ts: new Date().toISOString()
+      };
+      
+      // Validate
+      if (!data.nombre || !data.email || !data.mensaje) {
+        expFormMessage.textContent = 'Por favor completa todos los campos requeridos.';
+        expFormMessage.className = 'exp-form-message error';
+        return;
+      }
+      
+      if (!validateEmail(data.email)) {
+        expFormMessage.textContent = 'Por favor ingresa un email válido.';
+        expFormMessage.className = 'exp-form-message error';
+        return;
+      }
+      
+      // Show loading
+      expFormMessage.textContent = 'Enviando...';
+      expFormMessage.className = 'exp-form-message';
+      
+      // Send to Google Sheets
+      if (GAS_ENDPOINT) {
+        try {
+          const payload = {
+            email: data.email,
+            product: `${data.tipo} - ${data.nombre}`,
+            mensaje: `Teléfono: ${data.telefono}\nMensaje: ${data.mensaje}`,
+            ts: data.ts
+          };
+          
+          const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
+          
+          if (ok) {
+            expFormMessage.textContent = '¡Mensaje enviado! Te contactaremos pronto ✨';
+            expFormMessage.className = 'exp-form-message success';
+            expContactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+              expFormMessage.textContent = '';
+              expFormMessage.className = 'exp-form-message';
+            }, 5000);
+          } else {
+            expFormMessage.textContent = 'Error al enviar. Por favor intenta de nuevo.';
+            expFormMessage.className = 'exp-form-message error';
+            saveLocal(data.email, data.tipo + ' - ' + data.mensaje);
+          }
+        } catch (err) {
+          expFormMessage.textContent = 'Error de conexión. Intenta de nuevo más tarde.';
+          expFormMessage.className = 'exp-form-message error';
+          saveLocal(data.email, data.tipo + ' - ' + data.mensaje);
+        }
+      } else {
+        saveLocal(data.email, data.tipo + ' - ' + data.mensaje);
+        expFormMessage.textContent = 'Formulario guardado localmente.';
+        expFormMessage.className = 'exp-form-message success';
+        expContactForm.reset();
+      }
+    });
+  }
 } // end initApp

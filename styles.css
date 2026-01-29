@@ -2082,7 +2082,64 @@ body:has([class*="meditation-"]) .section-black,
    EXPERIENCIAS PAGE - UX/UI MODERN REDESIGN
    =============================================== */
 
-/* Hero Section */
+/* SECCIÓN 1: Hero con Video Full Screen */
+.exp-hero-video{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.exp-hero-video-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.exp-hero-video-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(174,87,192,0.3));
+  z-index: 2;
+}
+
+.exp-hero-video-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.exp-hero-video-title{
+  font-size: clamp(64px, 12vw, 120px);
+  margin: 0;
+  color: #fff;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp{
+  from{
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Old Hero Section */
 .exp-hero{
   padding: 140px 0 80px;
   background: #000;
@@ -2135,6 +2192,169 @@ body:has([class*="meditation-"]) .section-black,
   color: rgba(255,255,255,0.6);
   margin: 0;
   font-weight: 400;
+}
+
+/* SECCIÓN 2: Single Event Featured */
+.exp-single-event{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.exp-event-featured{
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 400ms ease;
+}
+
+.exp-event-featured:hover{
+  transform: translateY(-8px);
+  border-color: rgba(174,87,192,0.5);
+  box-shadow: 0 20px 60px rgba(174,87,192,0.2);
+}
+
+.exp-event-image{
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.exp-event-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.exp-event-featured:hover .exp-event-image img{
+  transform: scale(1.05);
+}
+
+.exp-event-badge{
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(174,87,192,0.95);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+}
+
+.exp-event-content{
+  padding: 40px;
+}
+
+.exp-event-title{
+  font-family: 'Zamora', serif;
+  font-size: 36px;
+  margin: 0 0 16px 0;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.exp-event-description{
+  font-size: 18px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  margin: 0 0 32px 0;
+}
+
+.exp-event-details{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+}
+
+.exp-detail-item{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+}
+
+.exp-detail-item svg{
+  flex-shrink: 0;
+  color: #AE57C0;
+}
+
+.exp-event-cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: #AE57C0;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 400ms ease;
+}
+
+.exp-event-cta:hover{
+  background: #9747ab;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(174,87,192,0.4);
+  gap: 12px;
+}
+
+/* SECCIÓN 3: Past Events Single */
+.exp-past-single{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.exp-event-past{
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 400ms ease;
+}
+
+.exp-event-past:hover{
+  border-color: rgba(174,87,192,0.3);
+  transform: translateY(-4px);
+}
+
+.exp-event-video-wrapper{
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+.exp-event-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exp-event-meta{
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.exp-meta-date{
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Grid 4 Columnas - Responsive */
@@ -2529,8 +2749,36 @@ body:has([class*="meditation-"]) .section-black,
   transform: translateY(0);
 }
 
+.exp-form-message{
+  font-size: 14px;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.exp-form-message.success{
+  background: rgba(76,175,80,0.2);
+  color: #4CAF50;
+  border: 1px solid rgba(76,175,80,0.3);
+}
+
+.exp-form-message.error{
+  background: rgba(244,67,54,0.2);
+  color: #f44336;
+  border: 1px solid rgba(244,67,54,0.3);
+}
+
 /* Mobile Optimizations */
 @media (max-width: 768px){
+  .exp-hero-video{
+    height: 70vh;
+  }
+  
+  .exp-hero-video-title{
+    font-size: 48px;
+  }
+  
   .exp-hero{
     padding: 100px 0 60px;
   }
@@ -2553,5 +2801,21 @@ body:has([class*="meditation-"]) .section-black,
   
   .exp-types-grid{
     gap: 20px;
+  }
+  
+  .exp-event-image{
+    height: 300px;
+  }
+  
+  .exp-event-content{
+    padding: 28px;
+  }
+  
+  .exp-event-title{
+    font-size: 28px;
+  }
+  
+  .exp-event-description{
+    font-size: 16px;
   }
 }
