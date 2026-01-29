@@ -138,17 +138,60 @@ h1, h2, h3, h4, h5, h6{
   z-index:110;
   display:flex;
   align-items:center;
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid transparent;
   transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(255,255,255,0.95);
+  background: transparent;
+}
+
+/* Transparent on scroll down */
+.site-header.scroll-down{
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.scroll-down .logo-img,
+.site-header.scroll-down .main-nav a{
+  color: #fff !important;
+  filter: brightness(0) invert(1);
+}
+
+.site-header.scroll-down .main-nav a{
+  filter: none;
+  color: #fff !important;
+}
+
+.site-header.scroll-down .hamburger .bar{
+  background: #fff;
+}
+
+/* Black on scroll up or hover */
+.site-header.scroll-up,
+.site-header:hover{
+  background: rgba(0,0,0,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.site-header.scroll-up .logo-img,
+.site-header:hover .logo-img{
+  filter: brightness(0) invert(1);
+}
+
+.site-header.scroll-up .main-nav a,
+.site-header:hover .main-nav a{
+  color: #fff !important;
+}
+
+.site-header.scroll-up .hamburger .bar,
+.site-header:hover .hamburger .bar{
+  background: #fff;
 }
 
 /* White background for Nude style */
 .page-index .site-header{
-  background: rgba(255,255,255,0.95);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background: transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .site-header::before{
@@ -239,7 +282,7 @@ h1, h2, h3, h4, h5, h6{
 
 .main-nav a{
   padding:8px 16px; 
-  color:#000;
+  color:#fff;
   text-decoration:none;
   position: relative;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -249,7 +292,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .page-index .main-nav a{
-  color: #000; /* Black text on white background */
+  color: #fff; /* White text by default (transparent header) */
 }
 
 .main-nav a::before{
@@ -1285,6 +1328,56 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 /* Hero Nude Style */
+/* Hero Centered - New Design */
+.hero-centered{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+  overflow: hidden;
+  padding: 60px 20px;
+}
+
+.hero-centered-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.hero-centered-logo{
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin-bottom: 40px;
+  opacity: 0.95;
+  transition: all 600ms ease;
+  filter: drop-shadow(0 4px 20px rgba(174,87,192,0.3));
+}
+
+.hero-centered:hover .hero-centered-logo{
+  opacity: 1;
+  transform: translateY(-4px);
+  filter: drop-shadow(0 8px 32px rgba(174,87,192,0.5));
+}
+
+.hero-centered-tagline{
+  font-size: clamp(16px, 3vw, 24px);
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: 0.02em;
+  font-family: 'Satoshi', sans-serif;
+}
+
+/* Old Hero Nude styles - kept for other pages */
 .hero-nude{
   position: relative;
   display: grid;
@@ -1598,6 +1691,131 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 /* About Section Nude Style */
+/* About Editorial - Typography Playground */
+.about-editorial{
+  background: #000;
+  padding: 140px 0;
+  position: relative;
+}
+
+.about-editorial-container{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.about-editorial-title{
+  font-family: 'Zamora', serif;
+  margin: 0 0 80px 0;
+  line-height: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-title-line{
+  display: block;
+  transition: all 400ms ease;
+}
+
+.about-uppercase{
+  text-transform: uppercase;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.about-lowercase{
+  text-transform: lowercase;
+  font-size: clamp(64px, 10vw, 120px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #AE57C0;
+  font-style: italic;
+}
+
+.about-editorial-content{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.about-editorial-lead{
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.6;
+  color: rgba(255,255,255,0.95);
+  margin: 0;
+  font-weight: 500;
+}
+
+.about-editorial-body{
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  font-weight: 400;
+}
+
+.highlight-violet{
+  color: #AE57C0;
+  font-weight: 700;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-orange{
+  color: #FF7A18;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95em;
+}
+
+.about-editorial-quote{
+  margin: 48px 0 0 0;
+  padding: 40px;
+  background: rgba(174,87,192,0.08);
+  border-left: 4px solid #AE57C0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Zamora', serif;
+  font-style: normal;
+}
+
+.quote-text{
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  display: block;
+  font-weight: 400;
+}
+
+.quote-text-alt{
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.quote-text-emphasis{
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.4;
+  color: #FF7A18;
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: 8px;
+}
+
+/* Old About Nude - kept for compatibility */
 .about-nude{
   background: #fff;
   padding: 100px 0;
@@ -1751,6 +1969,36 @@ body:has([class*="meditation-"]) .section-black,
 
 /* Responsive Adjustments */
 @media (max-width: 900px){
+  .hero-centered{
+    min-height: 80vh;
+    padding: 80px 20px;
+  }
+  
+  .hero-centered-logo{
+    max-width: 500px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-centered-tagline{
+    font-size: 18px;
+  }
+  
+  .about-editorial{
+    padding: 80px 0;
+  }
+  
+  .about-editorial-container{
+    padding: 0 24px;
+  }
+  
+  .about-uppercase{
+    font-size: 48px;
+  }
+  
+  .about-lowercase{
+    font-size: 64px;
+  }
+  
   .hero-nude{
     grid-template-columns: 1fr;
   }
@@ -1778,6 +2026,18 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 @media (max-width: 600px){
+  .hero-centered-logo{
+    max-width: 90%;
+  }
+  
+  .about-editorial-title{
+    margin-bottom: 48px;
+  }
+  
+  .about-editorial-quote{
+    padding: 24px;
+  }
+  
   .hero-nude-content{
     padding: 40px 24px;
   }

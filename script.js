@@ -43,35 +43,49 @@ function initApp() {
   let ticking = false;
   
   function handleHeroScroll(){
-    if (!hero || !heroTitle) return;
-    
     const y = window.scrollY || window.pageYOffset;
-    const heroTitleRect = heroTitle.getBoundingClientRect();
-    const headerHeight = 45; // Updated height
+    const header = document.querySelector('.site-header');
+    
+    if (!header) return;
     
     // Determine scroll direction
     const scrollingDown = y > lastScrollY;
     const scrollingUp = y < lastScrollY;
     
-    // When the hero title reaches the header position
-    if (y > 100) { // Scrolled past initial view
-      hero.classList.add('scrolled');
+    // When scrolled past initial view
+    if (y > 100) {
       document.body.classList.add('scrolled');
       
       if (scrollingDown) {
         document.body.classList.add('scroll-down');
         document.body.classList.remove('scroll-up');
-        hero.classList.add('scroll-down');
-        hero.classList.remove('scroll-up');
+        header.classList.add('scroll-down');
+        header.classList.remove('scroll-up');
       } else if (scrollingUp) {
         document.body.classList.add('scroll-up');
         document.body.classList.remove('scroll-down');
-        hero.classList.add('scroll-up');
-        hero.classList.remove('scroll-down');
+        header.classList.add('scroll-up');
+        header.classList.remove('scroll-down');
       }
     } else {
-      hero.classList.remove('scrolled', 'scroll-down', 'scroll-up');
+      header.classList.remove('scrolled', 'scroll-down', 'scroll-up');
       document.body.classList.remove('scrolled', 'scroll-down', 'scroll-up');
+    }
+    
+    // Apply classes to hero if it exists
+    if (hero) {
+      if (y > 100) {
+        hero.classList.add('scrolled');
+        if (scrollingDown) {
+          hero.classList.add('scroll-down');
+          hero.classList.remove('scroll-up');
+        } else if (scrollingUp) {
+          hero.classList.add('scroll-up');
+          hero.classList.remove('scroll-down');
+        }
+      } else {
+        hero.classList.remove('scrolled', 'scroll-down', 'scroll-up');
+      }
     }
     
     lastScrollY = y;
