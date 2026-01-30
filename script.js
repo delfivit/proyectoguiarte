@@ -2,7 +2,7 @@
    Keep GAS_ENDPOINT empty or set to your Apps Script Web App to store emails in Google Sheets.
 */
 
-const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx87bPGhzKcR14QZKEl0LZSoTMTkaoW0ssJL91XesyW3gFmBB3LlYavdjox0xi80bplnQ/exec';
+const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzAVjtZCn3PZE1RooZJy2h9xkEEo0BhYSMVSJyyhBALfeN-rEdbfFbHLXI9bVx6dBkyCA/exec';
 
 // Load header and footer components
 async function loadComponents() {

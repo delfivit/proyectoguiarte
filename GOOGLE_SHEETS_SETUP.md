@@ -257,7 +257,7 @@ A veces Google Apps Script necesita una nueva implementación:
 
 ## 📝 Notas
 
-- El endpoint actual configurado es: `AKfycbzP7JaFNr8NwlJqtiSknMIES7gKOtlW_QRbPveSEcyePdwhE8Cb6sJ_uB2YYvbGPqTr`
+- El endpoint actual configurado es: `AKfycbzAVjtZCn3PZE1RooZJy2h9xkEEo0BhYSMVSJyyhBALfeN-rEdbfFbHLXI9bVx6dBkyCA`
 - Los datos se envían con el campo `sheet` para indicar a qué hoja ir
 - Newsletter envía: `{ sheet: 'Newsletter', email, tipo, ts }`
 - Experiencias envía: `{ sheet: 'Experiencias', email, nombre, telefono, mensaje, tipo, ts }`
