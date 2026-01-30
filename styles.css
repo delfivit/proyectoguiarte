@@ -1185,21 +1185,21 @@ body:has([class*="meditation-"]) .section-black,
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.08);
+  width: 48px;
+  height: 48px;
+  background: #3d2621;
   border-radius: 50%;
   transition: all 300ms ease;
 }
 
 .footer-socials a:hover{
-  background: rgba(255,255,255,0.15);
+  background: #4d3631;
   transform: translateY(-3px);
 }
 
 .footer-logo{
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
