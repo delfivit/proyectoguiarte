@@ -366,16 +366,9 @@ async function submitOrder(e) {
     return;
   }
   
-  // Verificar que sea lunes, miércoles o viernes
+  // Formatear la fecha para mostrar (ej: "Lunes 27/01/2026")
   const selectedDate = new Date(deliveryDateInput + 'T00:00:00');
   const dayOfWeek = selectedDate.getDay();
-  if (dayOfWeek !== 1 && dayOfWeek !== 3 && dayOfWeek !== 5) {
-    msgEl.textContent = '❌ Solo podés elegir Lunes, Miércoles o Viernes';
-    msgEl.style.color = '#ff4444';
-    return;
-  }
-  
-  // Formatear la fecha para mostrar (ej: "Lunes 27/01/2026")
   const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   const deliveryDay = `${dayNames[dayOfWeek]} ${selectedDate.getDate()}/${String(selectedDate.getMonth() + 1).padStart(2, '0')}/${selectedDate.getFullYear()}`;
   
@@ -545,18 +538,7 @@ function initDeliveryDateValidation() {
   maxDate.setMonth(maxDate.getMonth() + 3);
   deliveryDateInput.max = maxDate.toISOString().split('T')[0];
   
-  // Validar cuando el usuario selecciona una fecha
-  deliveryDateInput.addEventListener('input', function() {
-    const selectedDate = new Date(this.value + 'T00:00:00');
-    const dayOfWeek = selectedDate.getDay(); // 0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado
-    
-    // Solo permitir lunes (1), miércoles (3) o viernes (5)
-    if (dayOfWeek !== 1 && dayOfWeek !== 3 && dayOfWeek !== 5) {
-      alert('⚠️ Solo podés elegir días Lunes, Miércoles o Viernes para la entrega.');
-      this.value = '';
-      return;
-    }
-  });
+  // Ya no hay validación de días específicos - se permite cualquier día
 }
 
 // Inicializar Google Places Autocomplete
