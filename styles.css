@@ -1727,218 +1727,35 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 .about-editorial-container{
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 80px 40px;
   width: 100%;
+  text-align: center;
 }
 
 .about-editorial-title{
   font-family: 'Zamora', serif;
-  margin: 0 0 80px 0;
-  line-height: 0.9;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: -10px;
-}
-
-.about-title-line{
-  display: block;
-  transition: all 400ms ease;
-}
-
-.about-uppercase{
-  text-transform: uppercase;
-  font-size: clamp(60px, 12vw, 140px);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #fff;
-  line-height: 0.85;
-}
-
-.about-lowercase{
-  text-transform: lowercase;
-  font-size: clamp(90px, 16vw, 200px);
+  font-size: clamp(48px, 8vw, 80px);
   font-weight: 400;
-  letter-spacing: -0.05em;
-  color: #AE57C0;
-  font-style: italic;
-  line-height: 0.75;
-  margin-top: -30px;
+  color: #fff;
+  margin: 0 0 80px 0;
+  line-height: 1.2;
 }
 
 .about-editorial-content{
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
+  gap: 32px;
 }
 
-.about-editorial-lead{
-  font-size: clamp(28px, 5vw, 48px);
-  line-height: 1.3;
-  color: rgba(255,255,255,0.95);
+.about-editorial-description{
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
   margin: 0;
   font-weight: 400;
-  text-align: center;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.about-editorial-body{
-  font-size: clamp(32px, 6vw, 72px);
-  line-height: 1.2;
-  color: rgba(255,255,255,0.85);
-  margin: 20px 0;
-  font-weight: 300;
-  text-align: center;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.about-editorial-middle{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 40px 0;
-}
-
-.about-middle-text{
-  font-size: clamp(24px, 4vw, 42px);
-  line-height: 1.4;
-  color: rgba(255,255,255,0.8);
-  margin: 0;
-  font-weight: 400;
-  text-align: center;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.about-editorial-final{
-  font-size: clamp(20px, 3.5vw, 32px);
-  line-height: 1.5;
-  color: rgba(255,255,255,0.75);
-  margin: 30px 0 0 0;
-  font-weight: 400;
-  text-align: center;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.highlight-violet{
-  color: #AE57C0;
-  font-weight: 700;
-  font-style: italic;
-  position: relative;
-  display: inline-block;
-  font-size: 1em;
-}
-
-.highlight-huge{
-  color: #fff;
-  font-family: 'Zamora', serif;
-  font-weight: 700;
-  font-size: clamp(48px, 8vw, 96px);
-  display: block;
-  margin: 20px 0;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-}
-
-.highlight-huge-violet{
-  color: #AE57C0;
-  font-family: 'Zamora', serif;
-  font-weight: 700;
-  font-style: italic;
-  font-size: clamp(40px, 7vw, 80px);
-  display: inline-block;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.highlight-medium-violet{
-  color: #AE57C0;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 1em;
-}
-
-.highlight-orange{
-  color: #FF7A18;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: clamp(24px, 4.5vw, 52px);
-  display: block;
-  margin: 15px 0;
-}
-
-.highlight-orange-big{
-  color: #FF7A18;
-  font-weight: 700;
-  text-transform: lowercase;
-  font-family: 'Zamora', serif;
-  font-style: italic;
-  font-size: clamp(36px, 6vw, 64px);
-  letter-spacing: -0.02em;
-  display: inline-block;
-}
-
-.highlight-script{
-  color: #AE57C0;
-  font-family: 'Zamora', serif;
-  font-weight: 400;
-  font-style: italic;
-  font-size: clamp(40px, 7vw, 76px);
-  letter-spacing: -0.03em;
-  display: inline-block;
-  line-height: 1;
-}
-
-.highlight-uppercase-white{
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 1em;
-}
-
-.about-editorial-quote{
-  margin: 50px 0 0 0;
-  padding: 40px;
-  background: rgba(174,87,192,0.06);
-  border-left: 4px solid #AE57C0;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.quote-text{
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.4;
-  color: rgba(255,255,255,0.85);
-  display: block;
-  font-weight: 400;
-}
-
-.quote-text-alt{
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.4;
-  color: rgba(255,255,255,0.85);
-  display: block;
-  font-style: italic;
-  font-weight: 400;
-}
-
-.quote-text-emphasis{
-  font-size: clamp(24px, 4vw, 36px);
-  line-height: 1.3;
-  color: #FF7A18;
-  display: block;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 16px;
 }
 
 /* Old About Nude - kept for compatibility */
@@ -2972,25 +2789,7 @@ body:has([class*="meditation-"]) .section-black,
   }
 
   .about-editorial-content{
-    gap: 20px;
-  }
-
-  .about-editorial-middle{
-    margin: 30px 0;
-    gap: 15px;
-  }
-
-  .about-editorial-quote{
-    padding: 28px 20px;
-    margin-top: 40px;
-  }
-
-  .highlight-huge{
-    margin: 15px 0;
-  }
-
-  .highlight-orange{
-    margin: 10px 0;
+    gap: 24px;
   }
 
   .exp-hero-video{
