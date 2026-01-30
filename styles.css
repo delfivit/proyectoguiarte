@@ -1736,19 +1736,35 @@ body:has([class*="meditation-"]) .section-black,
   overflow: hidden;
 }
 
+.about-editorial::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('img-qs.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+}
+
 .about-editorial-container{
   max-width: 900px;
   margin: 0 auto;
   padding: 80px 40px;
   width: 100%;
-  text-align: center;
+  text-align: left;
+  position: relative;
+  z-index: 2;
 }
 
 .about-editorial-title{
   font-family: 'Zamora', serif;
   font-size: clamp(40px, 7vw, 64px);
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   color: #fff;
   margin: 0 0 60px 0;
   line-height: 1.1;
@@ -2785,6 +2801,62 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 /* ============================================
+   PRODUCTOS PAGE
+   ============================================ */
+
+/* Hero Productos */
+.prod-hero{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-hero-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('img-productos.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.prod-hero-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+  z-index: 2;
+}
+
+.prod-hero-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 20px;
+}
+
+.prod-hero-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(64px, 12vw, 120px);
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
    MEDITACIONES PAGE
    ============================================ */
 
@@ -2833,7 +2905,7 @@ body:has([class*="meditation-"]) .section-black,
   font-family: 'Zamora', serif;
   font-size: clamp(64px, 12vw, 120px);
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   color: #fff;
   margin: 0;
   text-shadow: 0 4px 20px rgba(0,0,0,0.5);
