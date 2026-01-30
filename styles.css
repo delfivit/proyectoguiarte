@@ -2659,10 +2659,12 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 .exp-contact-title{
+  font-family: 'Zamora', serif;
   font-size: clamp(32px, 5vw, 48px);
   margin: 0 0 24px 0;
   color: #fff;
   line-height: 1.2;
+  font-weight: 400;
 }
 
 .exp-contact-text{
