@@ -1762,7 +1762,7 @@ body:has([class*="meditation-"]) .section-black,
 
 .about-editorial-title{
   font-family: 'Zamora', serif;
-  font-size: clamp(40px, 7vw, 64px);
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 400;
   font-style: normal;
   color: #fff;
