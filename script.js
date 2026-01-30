@@ -233,7 +233,12 @@ function initApp() {
       buyMsg.textContent = 'Enviando...';
       if (GAS_ENDPOINT){
         try{
-          const payload = { email, product, ts: new Date().toISOString() };
+          const payload = { 
+            sheet: 'Productos',
+            email: email, 
+            product: product, 
+            ts: new Date().toISOString() 
+          };
           const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
           if (ok){
             buyMsg.textContent = '¡Listo! Te avisaremos cuando esté disponible.';
