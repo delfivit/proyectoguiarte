@@ -124,7 +124,7 @@ function initApp() {
     });
   }
 
-  // Newsletter form handler
+  // Newsletter form handler (Footer - Join the Movement)
   const newsletterForm = document.getElementById('newsletterForm');
   const newsletterEmail = document.getElementById('newsletterEmail');
   const newsletterMessage = document.getElementById('newsletterMessage');
@@ -135,41 +135,48 @@ function initApp() {
       const email = newsletterEmail.value.trim();
       
       if (!validateEmail(email)) {
-        newsletterMessage.textContent = 'Please enter a valid email address.';
-        newsletterMessage.style.color = '#ff6b6b';
+        newsletterMessage.textContent = 'Por favor ingresa un email válido.';
+        newsletterMessage.className = 'newsletter-message error';
         return;
       }
       
-      newsletterMessage.textContent = 'Subscribing...';
-      newsletterMessage.style.color = 'rgba(255,255,255,0.7)';
+      newsletterMessage.textContent = 'Suscribiendo...';
+      newsletterMessage.className = 'newsletter-message';
       
       if (GAS_ENDPOINT) {
         try {
           const payload = { 
-            email, 
-            product: 'Newsletter Subscription', 
+            sheet: 'Newsletter',
+            email: email, 
+            tipo: 'Newsletter Subscription', 
             ts: new Date().toISOString() 
           };
           const ok = await sendToEndpoint(GAS_ENDPOINT, payload);
           
           if (ok) {
-            newsletterMessage.textContent = '¡Perfect! Welcome to the movement ✨';
-            newsletterMessage.style.color = '#51cf66';
+            newsletterMessage.textContent = '¡Gracias por suscribirte! 🎉';
+            newsletterMessage.className = 'newsletter-message success';
             newsletterForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+              newsletterMessage.textContent = '';
+              newsletterMessage.className = 'newsletter-message';
+            }, 5000);
           } else {
-            newsletterMessage.textContent = 'Error. Saved locally.';
-            newsletterMessage.style.color = '#ff6b6b';
+            newsletterMessage.textContent = 'Error. Guardado localmente.';
+            newsletterMessage.className = 'newsletter-message error';
             saveLocal(email, 'Newsletter Subscription');
           }
         } catch (err) {
-          newsletterMessage.textContent = 'Connection error. Saved locally.';
-          newsletterMessage.style.color = '#ff6b6b';
+          newsletterMessage.textContent = 'Error de conexión. Guardado localmente.';
+          newsletterMessage.className = 'newsletter-message error';
           saveLocal(email, 'Newsletter Subscription');
         }
       } else {
         saveLocal(email, 'Newsletter Subscription');
-        newsletterMessage.textContent = 'Saved locally. Configure GAS_ENDPOINT.';
-        newsletterMessage.style.color = '#51cf66';
+        newsletterMessage.textContent = 'Guardado localmente. Configura GAS_ENDPOINT.';
+        newsletterMessage.className = 'newsletter-message success';
         newsletterForm.reset();
       }
     });
@@ -405,13 +412,16 @@ function initApp() {
       expFormMessage.textContent = 'Enviando...';
       expFormMessage.className = 'exp-form-message';
       
-      // Send to Google Sheets
+      // Send to Google Sheets - Hoja "Experiencias"
       if (GAS_ENDPOINT) {
         try {
           const payload = {
+            sheet: 'Experiencias',
             email: data.email,
-            product: `${data.tipo} - ${data.nombre}`,
-            mensaje: `Teléfono: ${data.telefono}\nMensaje: ${data.mensaje}`,
+            nombre: data.nombre,
+            telefono: data.telefono,
+            mensaje: data.mensaje,
+            tipo: data.tipo,
             ts: data.ts
           };
           

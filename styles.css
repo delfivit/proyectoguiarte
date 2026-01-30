@@ -1132,6 +1132,16 @@ body:has([class*="meditation-"]) .section-black,
   font-size: 13px;
   margin-top: 8px;
   min-height: 20px;
+  color: rgba(255,255,255,0.7);
+  transition: all 300ms ease;
+}
+
+.newsletter-message.success{
+  color: #b8ffd6;
+}
+
+.newsletter-message.error{
+  color: #ffb0b0;
 }
 
 /* Right Section: Links + Socials */
