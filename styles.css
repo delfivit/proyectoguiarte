@@ -2784,6 +2784,183 @@ body:has([class*="meditation-"]) .section-black,
   border: 1px solid rgba(244,67,54,0.3);
 }
 
+/* ============================================
+   MEDITACIONES PAGE
+   ============================================ */
+
+/* Hero Meditaciones */
+.med-hero{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.med-hero-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('img-meditaciones.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.med-hero-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+  z-index: 2;
+}
+
+.med-hero-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 20px;
+}
+
+.med-hero-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(64px, 12vw, 120px);
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  letter-spacing: -0.02em;
+}
+
+/* Sections */
+.med-section{
+  padding: 100px 0;
+  background: #000;
+}
+
+.med-section-title{
+  font-family: 'Zamora', serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 60px 0;
+}
+
+/* Grid de cards */
+.med-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.med-card{
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.med-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(174,87,192,0.2);
+}
+
+.med-card iframe{
+  display: block;
+  width: 100%;
+}
+
+/* Social Buttons */
+.med-social-buttons{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.med-btn-social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 32px;
+  background: #AE57C0;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 12px rgba(174,87,192,0.3);
+}
+
+.med-btn-social:hover{
+  background: #9647a8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(174,87,192,0.4);
+}
+
+.med-btn-social img{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.med-btn-social span{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px){
+  .med-hero{
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .med-hero-title{
+    font-size: clamp(48px, 10vw, 80px);
+  }
+
+  .med-section{
+    padding: 60px 0;
+  }
+
+  .med-section-title{
+    margin-bottom: 40px;
+  }
+
+  .med-grid{
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .med-social-buttons{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .med-btn-social{
+    padding: 16px 24px;
+  }
+}
+
 /* Mobile Optimizations */
 @media (max-width: 768px){
   .about-editorial{
