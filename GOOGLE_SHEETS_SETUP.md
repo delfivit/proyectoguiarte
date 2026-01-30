@@ -52,6 +52,7 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     return handleRequest(data);
   } catch (err) {
+    Logger.log('Error en doPost: ' + err.toString());
     return ContentService.createTextOutput(JSON.stringify({
       status: 'error',
       message: err.toString()
@@ -62,8 +63,18 @@ function doPost(e) {
 function doGet(e) {
   try {
     const data = e.parameter;
+    // Remove callback parameter
+    if (data.callback) {
+      const callback = data.callback;
+      delete data.callback;
+      const result = handleRequest(data);
+      return ContentService.createTextOutput(
+        callback + '(' + result.getContent() + ')'
+      ).setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
     return handleRequest(data);
   } catch (err) {
+    Logger.log('Error en doGet: ' + err.toString());
     return ContentService.createTextOutput(JSON.stringify({
       status: 'error',
       message: err.toString()
@@ -72,6 +83,8 @@ function doGet(e) {
 }
 
 function handleRequest(data) {
+  Logger.log('Datos recibidos: ' + JSON.stringify(data));
+  
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheetName = data.sheet || 'Newsletter';
   let sheet = ss.getSheetByName(sheetName);
@@ -91,34 +104,45 @@ function handleRequest(data) {
   }
   
   // Insertar datos según el tipo de hoja
-  if (sheetName === 'Newsletter') {
-    sheet.appendRow([
-      data.email || '',
-      data.tipo || 'Newsletter Subscription',
-      data.ts || new Date().toISOString()
-    ]);
-  } else if (sheetName === 'Experiencias') {
-    sheet.appendRow([
-      data.email || '',
-      data.nombre || '',
-      data.telefono || '',
-      data.mensaje || '',
-      data.tipo || 'Consulta Experiencia',
-      data.ts || new Date().toISOString()
-    ]);
-  } else if (sheetName === 'Productos') {
-    sheet.appendRow([
-      data.email || '',
-      data.product || data.producto || '',
-      data.ts || new Date().toISOString()
-    ]);
+  try {
+    if (sheetName === 'Newsletter') {
+      sheet.appendRow([
+        data.email || '',
+        data.tipo || 'Newsletter Subscription',
+        data.ts || new Date().toISOString()
+      ]);
+      Logger.log('Newsletter guardado: ' + data.email);
+    } else if (sheetName === 'Experiencias') {
+      sheet.appendRow([
+        data.email || '',
+        data.nombre || '',
+        data.telefono || '',
+        data.mensaje || '',
+        data.tipo || 'Consulta Experiencia',
+        data.ts || new Date().toISOString()
+      ]);
+      Logger.log('Experiencia guardada: ' + data.email);
+    } else if (sheetName === 'Productos') {
+      sheet.appendRow([
+        data.email || '',
+        data.product || data.producto || '',
+        data.ts || new Date().toISOString()
+      ]);
+      Logger.log('Producto guardado: ' + data.email);
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'ok',
+      sheet: sheetName,
+      message: 'Datos guardados correctamente'
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    Logger.log('Error al guardar: ' + err.toString());
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: 'Error al guardar: ' + err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
   }
-  
-  return ContentService.createTextOutput(JSON.stringify({
-    status: 'ok',
-    sheet: sheetName,
-    message: 'Datos guardados correctamente'
-  })).setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
@@ -168,6 +192,52 @@ Si necesitas cambiar la URL del endpoint, edita la línea 5 de `script.js`.
 ---
 
 ## 🔍 Troubleshooting
+
+### ❌ Error "Error al enviar" o "Error al suscribir":
+
+**1. Verifica la URL del endpoint:**
+- Abre `script.js` línea 5
+- Asegúrate de que la URL termine en `/exec` (no `/dev`)
+- Debe ser: `https://script.google.com/macros/s/TU_ID_AQUI/exec`
+
+**2. Verifica los permisos del Web App:**
+- En Apps Script, ve a **Implementar > Administrar implementaciones**
+- Haz clic en el ⚙️ (engranaje) de tu implementación
+- **Ejecutar como**: Tu email
+- **Quién tiene acceso**: **Cualquier persona** ← MUY IMPORTANTE
+- Si no dice "Cualquier persona", edita y cambia esta opción
+- Guarda y copia la nueva URL
+
+**3. Prueba manualmente el endpoint:**
+Abre esta URL en tu navegador (reemplaza TU_URL con tu endpoint):
+```
+TU_URL?sheet=Newsletter&email=test@test.com&tipo=Test&ts=2026-01-30
+```
+Deberías ver: `{"status":"ok","sheet":"Newsletter","message":"Datos guardados correctamente"}`
+
+**4. Revisa los logs en Apps Script:**
+- En Apps Script, ve a **Ejecuciones** (icono reloj ⏱️)
+- Busca errores recientes
+- Los logs te dirán exactamente qué falló
+
+**5. Re-implementa el Web App:**
+A veces Google Apps Script necesita una nueva implementación:
+- Ve a **Implementar > Nueva implementación**
+- Tipo: **Aplicación web**
+- **Nueva descripción**: "v2" o la fecha actual
+- **Ejecutar como**: Tu email
+- **Quién tiene acceso**: **Cualquier persona**
+- Implementar
+- **IMPORTANTE**: Copia la NUEVA URL y actualízala en `script.js` línea 5
+
+**6. Verifica las hojas en Google Sheets:**
+- Abre tu Google Sheet
+- Verifica que existan las hojas: `Newsletter` y `Experiencias`
+- Los nombres deben ser EXACTOS (con mayúscula inicial)
+
+**7. Prueba en modo incógnito:**
+- A veces el caché del navegador causa problemas
+- Prueba en ventana incógnito o borra el caché
 
 ### El formulario no envía datos:
 - Verifica que la URL en `GAS_ENDPOINT` sea correcta

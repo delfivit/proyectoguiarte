@@ -365,16 +365,17 @@ function initApp() {
       const res = await fetch(url, { 
         method:'POST', 
         headers:{'Content-Type':'application/json'}, 
-        body: JSON.stringify(payload) 
+        body: JSON.stringify(payload),
+        mode: 'no-cors' // Important for Google Apps Script
       });
-      if (res && res.ok) return true;
+      // With no-cors, we can't read response, so assume success if no error
+      return true;
     }catch(err){
-      // CORS or network error, try JSONP fallback
+      console.error('POST failed, trying JSONP fallback:', err);
     }
 
-    // JSONP fallback: send as GET with callback
-    const params = { email: payload.email, product: payload.product, ts: payload.ts };
-    return await jsonpRequest(url, params, 9000);
+    // JSONP fallback: send all payload params as GET
+    return await jsonpRequest(url, payload, 9000);
   }
 
   // Experiences Contact Form Handler
