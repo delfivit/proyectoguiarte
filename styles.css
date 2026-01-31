@@ -1178,30 +1178,35 @@ body:has([class*="meditation-"]) .section-black,
 /* Socials (horizontal) */
 .footer-socials{
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
 .footer-socials a{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: #3d2621;
+  width: 44px;
+  height: 44px;
+  background: transparent;
   border-radius: 50%;
   transition: all 300ms ease;
 }
 
 .footer-socials a:hover{
-  background: #4d3631;
+  background: rgba(255,255,255,0.1);
   transform: translateY(-3px);
 }
 
 .footer-logo{
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  filter: none;
+  filter: brightness(0) invert(1);
+  transition: all 300ms ease;
+}
+
+.footer-socials a:hover .footer-logo{
+  transform: scale(1.15);
 }
 
 /* Logo Section (Full Width at Bottom) */
