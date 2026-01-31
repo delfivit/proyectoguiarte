@@ -2230,9 +2230,12 @@ body:has([class*="meditation-"]) .section-black,
   font-weight: 400;
 }
 
-/* SECCIÓN 2: Single Event Featured */
+/* SECCIÓN 2: Grid de Eventos (4 columnas) */
 .exp-single-event{
-  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -2242,6 +2245,8 @@ body:has([class*="meditation-"]) .section-black,
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
   transition: all 400ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .exp-event-featured:hover{
@@ -2348,9 +2353,12 @@ body:has([class*="meditation-"]) .section-black,
   gap: 12px;
 }
 
-/* SECCIÓN 3: Past Events Single */
+/* SECCIÓN 3: Grid de Eventos Pasados (4 columnas) */
 .exp-past-single{
-  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -2360,6 +2368,8 @@ body:has([class*="meditation-"]) .section-black,
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.08);
   transition: all 400ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .exp-event-past:hover{
@@ -2805,6 +2815,28 @@ body:has([class*="meditation-"]) .section-black,
   background: rgba(244,67,54,0.2);
   color: #f44336;
   border: 1px solid rgba(244,67,54,0.3);
+}
+
+/* Responsive - Experiencias Grid */
+@media (max-width: 1200px){
+  .exp-single-event,
+  .exp-past-single{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px){
+  .exp-single-event,
+  .exp-past-single{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .exp-single-event,
+  .exp-past-single{
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================================
