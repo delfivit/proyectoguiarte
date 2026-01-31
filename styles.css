@@ -2335,16 +2335,17 @@ body:has([class*="meditation-"]) .section-black,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px 32px;
+  padding: 14px 24px;
   background: #AE57C0;
   color: #fff;
   text-decoration: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   transition: all 400ms ease;
+  white-space: nowrap;
 }
 
 .exp-event-cta:hover{
