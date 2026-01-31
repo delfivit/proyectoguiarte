@@ -1201,7 +1201,7 @@ body:has([class*="meditation-"]) .section-black,
   width: 22px;
   height: 22px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 /* Logo Section (Full Width at Bottom) */
