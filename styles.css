@@ -2259,7 +2259,7 @@ body:has([class*="meditation-"]) .section-black,
 .exp-event-image{
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 200px;
   overflow: hidden;
 }
 
@@ -2290,22 +2290,22 @@ body:has([class*="meditation-"]) .section-black,
 }
 
 .exp-event-content{
-  padding: 40px;
+  padding: 24px;
 }
 
 .exp-event-title{
   font-family: 'Zamora', serif;
-  font-size: 36px;
-  margin: 0 0 16px 0;
+  font-size: 24px;
+  margin: 0 0 12px 0;
   color: #fff;
   line-height: 1.2;
 }
 
 .exp-event-description{
-  font-size: 18px;
+  font-size: 14px;
   color: rgba(255,255,255,0.75);
-  line-height: 1.7;
-  margin: 0 0 32px 0;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
 }
 
 .exp-event-details{
@@ -2381,7 +2381,7 @@ body:has([class*="meditation-"]) .section-black,
 .exp-event-video-wrapper{
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 175px;
   overflow: hidden;
 }
 
