@@ -969,10 +969,10 @@ body:has([class*="meditation-"]) .section-black,
 .category-title{
   font-size: clamp(28px, 4vw, 36px);
   margin: 0;
-  background: linear-gradient(90deg, var(--accent-orange), var(--accent-violet));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-family: 'Zamora', serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 .category-description{
